@@ -105,3 +105,8 @@ a.desc:after {
 {
     width:780px;height:120px;margin-left:40px;float:left;text-align:center;
 }
+
+.btn-sq-lg {
+  width: 500px !important;
+  height: 180px !important;
+}

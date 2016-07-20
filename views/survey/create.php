@@ -2,73 +2,22 @@
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Survey */
+
+$this->title = 'Pesquisa';
 ?>
 
 <div class="survey-create">
-
-    <?php
-    $wizard_config = [
-        'id' => 'stepwizard',
-        'steps' => [
-            1 => [
-                'title' => 'Step 1',
-                'icon' => 'glyphicon glyphicon-cloud-download',
-                'content' => '<h3>Step 1</h3>This is step 1',
-                'skippable' => false,
-            ],
-            2 => [
-                'title' => 'Step 2',
-                'icon' => 'glyphicon glyphicon-cloud-upload',
-                'content' => '<h3>Step 2</h3>This is step 2',
-                'skippable' => false,
-            ],
-            3 => [
-                'title' => 'Step 3',
-                'icon' => 'glyphicon glyphicon-transfer',
-                'content' => '<h3>Step 3</h3>This is step 3',
-                'skippable' => false,
-            ],
-            4 => [
-                'title' => 'Step 1',
-                'icon' => 'glyphicon glyphicon-cloud-download',
-                'content' => '<h3>Step 1</h3>This is step 1',
-                'skippable' => false,
-            ],
-            5 => [
-                'title' => 'Step 2',
-                'icon' => 'glyphicon glyphicon-cloud-upload',
-                'content' => '<h3>Step 2</h3>This is step 2',
-                'skippable' => false,
-            ],
-            6 => [
-                'title' => 'Step 3',
-                'icon' => 'glyphicon glyphicon-transfer',
-                'content' => '<h3>Step 3</h3>This is step 3',
-                'skippable' => false,
-            ],
-            7 => [
-                'title' => 'Step 1',
-                'icon' => 'glyphicon glyphicon-cloud-download',
-                'content' => '<h3>Step 1</h3>This is step 1',
-                'skippable' => false,
-            ],
-            8 => [
-                'title' => 'Step 2',
-                'icon' => 'glyphicon glyphicon-cloud-upload',
-                'content' => '<h3>Step 2</h3>This is step 2',
-                'skippable' => false,
-            ],
-            9 => [
-                'title' => 'Step 3',
-                'icon' => 'glyphicon glyphicon-transfer',
-                'content' => '<h3>Step 3</h3>This is step 3',
-                'skippable' => false,
-            ],
-        ],
-        'complete_content' => "You are done!", // Optional final screen
-        'start_step' => 1, // Optional, start with a specific step
-    ]; ?>
-
-    <?= \drsdre\wizardwidget\WizardWidget::widget($wizard_config); ?>
-
+    <a href="<?= \yii\helpers\Url::to(['create-survey-one']); ?>" class="btn btn-sq-lg btn-primary">
+        <i class="fa fa-user fa-5x"></i><br/>
+        <br/>
+        Apenas acesse este bloco se a sua instituição <br><b><u>não oferece</u></b> disciplina ou conteúdo de história da enfermagem! <br>
+        <b>Clique para acessar</b>
+    </a>
+    
+    <a href="<?= \yii\helpers\Url::to(['create-survey-two']); ?>" class="btn btn-sq-lg btn-success">
+      <i class="fa fa-user fa-5x"></i><br/>
+      <br/>
+      Apenas acesse este bloco se a sua instituição <br><b><u>oferece</u></b> disciplina ou conteúdo de história da enfermagem! <br>
+      <b>Clique para acessar</b>
+    </a>
 </div>

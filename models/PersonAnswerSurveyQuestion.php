@@ -27,13 +27,28 @@ class PersonAnswerSurveyQuestion extends \yii\db\ActiveRecord
         return 'person_answer_survey_question';
     }
 
+    public function behaviors()
+    {
+        return 
+        [
+            [
+                'class' => \yii\behaviors\TimestampBehavior::className(),
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => false,
+                'value' => function() { 
+                    return date('U');
+                },
+            ],
+        ];
+    }
+    
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['person_id', 'survey_id', 'question_id', 'answer', 'created_at'], 'required'],
+            [['person_id', 'survey_id', 'question_id', 'answer'], 'required', 'message' => 'Uma {attribute} deve ser fornecida. '],
             [['person_id', 'survey_id', 'question_id'], 'integer'],
             [['answer'], 'string'],
             [['created_at'], 'safe'],
@@ -52,7 +67,7 @@ class PersonAnswerSurveyQuestion extends \yii\db\ActiveRecord
             'person_id' => 'Person ID',
             'survey_id' => 'Survey ID',
             'question_id' => 'Question ID',
-            'answer' => 'Answer',
+            'answer' => 'Resposta',
             'created_at' => 'Created At',
         ];
     }

@@ -10,7 +10,9 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
@@ -22,43 +24,31 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
-<?php $this->beginBody() ?>
-
-<div class="wrap">    
-    <div class="container">
-        <div id="cabecalho"> 
-            <div id="cab_logo">
-                <?= Html::img('@web/img/logo.png', ['width' => '130px','height' => '120px']);?>
+    <?php $this->beginBody() ?>
+    <div class="wrap">    
+        <div class="container">
+            <div id="cabecalho"> 
+                <div id="cab_logo">
+                    <?= Html::img('@web/img/logo.png', ['width' => '130px','height' => '120px']);?>
+                </div>
+                <div id="cab_conteudo">
+                    <h4>Rastreamento no Ensino de História da Enfermagem no Estado de São Paulo
+                            Escola de Enfermagem de Ribeirão Preto - EERP
+                    </h4>
+                </div> 
             </div>
-
-            <div id="cab_conteudo">
-                <br />
-                <h4>Rastreamento no Ensino de História da Enfermagem no Estado de São Paulo
-                    <br />Escola de Enfermagem de Ribeirão Preto - EERP</h4>
-            </div> 
+            <hr>
         </div>
-        <br>
-        <hr>
-
+        <div id="main-content" class="container">
+            <?= $content ?>
+        </div>
     </div>
-
-    <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
-        <?= $content ?>
-    </div>
-</div>
-
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
-</footer>
-
-<?php $this->endBody() ?>
+    <footer class="footer">
+        <div class="container">
+            <p class="pull-left">&copy; PURATEC <?= date('Y') ?></p>
+        </div>
+    </footer>
+    <?php $this->endBody() ?>
 </body>
 </html>
 <?php $this->endPage() ?>

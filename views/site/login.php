@@ -7,41 +7,36 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to login:</p>
+<div class="row">
+    <div class="col-md-9">
+        <p>Bem vindo ao portal de Rastreamento no Ensino de História da Enfermagem!</p>
+        <p>Nessa perspectiva, pretende-se identificar o contexto curricular da disciplina da História da Enfermagem, nos cursos de graduação em Enfermagem, do estado de São Paulo, analisando os programas oferecidos, cargas horárias, assim como os currículos dos docentes que estão envolvidos e as dificuldades encontradas pelos docentes para o avanço da disciplina nos currículos de graduação.</p>
+        <br />
+        <p>Os objetivos específicos deste projeto são:</p>
+        <ul>
+            <li><p>Analisar a inserção ou ausência da disciplina de História da Enfermagem ou seus conteúdos em outras disciplinas</p></li>
+            <li><p>Analisar a formação dos professores responsáveis pela disciplina de História da Enfermagem</p></li>
+            <li><p>Analisar os programas da disciplina de História da Enfermagem e carga horária</p></li>
+            <li><p>Analisar as estratégias pedagógicas e principais temas abordados</p></li>
+            <li><p>Analisar as principais dificuldades vivenciadas pelos docentes, no ensino de História da Enfermagem</p></li>
+        </ul>
+    </div>
+    <div class="col-md-3">
+        <legend>
+            <p class="text-center">Acesso ao formulário</p>
+        </legend>
+        <?php $form = ActiveForm::begin([
+            'id' => 'login-form',
+        ]); ?>
 
-    <?php $form = ActiveForm::begin([
-        'id' => 'login-form',
-        'options' => ['class' => 'form-horizontal'],
-        'fieldConfig' => [
-            'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
-            'labelOptions' => ['class' => 'col-lg-1 control-label'],
-        ],
-    ]); ?>
+            <?= $form->field($model, 'username')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
 
-        <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
+            <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Senha'])->label(false) ?>
 
-        <?= $form->field($model, 'password')->passwordInput() ?>
-
-        <?= $form->field($model, 'rememberMe')->checkbox([
-            'template' => "<div class=\"col-lg-offset-1 col-lg-3\">{input} {label}</div>\n<div class=\"col-lg-8\">{error}</div>",
-        ]) ?>
-
-        <div class="form-group">
-            <div class="col-lg-offset-1 col-lg-11">
-                <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-            </div>
-        </div>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="col-lg-offset-1" style="color:#999;">
-        You may login with <strong>admin/admin</strong> or <strong>demo/demo</strong>.<br>
-        To modify the username/password, please check out the code <code>app\models\User::$users</code>.
+            <?= Html::submitButton('Começar', ['class' => 'btn btn-success btn-lg btn-block']) ?> 
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
+

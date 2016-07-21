@@ -64,6 +64,13 @@ class User extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
         ];
     }
+    
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentity($id) {
+        return User::findOne($id);
+    }
 
     /**
      * @return \yii\db\ActiveQuery

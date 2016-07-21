@@ -90,20 +90,28 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
-
-#cabecalho
-{
-    width:100%;height:120px;margin:0 auto;
+#cabecalho {
+    width: 100%;
+    height: 120px;
+    margin: 0 auto;
 }
 
-#cab_logo
-{
-    width:130px;height:120px;float:left;
+#cab_logo {
+    width: 130px;
+    height: 120px;
+    float: left;
 }
 
-#cab_conteudo
-{
-    width:780px;height:120px;margin-left:40px;float:left;text-align:center;
+#cab_conteudo {
+    width: 780px;
+    height: 120px;
+    margin-left: 40px;
+    float: left;
+    text-align: center;
+}
+
+#main-content {
+    padding: 20px 15px 20px;
 }
 
 .btn-sq-lg {

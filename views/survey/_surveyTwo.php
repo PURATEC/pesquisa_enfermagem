@@ -21,6 +21,14 @@
                 ->textInput()
                 ->label($index+1 . '. '.$q->label);
             $content .= "</div>";
+            
+        elseif($q->element_type == 'select'):
+            $options = explode(';', $q->options);
+            $content .= "<div class='col-sm-8'>";
+            $content .= $form->field($answerGroup[$index], "[{$index}]answer")
+                    ->dropDownList($options, ['prompt' => 'placeholder'])->label($index+1 . '. '.$q->label);
+            $content .= "</div>";
+            
         elseif($q->element_type == 'radio'):
             $options = explode(';', $q->options);
             $content .= "<div class='col-sm-8'>";

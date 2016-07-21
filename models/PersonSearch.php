@@ -19,7 +19,7 @@ class PersonSearch extends Person
     {
         return [
             [['person_id'], 'integer'],
-            [['full_name', 'rg', 'postalcode', 'state', 'ibge_code', 'city', 'neighborhood', 'streetname', 'number', 'complement', 'phone', 'created_at'], 'safe'],
+            [['full_name', 'rg', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'complement', 'phone', 'created_at'], 'safe'],
             [['survey_success'], 'boolean'],
         ];
     }
@@ -69,7 +69,6 @@ class PersonSearch extends Person
             ->andFilterWhere(['like', 'rg', $this->rg])
             ->andFilterWhere(['like', 'postalcode', $this->postalcode])
             ->andFilterWhere(['like', 'state', $this->state])
-            ->andFilterWhere(['like', 'ibge_code', $this->ibge_code])
             ->andFilterWhere(['like', 'city', $this->city])
             ->andFilterWhere(['like', 'neighborhood', $this->neighborhood])
             ->andFilterWhere(['like', 'streetname', $this->streetname])

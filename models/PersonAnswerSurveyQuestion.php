@@ -35,9 +35,7 @@ class PersonAnswerSurveyQuestion extends \yii\db\ActiveRecord
                 'class' => \yii\behaviors\TimestampBehavior::className(),
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => false,
-                'value' => function() { 
-                    return date('U');
-                },
+                'value' => new \yii\db\Expression('NOW()'),
             ],
         ];
     }

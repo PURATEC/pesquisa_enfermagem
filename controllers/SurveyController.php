@@ -64,34 +64,56 @@ class SurveyController extends Controller
         $model = Survey::findOne(1);
 
         //renderizando o conjunto de questoes pertencentes ao grupo
-        $questionGroup1 = [];
-        $answerGroup1 = [];
+        $questionGroup = [];
+        $answerGroup = [];
         for($i=1; $i<=3; $i++) 
         {
-            $questionGroup1[] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 1]);
-            $answerGroup1[] = new \app\models\PersonAnswerSurveyQuestion;
+            $questionGroup[] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 1]);
+            $answerGroup[] = new \app\models\PersonAnswerSurveyQuestion;
         }
         
         //submissao do questionario
         if ($model->load(Yii::$app->request->post()) && 
-            ($answerGroup1 = Yii::$app->request->post('PersonAnswerSurveyQuestion'))
+            ($answerGroup = Yii::$app->request->post('PersonAnswerSurveyQuestion'))
         )
         {
-            foreach($answerGroup1 as $index => $a)
+            $transaction = Yii::$app->db->beginTransaction();
+            try 
             {
-                $modelAnswer = new \app\models\PersonAnswerSurveyQuestion;
-                $modelAnswer->survey_id = $model->survey_id;
-                $modelAnswer->person_id = 1;
-                $modelAnswer->question_id = $questionGroup1[$index]->question_id;
-                $modelAnswer->answer = $a['answer'];
+                $condition2Commit = true;
+                foreach($answerGroup as $index => $a)
+                {
+                    $modelAnswer = new \app\models\PersonAnswerSurveyQuestion;
+                    $modelAnswer->survey_id = $model->survey_id;
+                    $modelAnswer->person_id = 1;
+                    $modelAnswer->question_id = $questionGroup[$index]->question_id;
+                    $modelAnswer->answer = $a['answer'];
+                    
+                    if(! ($condition2Commit = $modelAnswer->save()))
+                    {
+                        break;
+                    }
+                }
+                
+                if($condition2Commit)
+                {
+                    $modelPerson = \app\models\Person::findOne(1);
+                    $modelPerson->survey_success = true;
+                    if($modelPerson->save())
+                    {
+                        $transaction->commit();
+                        return $this->redirect(['thanks']);
+                    }
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
             }
-            return $this->redirect(['thanks']);
         }
         
         return $this->render('_surveyOne', [
             'model' => $model,
-            'questionGroup1' => $questionGroup1,
-            'answerGroup1' => $answerGroup1
+            'questionGroup' => $questionGroup,
+            'answerGroup' => $answerGroup
         ]);
     }
     
@@ -104,14 +126,64 @@ class SurveyController extends Controller
     {
         $this->layout = 'survey';
         
-        $model = new Survey;
+        //pesquisa com instituicoes que nao tem o conteudo de historia da enfermagem
+        $model = Survey::findOne(2);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->survey_id]);
-        } 
+        //renderizando o conjunto de questoes pertencentes ao grupo
+        $questionGroup = [];
+        $answerGroup = [];
+        for($i=4; $i<=22; $i++) 
+        {
+            $questionGroup[] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
+            $answerGroup[] = new \app\models\PersonAnswerSurveyQuestion;
+        }
         
-        return $this->render('create', [
+        //submissao do questionario
+        if ($model->load(Yii::$app->request->post()) && 
+            ($answerGroup = Yii::$app->request->post('PersonAnswerSurveyQuestion'))
+        )
+        {
+            $transaction = Yii::$app->db->beginTransaction();
+            try 
+            {
+                $condition2Commit = true;
+                foreach($answerGroup as $index => $a)
+                {
+                    $modelAnswer = new \app\models\PersonAnswerSurveyQuestion;
+                    $modelAnswer->survey_id = $model->survey_id;
+                    $modelAnswer->person_id = 1;
+                    $modelAnswer->question_id = $questionGroup[$index]->question_id;
+                    $modelAnswer->answer = $a['answer'];
+                    
+                    if(! ($condition2Commit = $modelAnswer->save()))
+                    {
+                        break;
+                    }
+                }
+                
+                if($condition2Commit)
+                {
+                    $modelPerson = \app\models\Person::findOne(1);
+                    $modelPerson->survey_success = true;
+                    if($modelPerson->save())
+                    {
+                        
+                        var_dump($modelPerson->getErrors());
+                        die();
+                        
+                        $transaction->commit();
+                        return $this->redirect(['thanks']);
+                    }
+                }
+            } catch (Exception $e) {
+                $transaction->rollBack();
+            }
+        }
+        
+        return $this->render('_surveyTwo', [
             'model' => $model,
+            'questionGroup' => $questionGroup,
+            'answerGroup' => $answerGroup
         ]);
     }
     

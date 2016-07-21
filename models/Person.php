@@ -12,7 +12,6 @@ use Yii;
  * @property string $rg
  * @property string $postalcode
  * @property string $state
- * @property string $ibge_code
  * @property string $city
  * @property string $neighborhood
  * @property string $streetname
@@ -41,14 +40,13 @@ class Person extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['full_name', 'postalcode', 'state', 'ibge_code', 'city', 'neighborhood', 'streetname', 'number', 'complement', 'phone', 'created_at'], 'required'],
+            [['full_name', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'phone', 'created_at'], 'required'],
             [['survey_success'], 'boolean'],
             [['created_at'], 'safe'],
             [['full_name', 'city'], 'string', 'max' => 70],
             [['rg'], 'string', 'max' => 11],
             [['postalcode'], 'string', 'max' => 8],
             [['state'], 'string', 'max' => 2],
-            [['ibge_code'], 'string', 'max' => 6],
             [['neighborhood'], 'string', 'max' => 80],
             [['streetname'], 'string', 'max' => 120],
             [['number'], 'string', 'max' => 10],
@@ -69,7 +67,6 @@ class Person extends \yii\db\ActiveRecord
             'rg' => 'Rg',
             'postalcode' => 'Postalcode',
             'state' => 'State',
-            'ibge_code' => 'Ibge Code',
             'city' => 'City',
             'neighborhood' => 'Neighborhood',
             'streetname' => 'Streetname',

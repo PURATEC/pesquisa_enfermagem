@@ -118,3 +118,8 @@ a.desc:after {
   width: 500px !important;
   height: 180px !important;
 }
+
+.btn-sq-sm {
+  width: 100px !important;
+  height: 80px !important;
+}

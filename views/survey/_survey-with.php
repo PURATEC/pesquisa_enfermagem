@@ -1,0 +1,115 @@
+<?php
+/* @var $this yii\web\View */
+/* @var $model app\models\Survey */
+/* @var $questionGroup app\models\PersonAnswerSurveyQuestion */
+/* @var $form yii\widgets\ActiveForm */
+?>
+
+<div class="survey-form">
+    
+        <center style="width: 70%; height: 160px; margin: 0px auto;">
+            <?php if($modelPerson->survey_success):
+                $personSurveySuccessBtn = 'btn-success';
+            else: 
+                $personSurveySuccessBtn = 'btn-default';
+            endif; ?>
+            
+            <?php if($startedButNotFinished):
+                $btnSecond = 'btn-info';
+            else: 
+                $btnSecond = 'btn-default';
+            endif; ?>
+            
+            <a href="javascript:void(0);" class="btn btn-sq-sm btn-info">
+                <i class="fa fa-wpforms fa-5x"></i><br/><br/>
+            </a>
+            <b>Dados da disciplina</b>
+            
+            <a href="javascript:void(0);" class="btn btn-sq-sm">
+                <br/><i class="fa fa-arrow-right fa-3x"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn btn-sq-sm <?= $btnSecond ?>">
+                <i class="fa fa-wpforms fa-5x"></i><br/><br/>
+            </a>
+            <b>Dados do Professor</b>
+            
+            <a href="javascript:void(0);" class="btn btn-sq-sm">
+                <br/><i class="fa fa-arrow-right fa-3x"></i>
+            </a>
+            <a href="javascript:void(0);" class="btn btn-sq-sm btn-default">
+                <i class="fa fa-check-circle-o fa-5x"></i><br/><br/>
+            </a>
+            <b><?php $modelPerson->survey_success ? 'Finalização' : 'Concluído!'; ?></b>
+            
+            <br/><br/>
+            <hr>
+        </center>
+    
+    <br/>
+    
+    <?php if(!$modelPerson->survey_success): ?>
+        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'surveyForm']); ?>
+
+        <?= $form->field($model, 'survey_id')->hiddenInput()->label(false); ?>
+
+        <?php foreach($questionGroup as $index => $q):
+            if($q->element_type == 'text'):
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->textInput()->label($index+1 . '. '.$q->label);
+            elseif($q->element_type == 'textarea'):
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->textarea()->label($index+1 . '. '.$q->label);
+            elseif($q->element_type == 'select'):
+                $options = explode(';', $q->options);
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->dropDownList($options, ['prompt' => 'SELECIONAR OPÇÃO'])->label($index+1 . '. '.$q->label);
+            elseif($q->element_type == 'checkbox'):
+                $options = explode(';', $q->options);
+                echo $form->field($answerGroup[$index], "[{$index}]answer")
+                    ->checkboxList($options, ['separator' => "<br>"])->label($index+1 . '. '.$q->label);
+            elseif($q->element_type == 'radio'):
+                $options = explode(';', $q->options);
+                echo $form->field($answerGroup[$index], "[{$index}]answer")
+                    ->radioList($options, ['separator' => "<br>"])->label($index+1 . '. '.$q->label);
+            elseif($q->element_type == 'slider'):
+                echo \yii\helpers\Html::label($index+1 . '. '.$q->label);
+                echo "<br><br><br>";
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->widget(\kartik\slider\Slider::classname(), [
+                    'sliderColor' => \kartik\slider\Slider::TYPE_GREY,
+                    'handleColor' => \kartik\slider\Slider::TYPE_DANGER,
+                    'pluginOptions' => [
+                        'handle' => 'triangle',
+                        'tooltip' => 'always',
+                        'formatter' => new yii\web\JsExpression("function(val) { 
+                            if (val <= 3) {
+                                return 'Pouco';
+                            }
+                            if (val > 3 && val <= 7) {
+                                return 'Médio';
+                            }
+                            if (val > 7 && val <= 10) {
+                                return 'Muito';
+                            }
+                        }")
+                    ]
+                ]);
+            endif;
+        endforeach;
+        ?>
+
+        <center>
+            <div class="col-sm-6">
+                <?= \yii\helpers\Html::a("<i class='fa fa-undo'></i> Voltar", 
+                    ['/dynamicform/custom-form/index'], 
+                    ['class' => 'btn btn-danger btn-lg btn-block']
+                ); ?>
+            </div>
+            <div class="col-sm-6">
+                <?= \yii\helpers\Html::submitButton("<i class='fa fa-check-circle-o'></i> Salvar",
+                    ['class' => 'btn btn-success btn-lg btn-block']
+                ); ?>
+            </div>
+        </center>
+
+        <?php \yii\widgets\ActiveForm::end(); ?>
+    <?php else:
+        echo $this->render('thanks');
+    endif; ?>
+</div>

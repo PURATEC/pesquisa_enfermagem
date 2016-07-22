@@ -13,6 +13,8 @@ use yii\web\NotFoundHttpException;
  */
 class SurveyController extends Controller
 {
+    public $layout = 'survey';
+    
     /**
      * Lists all Survey models.
      * @return mixed
@@ -41,29 +43,116 @@ class SurveyController extends Controller
     }
 
     /**
+     * The purpose of this function is to render a view for user choose survey type.
+     * @return mixed
+     */
+    public function actionPreCreate()
+    {
+        return $this->render('pre-create');
+    }
+    
+    /**
      * Creates a new Survey.
      * If creation is successful, the browser will be redirected to the respective 'create' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreateWith($personID)
     {
-        $this->layout = 'survey';
-        return $this->render('create');
+        $model = Survey::findOne(2);
+        $modelPerson = \app\models\Person::findOne($personID);
+        
+        $startedButNotFinished = false;
+        if(\app\models\PersonAnswerSurveyQuestion::findOne(['person_id' => $personID, 'question_id'=> 22, 'survey_id' => 2]))
+        {
+            $startedButNotFinished = true;
+        }
+        
+        $questionGroup = [];
+        $answerGroup = [];
+        if(!$startedButNotFinished)
+        {
+            for($i=4; $i<=22; $i++) 
+            {
+                $questionGroup[] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
+                $answerGroup[] = new \app\models\PersonAnswerSurveyQuestion;
+            }
+        }
+        else{
+            for($i=23; $i<=39; $i++)
+            {
+                $questionGroup[] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
+                $answerGroup[] = new \app\models\PersonAnswerSurveyQuestion;
+            }
+        }
+        
+        if ($model->load(Yii::$app->request->post()) && 
+            ($answerGroup = Yii::$app->request->post('PersonAnswerSurveyQuestion'))
+        )
+        {
+            $transaction = Yii::$app->db->beginTransaction();
+            
+            try 
+            {
+                $condition2Commit = true;
+                foreach($answerGroup as $index => $a)
+                {
+                    $modelAnswer = new \app\models\PersonAnswerSurveyQuestion;
+                    $modelAnswer->survey_id = $model->survey_id;
+                    $modelAnswer->person_id = $personID;
+                    $modelAnswer->question_id = $questionGroup[$index]->question_id;
+                    
+                    if(is_array($a['answer']))
+                    {
+                        $auxAnswerOptions = '';
+                        foreach($a['answer'] as $tmp)
+                        {
+                            $auxAnswerOptions = $auxAnswerOptions.';'.$tmp;
+                        }
+                        $modelAnswer->answer = substr($auxAnswerOptions, 1);
+                    }
+                    else
+                    {
+                        $modelAnswer->answer = $a['answer'];
+                    }
+                    
+                    if(! ($condition2Commit = $modelAnswer->save()))
+                    {
+                        break;
+                    }
+                }
+                
+                if($condition2Commit)
+                {
+                    $modelPerson->survey_success = true;
+                    if($modelPerson->save())
+                    {
+                        $transaction->commit();
+                    }
+                }
+            } catch (Exception $ex) {
+                $transaction->rollBack();
+            }
+        }
+        
+        return $this->render('_survey-with', [
+            'model' => $model,
+            'modelPerson' => $modelPerson,
+            'questionGroup' => $questionGroup,
+            'answerGroup' => $answerGroup,
+            'startedButNotFinished' => $startedButNotFinished
+        ]);
     }
     
     /**
-     * The purpose of this function is to create a survey.
-     * Here, for institutions that do not have the history of nursing discipline.
+     * Creates a new Survey.
+     * If creation is successful, the browser will be redirected to the respective 'create' page.
      * @return mixed
      */
-    public function actionCreateSurveyOne()
+    public function actionCreateWithout($personID)
     {
-        $this->layout = 'survey';
-        
-        //pesquisa com instituicoes que nao tem o conteudo de historia da enfermagem
         $model = Survey::findOne(1);
-
-        //renderizando o conjunto de questoes pertencentes ao grupo
+        $modelPerson = \app\models\Person::findOne($personID);
+        
         $questionGroup = [];
         $answerGroup = [];
         for($i=1; $i<=3; $i++) 
@@ -72,12 +161,12 @@ class SurveyController extends Controller
             $answerGroup[] = new \app\models\PersonAnswerSurveyQuestion;
         }
         
-        //submissao do questionario
         if ($model->load(Yii::$app->request->post()) && 
             ($answerGroup = Yii::$app->request->post('PersonAnswerSurveyQuestion'))
         )
         {
             $transaction = Yii::$app->db->beginTransaction();
+            
             try 
             {
                 $condition2Commit = true;
@@ -85,103 +174,30 @@ class SurveyController extends Controller
                 {
                     $modelAnswer = new \app\models\PersonAnswerSurveyQuestion;
                     $modelAnswer->survey_id = $model->survey_id;
-                    $modelAnswer->person_id = 1;
+                    $modelAnswer->person_id = $personID;
                     $modelAnswer->question_id = $questionGroup[$index]->question_id;
                     $modelAnswer->answer = $a['answer'];
-                    
                     if(! ($condition2Commit = $modelAnswer->save()))
                     {
                         break;
                     }
                 }
-                
                 if($condition2Commit)
                 {
-                    $modelPerson = \app\models\Person::findOne(1);
                     $modelPerson->survey_success = true;
                     if($modelPerson->save())
                     {
                         $transaction->commit();
-                        return $this->redirect(['thanks']);
                     }
                 }
-            } catch (Exception $e) {
+            } catch (Exception $ex) {
                 $transaction->rollBack();
             }
         }
         
-        return $this->render('_surveyOne', [
+        return $this->render('_survey-without', [
             'model' => $model,
-            'questionGroup' => $questionGroup,
-            'answerGroup' => $answerGroup
-        ]);
-    }
-    
-    /**
-     * The purpose of this function is to create a survey.
-     * Here, for institutions that have the history of nursing discipline.
-     * @return mixed
-     */
-    public function actionCreateSurveyTwo()
-    {
-        $this->layout = 'survey';
-        
-        //pesquisa com instituicoes que nao tem o conteudo de historia da enfermagem
-        $model = Survey::findOne(2);
-
-        //renderizando o conjunto de questoes pertencentes ao grupo
-        $questionGroup = [];
-        $answerGroup = [];
-        for($i=4; $i<=22; $i++) 
-        {
-            $questionGroup[] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
-            $answerGroup[] = new \app\models\PersonAnswerSurveyQuestion;
-        }
-        
-        //submissao do questionario
-        if ($model->load(Yii::$app->request->post()) && 
-            ($answerGroup = Yii::$app->request->post('PersonAnswerSurveyQuestion'))
-        )
-        {
-            $transaction = Yii::$app->db->beginTransaction();
-            try 
-            {
-                $condition2Commit = true;
-                foreach($answerGroup as $index => $a)
-                {
-                    $modelAnswer = new \app\models\PersonAnswerSurveyQuestion;
-                    $modelAnswer->survey_id = $model->survey_id;
-                    $modelAnswer->person_id = 1;
-                    $modelAnswer->question_id = $questionGroup[$index]->question_id;
-                    $modelAnswer->answer = $a['answer'];
-                    
-                    if(! ($condition2Commit = $modelAnswer->save()))
-                    {
-                        break;
-                    }
-                }
-                
-                if($condition2Commit)
-                {
-                    $modelPerson = \app\models\Person::findOne(1);
-                    $modelPerson->survey_success = true;
-                    if($modelPerson->save())
-                    {
-                        
-                        var_dump($modelPerson->getErrors());
-                        die();
-                        
-                        $transaction->commit();
-                        return $this->redirect(['thanks']);
-                    }
-                }
-            } catch (Exception $e) {
-                $transaction->rollBack();
-            }
-        }
-        
-        return $this->render('_surveyTwo', [
-            'model' => $model,
+            'modelPerson' => $modelPerson,
             'questionGroup' => $questionGroup,
             'answerGroup' => $answerGroup
         ]);

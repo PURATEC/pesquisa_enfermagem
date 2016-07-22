@@ -127,7 +127,7 @@ VALUES (
 INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
 VALUES (
     true, 
-    'text',
+    'textarea',
     'Como você percebe a importância do conteúdo ou da disciplina de História na Enfermagem da formação do enfermeiro?', 
     NULL, 
     13,
@@ -163,7 +163,7 @@ VALUES (
 INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
 VALUES (
     true, 
-    'text',
+    'textarea',
     'Qual a bibliografia utilizada na disciplina? Favor colar as referências utilizadas nesse espaço.', 
     NULL,
     17,
@@ -172,7 +172,7 @@ VALUES (
 INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
 VALUES (
     true, 
-    'select',
+    'slider',
     'De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a importância do conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?', 
     '1;2;3;4;5;6;7;8;9;10',
     18,
@@ -181,7 +181,7 @@ VALUES (
 INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
 VALUES (
     true, 
-    'select',
+    'slider',
     'De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a valorização dos estudantes para o conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?', 
     '1;2;3;4;5;6;7;8;9;10',
     19,
@@ -190,7 +190,7 @@ VALUES (
 INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
 VALUES (
     true, 
-    'select',
+    'slider',
     'De 0 a 10, sendo 0, nenhuma importância e 10 muita importância, como você classifica a valorização que a sua instituição atribui ao conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?', 
     '1;2;3;4;5;6;7;8;9;10',
     20,
@@ -199,7 +199,7 @@ VALUES (
 INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
 VALUES (
     true, 
-    'select',
+    'slider',
     'De 0 a 10, sendo 0, nenhum e 10 excelente, como você classifica seu domínio dos conhecimentos para ministrar o conteúdo ou disciplina de História da Enfermagem?', 
     '1;2;3;4;5;6;7;8;9;10',
     21,
@@ -212,5 +212,159 @@ VALUES (
     'Como geralmente se dá a escolha do docente desse conteúdo ou disciplina de História da Enfermagem na sua instituição? Quais os critérios?', 
     'Currículo específico;Concurso específico para a disciplina;Processo Seletivo específico para a disciplina;Afinidade com o tema;Professor contratado com menor carga horária;Disponibilidade;Outros',
     22,
+    2
+);
+
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Gênero:', 
+    'Masculino;Femino',
+    23,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'text',
+    'Idade:', 
+    NULL,
+    24,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'text',
+    'Qual sua formação inicial?:', 
+    'Bacharel em Enfermagem;Bacharel e Licenciado em Enfermagem; Bacharel ou Licencitura em História;Outro',
+    25,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'text',
+    'Ano de conclusão:', 
+    NULL,
+    26,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Possui outro curso de graduação?', 
+    'Não;Sim',
+    27,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Andamento:', 
+    'Concluído;Em andamento;',
+    28,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Possui curso de especialização?', 
+    'Não;Sim',
+    29,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Andamento:', 
+    'Concluído;Em andamento;',
+    30,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'checkbox',
+    'Possui Pós-graduação Stricto Sensu?', 
+    'Mestrado;Doutorado;Pós Doutorado',
+    31,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Há quanto tempo é responsável pela disciplina ou conteúdo de História da Enfermagem?', 
+    'Menos de 1 ano;De 1 à 3 anos;De 4 à 6 anos;De 7 à 9 anos;Mais de 10 anos',
+    32,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'text',
+    'Qual a sua carga horária semanal média nessa instituição de ensino?', 
+    NULL,
+    33,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Possui outro vinculo empregatício?', 
+    'Não;Sim',
+    34,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'checkbox',
+    'Idiomas', 
+    'Ingles(Sem conhecimento);Inglês(Básico ou Regular);Inglês(Avançado);Inglês(Fluente);Espanhol(Sem conhecimento);Espanhol(Básico ou Regular);Espanhol(Avançado);Espanhol(Fluente);',
+    35,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Você é responsável por outras disciplinas?', 
+    'Não;Sim;',
+    36,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Você é responsável por outras disciplinas?', 
+    'Não;Sim;',
+    37,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Participa de algum grupo de pesquisa?', 
+    'Não;Sim;',
+    38,
+    2
+);
+INSERT INTO "question" ( "active", "element_type", "label", "options", "question_id", "survey_id") 
+VALUES (
+    true, 
+    'select',
+    'Atua em alguma linha ou linhas de pesquisa?', 
+    'Não;Sim;',
+    39,
     2
 );

@@ -53,20 +53,27 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
-     *
-     * @return string
+     * Login process to authenticate the user
+     * @return home page url
      */
     public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+    {   
+        // Verifica se o usuário não é um visitante
+        if(!Yii::$app->user->isGuest) 
+        {
+            return $this->redirect(['survey/create']);
         }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+        
+        $model = new LoginForm; 
+        
+        if($model->load(Yii::$app->request->post()))
+        {     
+            if($model->login())
+            {
+                return $this->redirect(['survey/create']);
+            }
         }
+        
         return $this->render('login', [
             'model' => $model,
         ]);

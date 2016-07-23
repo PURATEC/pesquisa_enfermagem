@@ -19,7 +19,7 @@ use Yii;
  *
  * @property Person $person
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
     /**
      * @inheritdoc
@@ -35,15 +35,15 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['person_id', 'email', 'password', 'type', 'last_login', 'created_at'], 'required'],
-            [['person_id'], 'integer'],
+            [['email', 'password', 'type', 'last_login'], 'required'],
             [['tos', 'active'], 'boolean'],
-            [['last_login', 'created_at'], 'safe'],
+            [['last_login'], 'safe'],
             [['email'], 'string', 'max' => 50],
             [['password'], 'string', 'max' => 64],
             [['type'], 'string', 'max' => 20],
             [['email'], 'unique'],
-            [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'person_id']],
+            [['person_id'], 'exist', 'skipOnError' => false, 'targetClass' => Person::className(), 
+                'targetAttribute' => ['person_id' => 'person_id']],
         ];
     }
 
@@ -53,16 +53,24 @@ class User extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'user_id' => 'User ID',
-            'person_id' => 'Person ID',
-            'email' => 'Email',
-            'password' => 'Password',
-            'type' => 'Type',
-            'tos' => 'Tos',
-            'last_login' => 'Last Login',
-            'active' => 'Active',
-            'created_at' => 'Created At',
+            'user_id' => 'ID usuário',
+            'person_id' => 'ID pessoa',
+            'email' => 'E-mail',
+            'password' => 'Senha',
+            'type' => 'Tipo de usuário',
+            'tos' => 'Termo de consentimento',
+            'last_login' => 'Último acesso',
+            'active' => 'Estado do usuário',
+            'created_at' => 'Data de criação',
         ];
+    }
+    
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPerson()
+    {
+        return $this->hasOne(Person::className(), ['person_id' => 'person_id']);
     }
     
     /**
@@ -71,12 +79,62 @@ class User extends \yii\db\ActiveRecord
     public static function findIdentity($id) {
         return User::findOne($id);
     }
+    
+    /**
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null) {
+        
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function getAuthKey() {
+        
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function getId() {
+        return $this->user_id;
+    }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @inheritdoc
      */
-    public function getPerson()
+    public function validateAuthKey($authKey) {
+        
+    }
+    
+    /**
+     * Validates password
+     *
+     * @param string $password password to validate
+     * @return boolean if password provided is valid for current user
+     */
+    public function validatePassword($password) {
+        return Yii::$app->security->validatePassword($password, $this->password);
+    }
+    
+    /**
+     * Finds user by email
+     *
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($email) 
     {
-        return $this->hasOne(Person::className(), ['person_id' => 'person_id']);
+        // Verifica se a string é um E-mail válido
+        if((filter_var($email, FILTER_VALIDATE_EMAIL)) !== false) 
+        {
+            return User::find()->where(['email' => $email])->one();
+        } 
+        
+        else 
+        {
+            return null;
+        }
     }
 }

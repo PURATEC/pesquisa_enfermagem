@@ -31,7 +31,7 @@ use yii\bootstrap\ActiveForm;
             'id' => 'login-form',
         ]); ?>
 
-            <?= $form->field($model, 'username')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
+            <?= $form->field($model, 'email')->textInput(['placeholder' => 'E-mail'])->label(false) ?>
 
             <?= $form->field($model, 'password')->passwordInput(['placeholder' => 'Senha'])->label(false) ?>
 
@@ -39,4 +39,3 @@ use yii\bootstrap\ActiveForm;
         <?php ActiveForm::end(); ?>
     </div>
 </div>
-

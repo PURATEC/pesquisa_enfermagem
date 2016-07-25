@@ -26,6 +26,8 @@ use Yii;
  */
 class Person extends \yii\db\ActiveRecord
 {
+    public $termsOfService;
+    
     /**
      * @inheritdoc
      */
@@ -41,7 +43,9 @@ class Person extends \yii\db\ActiveRecord
     {
         return [
             [['full_name', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'phone', 'created_at'], 'required'],
-            [['survey_success'], 'boolean'],
+            ['termsOfService','required', 'requiredValue' => true, 
+                'message'=> 'Você precisa aceitar o termo de consentimento'],
+            [['survey_success', 'termsOfService'], 'boolean'],
             [['created_at'], 'safe'],
             [['full_name', 'city'], 'string', 'max' => 70],
             [['rg'], 'string', 'max' => 11],
@@ -62,19 +66,19 @@ class Person extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'person_id' => 'Person ID',
-            'full_name' => 'Full Name',
-            'rg' => 'Rg',
-            'postalcode' => 'Postalcode',
-            'state' => 'State',
-            'city' => 'City',
-            'neighborhood' => 'Neighborhood',
-            'streetname' => 'Streetname',
-            'number' => 'Number',
-            'complement' => 'Complement',
-            'phone' => 'Phone',
-            'survey_success' => 'Survey Success',
-            'created_at' => 'Created At',
+            'person_id' => 'ID Pessoa',
+            'full_name' => 'Nome completo do participante',
+            'rg' => 'Documento de identidade (RG)',
+            'postalcode' => 'Código postal (CEP)',
+            'state' => 'Estado',
+            'city' => 'Cidade',
+            'neighborhood' => 'Bairro',
+            'streetname' => 'Nome da rua',
+            'number' => 'Número',
+            'complement' => 'Complemento',
+            'phone' => 'Telefone',
+            'survey_success' => 'Formulário preenchido?',
+            'created_at' => 'Data de criação',
         ];
     }
 

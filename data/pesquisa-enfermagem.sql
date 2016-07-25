@@ -37,7 +37,7 @@ CREATE TABLE person(
 
 CREATE TABLE "user"(
     user_id SERIAL,
-    person_id INTEGER NOT NULL,
+    person_id INTEGER NULL,
     email CHARACTER VARYING(50) NOT NULL UNIQUE,
     password CHARACTER VARYING(64) NOT NULL,
     type CHARACTER VARYING(20) NOT NULL,

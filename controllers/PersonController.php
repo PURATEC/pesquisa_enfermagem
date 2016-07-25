@@ -14,6 +14,8 @@ use yii\filters\VerbFilter;
  */
 class PersonController extends Controller
 {
+    public $layout = 'survey';
+    
     /**
      * @inheritdoc
      */
@@ -30,80 +32,34 @@ class PersonController extends Controller
     }
 
     /**
-     * Lists all Person models.
+     * Terms of service for user agree or not agree.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionTermsOfService()
     {
-        $searchModel = new PersonSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Person model.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new Person model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Person();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->person_id]);
-        } else {
-            return $this->render('create', [
+        $model = new Person;
+        
+        $user = \app\models\User::findOne(['user_id' => Yii::$app->user->id]);
+        
+        if($model->load(Yii::$app->request->post()))
+        {
+            // Se os termos de serviço foram aceitos
+            if($model->termsOfService == true)
+            {
+                if($model->save())
+                {
+                    $user->tos = $user->termsOfService;
+                    $user->person_id = $model->person_id;
+                }
+            }   
+        }
+        
+        else
+        {    
+            return $this->render('terms-of-service', [
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Updates an existing Person model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->person_id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Deletes an existing Person model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

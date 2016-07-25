@@ -61,7 +61,7 @@ class SiteController extends Controller
         // Verifica se o usuário não é um visitante
         if(!Yii::$app->user->isGuest) 
         {
-            return $this->redirect(['survey/create']);
+            return $this->redirect(['survey/pre-create']);
         }
         
         $model = new LoginForm; 
@@ -70,7 +70,7 @@ class SiteController extends Controller
         {     
             if($model->login())
             {
-                return $this->redirect(['survey/create']);
+                return $this->redirect(['survey/pre-create']);
             }
         }
         

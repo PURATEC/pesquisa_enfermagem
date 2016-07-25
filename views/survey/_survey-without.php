@@ -37,13 +37,17 @@
         <?= $form->field($model, 'survey_id')->hiddenInput()->label(false); ?>
 
         <?php foreach($questionGroup as $index => $q):
+            echo "<div class='col-sm-".$q->size."' style='text-align: justify;'>";
             if($q->element_type == 'text'):
-                echo $form->field($answerGroup[$index], "[{$index}]answer")->textInput()->label($index+1 . '. '.$q->label);
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->textInput(['placeholder' => $q->placeholder])->label($index+1 . '. '.$q->label);
             elseif($q->element_type == 'textarea'):
-                echo $form->field($answerGroup[$index], "[{$index}]answer")->textarea()->label($index+1 . '. '.$q->label);
-            elseif($q->element_type == 'select'):
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->textarea(['placeholder' => $q->placeholder])->label($index+1 . '. '.$q->label);
+            elseif($q->element_type == 'select' || $q->element_type == 'select-option'):
                 $options = explode(';', $q->options);
                 echo $form->field($answerGroup[$index], "[{$index}]answer")->dropDownList($options)->label($index+1 . '. '.$q->label);
+                if($q->element_type == 'select-option'):
+                    echo $form->field($answerGroup[$index], "[{$index}]option1")->textarea(['options' => ['placeholder' => 'oi']])->label($q->complement);
+                endif;
             elseif($q->element_type == 'checkbox'):
                 $options = explode(';', $q->options);
                 echo $form->field($answerGroup[$index], "[{$index}]answer")
@@ -62,13 +66,14 @@
                     ]
                 ]);
             endif;
+            echo "</div>";
         endforeach;
         ?>
 
         <center>
             <div class="col-sm-6">
                 <?= \yii\helpers\Html::a("<i class='fa fa-undo'></i> Voltar", 
-                    ['/dynamicform/custom-form/index'], 
+                    ['index'], 
                     ['class' => 'btn btn-danger btn-lg btn-block']
                 ); ?>
             </div>

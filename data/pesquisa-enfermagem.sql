@@ -59,12 +59,27 @@ CREATE TABLE survey(
 CREATE TABLE question(
     question_id SERIAL,
     survey_id INTEGER NOT NULL,
+    question_option_id INTEGER DEFAULT NULL,
     element_type CHARACTER VARYING(20) NOT NULL,
+    size INT DEFAULT 12,
     label TEXT NOT NULL,
-    options TEXT,
-    active BOOLEAN NOT NULL,
+    placeholder TEXT DEFAULT NULL,
+    options TEXT DEFAULT NULL,
+    active BOOLEAN DEFAULT TRUE NOT NULL,
     PRIMARY KEY(question_id),
     FOREIGN KEY(survey_id) REFERENCES survey(survey_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE question_option(
+    question_option_id SERIAL,
+    question_id INTEGER NOT NULL,
+    element_type CHARACTER VARYING(20) NOT NULL,
+    size INT DEFAULT 12,
+    label TEXT NOT NULL,
+    placeholder TEXT DEFAULT NULL,
+    options TEXT,
+    PRIMARY KEY(question_option_id),
+    FOREIGN KEY(question_id) REFERENCES question(question_id)
 );
 
 CREATE TABLE person_answer_survey_question(
@@ -77,6 +92,15 @@ CREATE TABLE person_answer_survey_question(
     FOREIGN KEY(person_id) REFERENCES person(person_id),
     FOREIGN KEY(survey_id) REFERENCES survey(survey_id),
     FOREIGN KEY(question_id) REFERENCES question(question_id)
+);
+CREATE TABLE person_answer_survey_question_option(
+    person_id INTEGER NOT NULL,
+    question_id INTEGER NOT NULL,
+    option_answser TEXT NOT NULL,
+    created_at TIMESTAMP NOT NULL,
+    PRIMARY KEY(person_id, question_option_id, question_id),
+    FOREIGN KEY(question_id) REFERENCES question(question_id)
+    FOREIGN KEY(person_id) REFERENCES person(person_id)
 );
 
 CREATE TABLE import_address(

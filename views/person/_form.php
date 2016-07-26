@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
@@ -124,7 +125,7 @@ use yii\widgets\ActiveForm;
     <div class="form-group">
         <p class="text-center">
             <?= Html::submitButton("Próxima etapa", ['class' => 'btn btn-primary btn-lg btn-block']) ?>
-            <?= Html::a("Sair", 'index', ['class' => 'btn btn-danger btn-lg btn-block']) ?>
+            <?= Html::a("Sair", Url::to(['site/logout']), ['class' => 'btn btn-danger btn-lg btn-block']) ?>
         </p>
         <?php ActiveForm::end(); ?>
     </div>

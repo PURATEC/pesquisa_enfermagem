@@ -116,4 +116,19 @@ class Person extends \yii\db\ActiveRecord
     {
         return $this->hasMany(User::className(), ['person_id' => 'person_id']);
     }
+    
+    /**
+     * Send email to reset and warning the user about password change
+     * @param string $email
+     * @return email
+     */
+    public function sendTermsOfService($email)
+    {
+        // Envia um email com o termo de consentimento 
+        return Yii::$app->mailer->compose(['html' => 'layouts/mail'])
+        ->setTo($email)
+        ->setFrom(Yii::$app->params['adminEmail'])
+        ->setSubject('Termo de consentimento')
+        ->send();
+    }
 }

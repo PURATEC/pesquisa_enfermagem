@@ -46,7 +46,7 @@ class PersonAnswerSurveyQuestionOption extends \yii\db\ActiveRecord
         return [
             [['person_id', 'question_id'], 'required'],
             [['person_id', 'question_id'], 'integer'],
-            [['option_answser'], 'string'],
+            [['option_answer'], 'string'],
             [['created_at'], 'safe'],
             [['person_id'], 'exist', 'skipOnError' => true, 'targetClass' => Person::className(), 'targetAttribute' => ['person_id' => 'person_id']],
             [['question_id'], 'exist', 'skipOnError' => true, 'targetClass' => Question::className(), 'targetAttribute' => ['question_id' => 'question_id']]
@@ -61,7 +61,7 @@ class PersonAnswerSurveyQuestionOption extends \yii\db\ActiveRecord
         return [
             'person_id' => 'Person ID',
             'question_id' => 'Question ID',
-            'option_answser' => 'Option Answser',
+            'option_answer' => 'Option Answser',
             'created_at' => 'Created At',
         ];
     }

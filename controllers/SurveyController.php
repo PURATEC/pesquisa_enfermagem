@@ -21,6 +21,8 @@ class SurveyController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'grid-layout';
+        
         $searchModel = new SurveySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -182,7 +184,7 @@ class SurveyController extends Controller
                                     $modelAnswerOption->question_id = $modelsQuestion[$index]->question_id;
                                     $modelAnswerOption->question_option_id = $modelsQuestionOption[$index][$index2]->question_option_id;
                                     
-                                    if(is_array($o['option_answser']))
+                                    if(is_array($o['option_answer']))
                                     {
                                         $auxAnswerOptions = '';
                                         foreach($o['option_answer'] as $tmp)
@@ -193,7 +195,7 @@ class SurveyController extends Controller
                                     }
                                     else
                                     {   
-                                        $modelAnswerOption->option_answser = $o['option_answser'];
+                                        $modelAnswerOption->option_answer = $o['option_answer'];
                                     }
                                     
                                     if(! ($condition2Commit = $modelAnswerOption->save()))
@@ -337,4 +339,98 @@ class SurveyController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    public function actionExport($person_id)
+    {
+        $modelsQuestion = [];
+        $modelsQuestionOption = [];
+        $modelsAnswer = [];
+        $modelsAnswerOption = [];
+
+        for($i=4; $i<47; $i++)
+        {
+            $modelsQuestion[$i] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
+            $modelsQuestionOption[$i] = \app\models\QuestionOption::findAll(['question_id' => $i]);
+            $modelsAnswer[$i] = \app\models\PersonAnswerSurveyQuestion::findOne([
+                'survey_id' => 2,
+                'person_id' => $person_id,
+                'question_id' => $modelsQuestion[$i]->question_id
+            ]);
+            
+            foreach($modelsQuestionOption[$i] as $index => $op)
+            {
+                $modelsAnswerOption[$i][] = \app\models\PersonAnswerSurveyQuestionOption::findOne([
+                    'person_id' => $person_id,
+                    'question_id' => $modelsQuestion[$i]->question_id,
+                    'question_option_id' => $modelsQuestionOption[$i][$index]->question_option_id,  
+                ]);
+            }
+        }
+        
+
+        $filename = 'Data-'.Date('YmdGis').'-test.xls';
+        
+        header("Content-type: application/vnd-ms-excel");
+        header("Content-Disposition: attachment; filename=".$filename);
+        
+        echo '<table border="1" width="100%">
+            <thead>
+                <tr>';
+                foreach($modelsQuestion as $index => $q):
+                    echo "<th>$q->label</th>";
+                    foreach($modelsQuestionOption[$index] as $index2 => $q2):
+                        echo "<th>$q2->label</th>";
+                    endforeach;
+                endforeach;
+                '</tr>
+            </thead>';
+                echo '<tr>';
+                    foreach($modelsAnswer as $index => $a1):
+                        if($a1):
+                            if($modelsQuestion[$index]->element_type == 'select'):
+                                echo $modelsAnswer[$index] ? "<td>".explode(';', $modelsQuestion[$index]->options)[$modelsAnswer[$index]->answer] : '<td>'; echo "</td>";
+                            elseif($modelsQuestion[$index]->element_type == 'checkbox' || $modelsQuestion[$index]->element_type == 'radio'):
+                                foreach(explode(';', $modelsAnswer[$index]->answer) as $exp):
+                                    echo "<td>".explode(';', $modelsQuestion[$index]->options)[$exp]."; "; echo "</td>";
+                                endforeach;
+                            else:
+                                echo $modelsAnswer[$index] ?"<td>".$modelsAnswer[$index]->answer : '<td>'; echo "</td>";
+                            endif;
+                        endif;
+                    endforeach;
+                '</tr>';
+        echo '</table>';
+    }
 }
+
+//foreach($modelsQuestion as $index => $q):
+//    if($q->element_type == 'select'):
+//        echo $modelsAnswer[$index] ? "R: &nbsp;&nbsp;&nbsp;".explode(';', $q->options)[$modelsAnswer[$index]->answer] : '';
+//    elseif($q->element_type == 'checkbox' || $q->element_type == 'radio'):
+//        echo "R: &nbsp;&nbsp;&nbsp;";
+//        foreach(explode(';', $modelsAnswer[$index]->answer) as $exp):
+//            echo explode(';', $q->options)[$exp]."; ";
+//        endforeach;
+//    else:
+//        echo $modelsAnswer[$index] ? "R: &nbsp;&nbsp;&nbsp;".$modelsAnswer[$index]->answer : '';
+//    endif;
+//    echo "<br>";
+//
+//    if(! empty($modelsQuestionOption[$index])):
+//        foreach($modelsQuestionOption[$index] as $index2 => $q2):
+//            if($modelsAnswerOption[$index][$index2]):
+//                echo "&nbsp;&nbsp;&nbsp;".$count . '.'.($index2+1).'. '.$q2->label."&nbsp;&nbsp;";
+//                if($q2->element_type == 'select'):
+//                    if($modelsAnswerOption[$index][$index2]->option_answer != ''):
+//                        echo $modelsAnswerOption[$index][$index2] ? "<br>&nbsp;&nbsp;&nbsp;R: &nbsp;&nbsp;&nbsp;".explode(';', $q2->options)[$modelsAnswerOption[$index][$index2]->option_answer] : '';
+//                    endif;
+//                else:
+//                    echo $modelsAnswerOption[$index][$index2] ? "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: &nbsp;&nbsp;&nbsp;".$modelsAnswerOption[$index][$index2]->option_answer : '';
+//                endif;
+//            else:
+//                echo "R: &nbsp;&nbsp;&nbsp;Não";
+//            endif;
+//            echo "<br>";
+//        endforeach;
+//    endif;
+//endforeach; ?>

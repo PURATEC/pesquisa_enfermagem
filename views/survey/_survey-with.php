@@ -99,26 +99,26 @@
                     echo "<div class='col-sm-".$q2->size."' style='text-align: justify;'>";
             
                     if($q2->element_type == 'text'):
-                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answser")
+                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answer")
                             ->textInput(['placeholder' => $q2->placeholder])
                             ->label($q2->label ? $q2->label : false);
                     elseif($q2->element_type == 'textarea'):
-                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answser")
+                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answer")
                             ->textarea(['placeholder' => $q2->placeholder])
                             ->label($q2->label ? $q2->label : false);
                     elseif($q2->element_type == 'select'):
                         $options = explode(';', $q2->options);
-                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answser")
+                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answer")
                             ->dropDownList($options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])
                             ->label($q2->label ? $q2->label : false);
                     elseif($q2->element_type == 'checkbox'):
                         $options = explode(';', $q2->options);
-                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answser")
+                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answer")
                             ->checkboxList($options, ['separator' => "<br>"])
                             ->label($q2->label ? $q2->label : false);
                     elseif($q2->element_type == 'radio'):
                         $options = explode(';', $q2->options);
-                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answser")
+                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answer")
                             ->radioList($options, ['separator' => "<br>"])
                             ->label($q2->label ? $q2->label : false);
                     endif;
@@ -151,85 +151,85 @@
 
 
 <?php if(! $startedButNotFinished):
-    $this->registerJs("$('#personanswersurveyquestionoption-12-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-12-0-option_answser], input#personanswersurveyquestionoption-12-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-13-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-13-0-option_answser], input#personanswersurveyquestionoption-13-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-14-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-14-0-option_answser], input#personanswersurveyquestionoption-14-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-20-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-20-0-option_answser], input#personanswersurveyquestionoption-20-0-option_answser').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-12-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-12-0-option_answer], input#personanswersurveyquestionoption-12-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-13-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-13-0-option_answer], input#personanswersurveyquestionoption-13-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-14-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-14-0-option_answer], input#personanswersurveyquestionoption-14-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-20-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-20-0-option_answer], input#personanswersurveyquestionoption-20-0-option_answer').hide();", \yii\web\View::POS_END);
 else:
-    $this->registerJs("$('#personanswersurveyquestionoption-23-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-23-1-option_answser], input#personanswersurveyquestionoption-23-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-24-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-24-1-option_answser], input#personanswersurveyquestionoption-24-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-24-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-24-2-option_answser], input#personanswersurveyquestionoption-24-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-25-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-25-1-option_answser], input#personanswersurveyquestionoption-25-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-25-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-25-2-option_answser], input#personanswersurveyquestionoption-25-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-29-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-29-0-option_answser], input#personanswersurveyquestionoption-29-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-29-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-29-1-option_answser], input#personanswersurveyquestionoption-29-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-29-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-29-2-option_answser], input#personanswersurveyquestionoption-29-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-31-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-0-option_answser], input#personanswersurveyquestionoption-31-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-31-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-1-option_answser], input#personanswersurveyquestionoption-31-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-31-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-2-option_answser], input#personanswersurveyquestionoption-31-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-31-3-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-3-option_answser], input#personanswersurveyquestionoption-31-3-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-32-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-32-0-option_answser], input#personanswersurveyquestionoption-32-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-32-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-32-1-option_answser], input#personanswersurveyquestionoption-32-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-33-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-33-0-option_answser], input#personanswersurveyquestionoption-33-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-34-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-34-0-option_answser], input#personanswersurveyquestionoption-34-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-34-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-34-1-option_answser], input#personanswersurveyquestionoption-34-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-34-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-34-2-option_answser], input#personanswersurveyquestionoption-34-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-35-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-35-0-option_answser], input#personanswersurveyquestionoption-35-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-35-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-35-1-option_answser], input#personanswersurveyquestionoption-35-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-35-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-35-2-option_answser], input#personanswersurveyquestionoption-35-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-36-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-36-0-option_answser], input#personanswersurveyquestionoption-36-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-36-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-36-1-option_answser], input#personanswersurveyquestionoption-36-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-37-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-37-0-option_answser], input#personanswersurveyquestionoption-37-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-37-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-37-1-option_answser], input#personanswersurveyquestionoption-37-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-40-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-40-0-option_answser], input#personanswersurveyquestionoption-40-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-40-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-40-1-option_answser], input#personanswersurveyquestionoption-40-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-41-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-41-0-option_answser], input#personanswersurveyquestionoption-41-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-41-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-41-1-option_answser], input#personanswersurveyquestionoption-41-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-41-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-41-2-option_answser], input#personanswersurveyquestionoption-41-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-42-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-42-0-option_answser], input#personanswersurveyquestionoption-42-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-42-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-42-1-option_answser], input#personanswersurveyquestionoption-42-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-42-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-42-2-option_answser], input#personanswersurveyquestionoption-42-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-43-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-43-0-option_answser], input#personanswersurveyquestionoption-43-0-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-43-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-43-1-option_answser], input#personanswersurveyquestionoption-43-1-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('#personanswersurveyquestionoption-43-2-option_answser').hide();", \yii\web\View::POS_END);
-    $this->registerJs("$('label[for=personanswersurveyquestionoption-43-2-option_answser], input#personanswersurveyquestionoption-43-2-option_answser').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-23-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-23-1-option_answer], input#personanswersurveyquestionoption-23-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-24-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-24-1-option_answer], input#personanswersurveyquestionoption-24-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-24-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-24-2-option_answer], input#personanswersurveyquestionoption-24-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-25-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-25-1-option_answer], input#personanswersurveyquestionoption-25-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-25-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-25-2-option_answer], input#personanswersurveyquestionoption-25-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-29-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-29-0-option_answer], input#personanswersurveyquestionoption-29-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-29-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-29-1-option_answer], input#personanswersurveyquestionoption-29-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-29-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-29-2-option_answer], input#personanswersurveyquestionoption-29-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-31-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-0-option_answer], input#personanswersurveyquestionoption-31-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-31-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-1-option_answer], input#personanswersurveyquestionoption-31-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-31-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-2-option_answer], input#personanswersurveyquestionoption-31-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-31-3-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-31-3-option_answer], input#personanswersurveyquestionoption-31-3-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-32-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-32-0-option_answer], input#personanswersurveyquestionoption-32-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-32-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-32-1-option_answer], input#personanswersurveyquestionoption-32-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-33-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-33-0-option_answer], input#personanswersurveyquestionoption-33-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-34-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-34-0-option_answer], input#personanswersurveyquestionoption-34-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-34-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-34-1-option_answer], input#personanswersurveyquestionoption-34-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-34-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-34-2-option_answer], input#personanswersurveyquestionoption-34-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-35-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-35-0-option_answer], input#personanswersurveyquestionoption-35-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-35-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-35-1-option_answer], input#personanswersurveyquestionoption-35-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-35-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-35-2-option_answer], input#personanswersurveyquestionoption-35-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-36-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-36-0-option_answer], input#personanswersurveyquestionoption-36-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-36-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-36-1-option_answer], input#personanswersurveyquestionoption-36-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-37-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-37-0-option_answer], input#personanswersurveyquestionoption-37-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-37-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-37-1-option_answer], input#personanswersurveyquestionoption-37-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-40-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-40-0-option_answer], input#personanswersurveyquestionoption-40-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-40-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-40-1-option_answer], input#personanswersurveyquestionoption-40-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-41-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-41-0-option_answer], input#personanswersurveyquestionoption-41-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-41-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-41-1-option_answer], input#personanswersurveyquestionoption-41-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-41-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-41-2-option_answer], input#personanswersurveyquestionoption-41-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-42-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-42-0-option_answer], input#personanswersurveyquestionoption-42-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-42-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-42-1-option_answer], input#personanswersurveyquestionoption-42-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-42-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-42-2-option_answer], input#personanswersurveyquestionoption-42-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-43-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-43-0-option_answer], input#personanswersurveyquestionoption-43-0-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-43-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-43-1-option_answer], input#personanswersurveyquestionoption-43-1-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('#personanswersurveyquestionoption-43-2-option_answer').hide();", \yii\web\View::POS_END);
+    $this->registerJs("$('label[for=personanswersurveyquestionoption-43-2-option_answer], input#personanswersurveyquestionoption-43-2-option_answer').hide();", \yii\web\View::POS_END);
 endif;

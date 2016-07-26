@@ -285,3 +285,8 @@ $("#personanswersurveyquestion-43-answer").on("change", function()
         $('label[for=personanswersurveyquestionoption-43-2-option_answser], input#personanswersurveyquestionoption-43-2-option_answser').hide();
     }
 });
+
+function setActiveTab(divID2Enable) {
+    $('.li_form_navs').removeClass('active');
+    $('#' + divID2Enable).addClass('active');
+}

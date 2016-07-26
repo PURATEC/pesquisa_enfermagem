@@ -96,10 +96,12 @@ CREATE TABLE person_answer_survey_question(
 CREATE TABLE person_answer_survey_question_option(
     person_id INTEGER NOT NULL,
     question_id INTEGER NOT NULL,
+    question_option_id INTEGER NOT NULL,
     option_answser TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     PRIMARY KEY(person_id, question_option_id, question_id),
-    FOREIGN KEY(question_id) REFERENCES question(question_id)
+    FOREIGN KEY(question_id) REFERENCES question(question_id),
+    FOREIGN KEY(question_option_id) REFERENCES question_option(question_option_id),
     FOREIGN KEY(person_id) REFERENCES person(person_id)
 );
 

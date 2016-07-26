@@ -139,6 +139,7 @@ class SurveyController extends Controller
                                     $modelAnswerOption = new \app\models\PersonAnswerSurveyQuestionOption;
                                     $modelAnswerOption->person_id = $personID;
                                     $modelAnswerOption->question_id = $modelsQuestion[$index]->question_id;
+                                    var_dump($_POST['PersonAnswerSurveyQuestionOption'])[4];die();
                                     
                                     if(is_array($o['option_answser']))
                                     {
@@ -174,6 +175,7 @@ class SurveyController extends Controller
                         if($modelPerson->save())
                         {
                             $transaction->commit();
+                            return $this->redirect(['create', 'personID' => $personID]);
                         }
                     }
                 } catch (Exception $ex) {
@@ -193,7 +195,7 @@ class SurveyController extends Controller
         }
         else
         {
-            return $this->redirect(['create-without', 'personID' => $modelPerson->person_id]);
+            return $this->redirect(['index']);
         }
     }
     

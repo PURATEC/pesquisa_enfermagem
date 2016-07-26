@@ -382,7 +382,7 @@ VALUES (
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options",  "question_id", "question_option_id")
 VALUES (
-    7,
+    4,
     'select',
     'Ingles: ',
     'Sem conhecimento;Básico ou Regular;Avançado;Fluente',
@@ -390,7 +390,7 @@ VALUES (
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options",  "question_id", "question_option_id")
 VALUES (
-    7,
+    4,
     'select',
     'Espanhol: ',
     'Sem conhecimento;Básico ou Regular;Avançado;Fluente',
@@ -398,7 +398,7 @@ VALUES (
 );
 INSERT INTO "question_option" ("size", "element_type", "label",  "question_id", "question_option_id")
 VALUES (
-    7,
+    4,
     'text',
     'Outros: ',
     30,20

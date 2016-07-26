@@ -39,17 +39,29 @@ class PersonController extends Controller
     {
         $model = new Person;
         
-        $user = \app\models\User::findOne(['user_id' => Yii::$app->user->id]);
+        $user = app\models\User::findOne(['user_id' => Yii::$app->user->id]);
         
         if($model->load(Yii::$app->request->post()))
         {
+            // Valida regras que necessitam de ajax
+            if (Yii::$app->request->isAjax) 
+            {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return \yii\widgets\ActiveForm::validate($model, ['rg']);
+            }
+            
             // Se os termos de serviço foram aceitos
             if($model->termsOfService == true)
             {
                 if($model->save())
                 {
-                    $user->tos = $user->termsOfService;
+                    $user->tos = $model->termsOfService;
                     $user->person_id = $model->person_id;
+                    
+                    if($user->save())
+                    {
+                        $this->redirect(['survey/create', 'person_id' => $model->person_id]);
+                    }
                 }
             }   
         }
@@ -74,7 +86,7 @@ class PersonController extends Controller
         if (($model = Person::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('A página solicitada não existe');
         }
     }
 }

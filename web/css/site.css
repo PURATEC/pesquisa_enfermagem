@@ -1,6 +1,10 @@
-html,
+html, 
 body {
     height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.45;
 }
 
 .wrap {
@@ -122,4 +126,14 @@ a.desc:after {
 .btn-sq-sm {
   width: 100px !important;
   height: 80px !important;
+}
+
+#tos-header {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#tos-footer {
+    border: 1px solid #EDEDED;
+    padding-top: 10px;
 }

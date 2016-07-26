@@ -7,7 +7,7 @@ use yii\helpers\Html;
 
 ?>
 
-<div class="col-md-12">
+<div id="tos-header" class="col-md-12">
     <p>
         <strong>TERMO DE CONSENTIMENTO LIVRE E ESCLARECIDO</strong>
     </p>
@@ -19,7 +19,7 @@ use yii\helpers\Html;
     <p>Os riscos que você corre ao participar deste estudo são mínimos, caso experimente algum tipo de desconforto por expor informações pessoais ou institucionais, poderá conversar conosco ou interromper sua participação no estudo. Caso você se sinta lesado por algum dano decorrente de sua participação neste estudo, o senhor tem direito à indenização por parte do pesquisador e das instituições envolvidas nas diferentes fases da pesquisa.</p>
     <p>Este estudo foi aprovado pelo Comitê de Ética em Pesquisa da Escola de Enfermagem de Ribeirão Preto - USP, um órgão que acompanha e avalia todas as etapas do estudo, colaborando para o desenvolvimento da competência ética e de uma visão mais ampla dos valores humanos.</p>
     <p>O telefone e o endereço para contato com o pesquisador e com o Comitê de Ética em Pesquisa estão no final desta página.</p>
-    <p><u>Haverá solicitação de inserção de anexo do programa da disciplina ou conteúdo de História da Enfermagem e do currículo do curso de Enfermagem da sua instituição. O anexo pode ser substituído pelo link institucional (se houver), que contenha as informações acima descritas, ao final do instrumento</u></p>
+    <p><u>Haverá solicitação de inserção de anexo do programa da disciplina ou conteúdo de História da Enfermagem e do currículo do curso de Enfermagem da sua instituição. O anexo pode ser substituído pelo link institucional (se houver), que contenha as informações acima descritas, ao final do instrumento.</u></p>
     
     <div class="terms-of-service">
         <?= $this->render('_form', [

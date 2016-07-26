@@ -60,8 +60,26 @@ class SiteController extends Controller
     {   
         // Verifica se o usuário não é um visitante
         if(!Yii::$app->user->isGuest) 
-        {
-            return $this->redirect(['survey/pre-create']);
+        { 
+            $user = \app\models\User::findOne(['user_id' => Yii::$app->user->id]);
+            
+            if(isset($user))
+            {
+                if($user->tos == true)
+                {
+                    return $this->redirect(['survey/create']); 
+                }
+                
+                else
+                {
+                    return $this->redirect(['person/terms-of-service']);
+                }
+            } 
+            
+            else
+            {
+                throw new NotFoundHttpException('A página solicitada não existe');
+            }
         }
         
         $model = new LoginForm; 
@@ -70,7 +88,17 @@ class SiteController extends Controller
         {     
             if($model->login())
             {
-                return $this->redirect(['survey/pre-create']);
+                $user = $model->getUser();
+                
+                if($user->tos == true)
+                {
+                    return $this->redirect(['survey/create']); 
+                }
+                
+                else
+                {
+                    return $this->redirect(['person/terms-of-service']);
+                }
             }
         }
         

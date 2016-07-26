@@ -21,14 +21,14 @@ SET TIME ZONE 'America/Sao_Paulo';
 CREATE TABLE person(
     person_id SERIAL,
     full_name CHARACTER VARYING(70) NOT NULL,
-    rg CHARACTER VARYING(11) UNIQUE,
+    rg CHARACTER VARYING(11) UNIQUE NOT NULL,
     postalcode CHARACTER VARYING(8) NOT NULL,
     state CHARACTER VARYING(2) NOT NULL,
     city CHARACTER VARYING(70) NOT NULL,
     neighborhood CHARACTER VARYING(80) NOT NULL,
     streetname CHARACTER VARYING(120) NOT NULL,
     "number" CHARACTER VARYING(10) NOT NULL,
-    complement CHARACTER VARYING(50) NOT NULL,
+    complement CHARACTER VARYING(50),
     phone CHARACTER VARYING(20) NOT NULL,
     survey_success BOOLEAN NOT NULL DEFAULT FALSE,
     created_at TIMESTAMP NOT NULL,
@@ -93,6 +93,7 @@ CREATE TABLE person_answer_survey_question(
     FOREIGN KEY(survey_id) REFERENCES survey(survey_id),
     FOREIGN KEY(question_id) REFERENCES question(question_id)
 );
+
 CREATE TABLE person_answer_survey_question_option(
     person_id INTEGER NOT NULL,
     question_id INTEGER NOT NULL,

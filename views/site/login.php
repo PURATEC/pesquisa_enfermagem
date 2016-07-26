@@ -27,6 +27,7 @@ use yii\bootstrap\ActiveForm;
         <legend>
             <p class="text-center">Acesso ao formulário</p>
         </legend>
+        
         <?php $form = ActiveForm::begin([
             'id' => 'login-form',
         ]); ?>

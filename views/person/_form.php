@@ -9,7 +9,10 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="person-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin([
+        'id' => 'terms-of-service-form', 
+        'enableAjaxValidation' => true,
+    ]); ?>
   
     <legend>
         <h2><small><i class="fa fa-user"></i> Informações pessoais</small></h2>
@@ -71,7 +74,7 @@ use yii\widgets\ActiveForm;
     </div>
     
     <legend>
-        <h2><small><i class="fa fa-mobile"></i> Contato</small></h2>
+        <h2><small><i class="fa fa-phone"></i> Contato</small></h2>
     </legend>
     
     <div class="row">
@@ -80,47 +83,49 @@ use yii\widgets\ActiveForm;
                 $model->getAttributeLabel('phone'), 'maxlength' => true])->label(false) ?>
         </div>
     </div>
-
+    
     <hr>
-    <div class="form-group">
-        <center>
-            <?= Html::submitButton("Próxima etapa", ['class' => 'btn btn-success btn-lg btn-block']) ?>
-            <?= Html::a("Sair", 'index', ['class' => 'btn btn-danger btn-lg btn-block']) ?>
-        </center>
-        <?php ActiveForm::end(); ?>
+    <div class="row">
+        <div class="col-sm-12">
+            <?= $form->field($model, 'termsOfService')->checkbox() ?>
+        </div>
     </div>
-
-        <div class="row">
-            <div class="col-md-6 borda-simples pad-top-10">
-                <p class="t-centralizado">
-                    Profa. Luciana Barizon Luchesi<br/>
-                    Telefone: (16) 3315-0535<br/>
-                    E-mail: luchesi@eerp.usp.br
-                </p>
-            </div>
-
-           <div class="col-md-6 borda-simples pad-top-10">
-                <p class="t-centralizado">
-                    Carla Cristina da Cruz Almeida Lima<br/>
-                    Telefone: (16) 98108-2080<br/>
-                    E-mail: nina.kriska12@gmail.com
-                </p>
-            </div>
+    
+    <br>
+    <div class="row">
+        <div id="tos-footer" class="col-md-6">
+            <p class="text-center">
+                Profa. Luciana Barizon Luchesi<br/>
+                Telefone: (16) 3315-0535<br/>
+                E-mail: luchesi@eerp.usp.br
+            </p>
         </div>
-
-        <br/>
-
-        <div class="row">
-            <div class="col-md-12 borda-simples pad-top-10">
-                <p class="t-centralizado">
-                    Comitê de Ética em Pesquisa da Escola de Enfermagem de Ribeirão Preto - USP<br />
-                    Telefone: (16) 3315-3386<br />
-                    Horário de funcionamento: de segunda a sexta-feira, das 09h às 18h<br />
-                    Escola de Enfermagem de Ribeirão Preto - USP<br />
-                    Avenida Bandeirantes, 3.900 - CEP: 14.040-902
-                </p>
-            </div>
+        <div id="tos-footer" class="col-md-6">
+             <p class="text-center">
+                 Carla Cristina da Cruz Almeida Lima<br/>
+                 Telefone: (16) 98108-2080<br/>
+                 E-mail: nina.kriska12@gmail.com
+             </p>
+         </div>
+    </div>
+    <div class="row">
+        <div id="tos-footer" class="col-md-12">
+            <p class="text-center">
+                Comitê de Ética em Pesquisa da Escola de Enfermagem de Ribeirão Preto - USP<br/>
+                Telefone: (16) 3315-3386<br/>
+                Horário de funcionamento: de segunda a sexta-feira, das 09h às 18h<br/>
+                Escola de Enfermagem de Ribeirão Preto - USP<br/>
+                Avenida Bandeirantes, 3.900 - CEP: 14.040-902
+            </p>
         </div>
-        <br/>
+    </div>
+    
+    <br>
+    <div class="form-group">
+        <p class="text-center">
+            <?= Html::submitButton("Próxima etapa", ['class' => 'btn btn-primary btn-lg btn-block']) ?>
+            <?= Html::a("Sair", 'index', ['class' => 'btn btn-danger btn-lg btn-block']) ?>
+        </p>
+        <?php ActiveForm::end(); ?>
     </div>
 </div>

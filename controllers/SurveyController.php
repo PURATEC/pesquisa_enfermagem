@@ -35,10 +35,40 @@ class SurveyController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionViewWith($person_id)
     {
+        $modelsQuestion = [];
+        $modelsQuestionOption = [];
+        $modelsAnswer = [];
+        $modelsAnswerOption = [];
+
+        for($i=4; $i<47; $i++)
+        {
+            $modelsQuestion[$i] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
+            $modelsQuestionOption[$i] = \app\models\QuestionOption::findAll(['question_id' => $i]);
+            $modelsAnswer[$i] = \app\models\PersonAnswerSurveyQuestion::findOne([
+                'survey_id' => 2,
+                'person_id' => $person_id,
+                'question_id' => $modelsQuestion[$i]->question_id
+            ]);
+            
+            foreach($modelsQuestionOption[$i] as $index => $op)
+            {
+                $modelsAnswerOption[$i][] = \app\models\PersonAnswerSurveyQuestionOption::findOne([
+                    'person_id' => $person_id,
+                    'question_id' => $modelsQuestion[$i]->question_id,
+                    'question_option_id' => $modelsQuestionOption[$i][$index]->question_option_id,  
+                ]);
+            }
+        }
+        
+        
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'modelPerson' => \app\models\Person::findOne($person_id),
+            'modelsQuestion' => $modelsQuestion,
+            'modelsQuestionOption' => $modelsQuestionOption,
+            'modelsAnswer' => $modelsAnswer,
+            'modelsAnswerOption' => $modelsAnswerOption,
         ]);
     }
 
@@ -46,9 +76,20 @@ class SurveyController extends Controller
      * The purpose of this function is to render a view for user choose survey type.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($person_id = null)
     {
-        return $this->render('pre-create');
+        if($person_id)
+        {
+            if(\app\models\Person::findOne($person_id)->survey_success)
+            {
+                return $this->render('thanks');
+            }
+            else
+            {
+                return $this->render('pre-create', ['person_id' => $person_id]);
+            }
+        }
+        return $this->redirect(['index']);
     }
     
     /**
@@ -56,15 +97,15 @@ class SurveyController extends Controller
      * If creation is successful, the browser will be redirected to the respective 'create' page.
      * @return mixed
      */
-    public function actionCreateWith($personID)
+    public function actionCreateWith($person_id)
     {
         $model = Survey::findOne(2);
-        $modelPerson = \app\models\Person::findOne($personID);
+        $modelPerson = \app\models\Person::findOne($person_id);
         
         if(! $modelPerson->survey_success)
         {
             $startedButNotFinished = false;
-            if(\app\models\PersonAnswerSurveyQuestion::findOne(['person_id' => $personID, 'question_id'=> 20, 'survey_id' => 2]))
+            if(\app\models\PersonAnswerSurveyQuestion::findOne(['person_id' => $person_id, 'question_id'=> 20, 'survey_id' => 2]))
             {
                 $startedButNotFinished = true;
             }
@@ -113,7 +154,7 @@ class SurveyController extends Controller
                     {
                         $modelAnswer = new \app\models\PersonAnswerSurveyQuestion;
                         $modelAnswer->survey_id = $model->survey_id;
-                        $modelAnswer->person_id = $personID;
+                        $modelAnswer->person_id = $person_id;
                         $modelAnswer->question_id = $modelsQuestion[$index]->question_id;
 
                         if(is_array($a['answer']))
@@ -137,7 +178,7 @@ class SurveyController extends Controller
                                 foreach($modelsAnswerOption[$index] as $index2 => $o)
                                 {
                                     $modelAnswerOption = new \app\models\PersonAnswerSurveyQuestionOption;
-                                    $modelAnswerOption->person_id = $personID;
+                                    $modelAnswerOption->person_id = $person_id;
                                     $modelAnswerOption->question_id = $modelsQuestion[$index]->question_id;
                                     $modelAnswerOption->question_option_id = $modelsQuestionOption[$index][$index2]->question_option_id;
                                     
@@ -171,11 +212,19 @@ class SurveyController extends Controller
                     if($condition2Commit)
                     {
                         $modelPerson->survey_success = $startedButNotFinished ? true : false;
-  
+                        $modelPerson->termsOfService = true;
                         if($modelPerson->save())
                         {
                             $transaction->commit();
-                            return $this->redirect(['create', 'personID' => $personID]);
+                            if(! $modelPerson->survey_success)
+                            {
+                                return $this->redirect(['create-with', 'person_id' => $person_id]);
+                            }
+                            else
+                            {
+                                return $this->redirect(['thanks']);
+                            }
+                            
                         }
                     }
                 } catch (Exception $ex) {
@@ -195,7 +244,7 @@ class SurveyController extends Controller
         }
         else
         {
-            return $this->redirect(['index']);
+            return $this->redirect(['thanks']);
         }
     }
     
@@ -261,17 +310,6 @@ class SurveyController extends Controller
             ]);
         }
     }
-    
-    private function checkUser2CompletedSurvey($personID)
-    {
-        $modelPerson = \app\models\Person::findOne($personID);
-        if($modelPerson->survey_success)
-        {
-            return \app\models\PersonAnswerSurveyQuestion::findOne(['person_id' => $personID])->survey_id;
-        }
-        return false;
-    }
-
 
     /**
      * The purpose of this function is to redirect user to thanks views.

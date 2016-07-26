@@ -17,14 +17,6 @@
                 <i class="fa fa-wpforms fa-5x"></i><br/><br/>
             </a>
             <b>Etapa única</b>
-            
-            <a href="javascript:void(0);" class="btn btn-sq-sm">
-                <br/><i class="fa fa-arrow-right fa-3x"></i>
-            </a>
-            <a href="javascript:void(0);" class="btn btn-sq-sm <?= $personSurveySuccessBtn ?>">
-                <i class="fa fa-check-circle-o fa-5x"></i><br/><br/>
-            </a>
-            <b><?php $modelPerson->survey_success ? 'Conclusão' : 'Concluído!'; ?></b>
             <br/><br/>
             <hr>
         </center>
@@ -42,12 +34,9 @@
                 echo $form->field($answerGroup[$index], "[{$index}]answer")->textInput(['placeholder' => $q->placeholder])->label($index+1 . '. '.$q->label);
             elseif($q->element_type == 'textarea'):
                 echo $form->field($answerGroup[$index], "[{$index}]answer")->textarea(['placeholder' => $q->placeholder])->label($index+1 . '. '.$q->label);
-            elseif($q->element_type == 'select' || $q->element_type == 'select-option'):
+            elseif($q->element_type == 'select'):
                 $options = explode(';', $q->options);
-                echo $form->field($answerGroup[$index], "[{$index}]answer")->dropDownList($options)->label($index+1 . '. '.$q->label);
-                if($q->element_type == 'select-option'):
-                    echo $form->field($answerGroup[$index], "[{$index}]option1")->textarea(['options' => ['placeholder' => 'oi']])->label($q->complement);
-                endif;
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->dropDownList($options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label($index+1 . '. '.$q->label);
             elseif($q->element_type == 'checkbox'):
                 $options = explode(';', $q->options);
                 echo $form->field($answerGroup[$index], "[{$index}]answer")

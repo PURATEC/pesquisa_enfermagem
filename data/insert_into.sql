@@ -37,14 +37,13 @@ VALUES (
 
 
 
-INSERT INTO "question" ("size", "placeholder", "element_type", "label", "survey_id", "question_id", "question_option_id")
+INSERT INTO "question" ("size", "placeholder", "element_type", "label", "survey_id", "question_id")
 VALUES (
     5,
     'Ex: Instituição exemplo',
     'text',
     'Qual a sua instituição?', 
-    2,4,
-    1
+    2,4
 );
 INSERT INTO "question_option" ("size", "placeholder", "element_type", "label", "question_id", "question_option_id")
 VALUES (
@@ -80,7 +79,7 @@ VALUES (
 );
 INSERT INTO "question" ("size", "element_type", "label", "options",  "survey_id", "question_id")  
 VALUES (
-    8,
+    9,
     'select',
     'Ano de oferecimento conteúdo ou disciplina de História da Enfermagem no curso de graduação:', 
     '1º Ano;2º Ano;3º Ano;4º Ano;5º Ano', 
@@ -88,7 +87,7 @@ VALUES (
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options",  "question_id", "question_option_id")
 VALUES (
-    4,
+    3,
     'select',
     'Período de oferecimento:', 
     '1º Semestre;2º Semestre;Anual', 
@@ -130,7 +129,7 @@ INSERT INTO "question_option" ("size", "placeholder", "element_type", "question_
 VALUES (
     12,
     'Cite aqui as dificuldades...',
-    'text',
+    'textarea',
     12,3
 );
 INSERT INTO "question" ("size", "element_type", "label", "options",  "survey_id", "question_id")   
@@ -217,7 +216,7 @@ VALUES (
 
 INSERT INTO "question" ("size", "element_type", "label", "options",  "survey_id", "question_id")
 VALUES (
-    2,
+    3,
     'select',
     'Gênero:', 
     'Masculino;Femino',

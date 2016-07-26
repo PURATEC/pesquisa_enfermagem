@@ -10,12 +10,14 @@
         <center style="width: 70%; height: 160px; margin: 0px auto;">
             
             <?php if($startedButNotFinished):
+                $btnPrim = 'btn-success';
                 $btnSecond = 'btn-info';
             else: 
+                $btnPrim = 'btn-info';
                 $btnSecond = 'btn-default';
             endif; ?>
             
-            <a href="javascript:void(0);" class="btn btn-sq-sm btn-info">
+            <a href="javascript:void(0);" class="btn btn-sq-sm <?= $btnPrim ?>">
                 <i class="fa fa-wpforms fa-5x"></i><br/><br/>
             </a>
             <b>Dados da disciplina</b>
@@ -27,15 +29,6 @@
                 <i class="fa fa-wpforms fa-5x"></i><br/><br/>
             </a>
             <b>Dados do Professor</b>
-            
-            <a href="javascript:void(0);" class="btn btn-sq-sm">
-                <br/><i class="fa fa-arrow-right fa-3x"></i>
-            </a>
-            <a href="javascript:void(0);" class="btn btn-sq-sm btn-default">
-                <i class="fa fa-check-circle-o fa-5x"></i><br/><br/>
-            </a>
-            <b><?php $modelPerson->survey_success ? 'Finalização' : 'Concluído!'; ?></b>
-            
             <br/><br/>
             <hr>
         </center>
@@ -64,7 +57,7 @@
             elseif($q->element_type == 'select'):
                 $options = explode(';', $q->options);
                 echo $form->field($modelsAnswer[$index], "[{$index}]answer")
-                    ->dropDownList($options)
+                    ->dropDownList($options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])
                     ->label($count . '. '.$q->label);
             elseif($q->element_type == 'checkbox'):
                 $options = explode(';', $q->options);
@@ -116,7 +109,7 @@
                     elseif($q2->element_type == 'select'):
                         $options = explode(';', $q2->options);
                         echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answser")
-                            ->dropDownList($options)
+                            ->dropDownList($options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])
                             ->label($q2->label ? $q2->label : false);
                     elseif($q2->element_type == 'checkbox'):
                         $options = explode(';', $q2->options);

@@ -39,7 +39,7 @@ class PersonController extends Controller
     {
         $model = new Person;
         
-        $user = app\models\User::findOne(['user_id' => Yii::$app->user->id]);
+        $user = \app\models\User::findOne(['user_id' => Yii::$app->user->id]);
         
         if($model->load(Yii::$app->request->post()))
         {

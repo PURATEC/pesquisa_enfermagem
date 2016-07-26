@@ -1,37 +1,29 @@
 <?php
 
-use yii\helpers\Html;
-use yii\widgets\DetailView;
-
 /* @var $this yii\web\View */
 /* @var $model app\models\Survey */
-
-$this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Surveys', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="survey-view">
+    <?php $count = 1;
+    echo "<legend>PARTE 1</legend>";
+    foreach($modelsQuestion as $index => $q):
+            echo "<br>".$count . '. '.$q->label."<br>";
+            echo $modelsAnswer[$index] ? "R: &nbsp;&nbsp;&nbsp;".$modelsAnswer[$index]->answer : '';
+            echo "<br>";
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->survey_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->survey_id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'survey_id',
-            'name:ntext',
-            'active:boolean',
-        ],
-    ]) ?>
-
+        if(! empty($modelsQuestionOption[$index])):
+            foreach($modelsQuestionOption[$index] as $index2 => $q2):
+                echo "&nbsp;&nbsp;&nbsp;".$count . '.'.($index2+1).'. '.$q2->label."&nbsp;&nbsp;";
+                echo $modelsAnswerOption[$index][$index2] ? $modelsAnswerOption[$index][$index2]->option_answser : '';
+                echo "<br>";
+            endforeach;
+        endif;
+        $count++;
+        
+        if($count == 20):
+            echo "<br><br><legend>PARTE 2</legend>";
+        endif;
+        
+    endforeach; ?>
 </div>

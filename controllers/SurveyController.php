@@ -139,7 +139,7 @@ class SurveyController extends Controller
                                     $modelAnswerOption = new \app\models\PersonAnswerSurveyQuestionOption;
                                     $modelAnswerOption->person_id = $personID;
                                     $modelAnswerOption->question_id = $modelsQuestion[$index]->question_id;
-                                    var_dump($_POST['PersonAnswerSurveyQuestionOption'])[4];die();
+                                    $modelAnswerOption->question_option_id = $modelsQuestionOption[$index][$index2]->question_option_id;
                                     
                                     if(is_array($o['option_answser']))
                                     {

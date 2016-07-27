@@ -64,18 +64,20 @@ use yii\grid\GridView;
                 'contentOptions' => ['style' => 'text-align: center;'],
                 'template' => '{view} {export}',
                 'buttons' => [
-                    //view button
                     'view' => function ($url, $model) {
-                        return \yii\helpers\Html::a('<span class="fa fa-eye"></span> Visualizar', $url, [
-                            'title' => 'Visualizar',
-                            'class'=>'btn btn-primary btn-xs',                         
-                        ]);
+                        $url = str_replace('view?id=', 'view?person_id=', $url);
+                        if($model->survey_success)
+                        {
+                            return \yii\helpers\Html::a('<span class="fa fa-eye"></span> Visualizar', $url, [
+                                'title' => 'Visualizar',
+                                'class'=>'btn btn-primary btn-xs',                         
+                            ]);
+                        }
                     },
-                    //export button
                     'export' => function ($url, $model) {
                         if($model->survey_success)
                         {
-                            $url = '';
+                            $url = str_replace('export?id=', 'export?person_id=', $url);
                             return \yii\helpers\Html::a('<span class="fa fa-edit"></span> Exportar', $url, [
                                 'title' => 'Exportar',
                                 'class'=>'btn btn-primary btn-xs',  

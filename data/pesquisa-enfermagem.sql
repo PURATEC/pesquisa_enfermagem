@@ -31,6 +31,7 @@ CREATE TABLE person(
     complement CHARACTER VARYING(50),
     phone CHARACTER VARYING(20) NOT NULL,
     survey_success BOOLEAN NOT NULL DEFAULT FALSE,
+    survey_success_at TIMESTAMP DEFAULT NULL,
     created_at TIMESTAMP NOT NULL,
     PRIMARY KEY(person_id)
 );

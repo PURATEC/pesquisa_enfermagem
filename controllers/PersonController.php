@@ -37,7 +37,7 @@ class PersonController extends Controller
      */
     public function actionTermsOfService()
     {
-        $model = new Person;
+        $model = new Person(['scenario' => 'tos']);
         
         $user = \app\models\User::findOne(['user_id' => Yii::$app->user->id]);
         

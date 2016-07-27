@@ -242,7 +242,7 @@ class SurveyController extends Controller
                     if($condition2Commit)
                     {
                         $modelPerson->survey_success = $startedButNotFinished ? true : false;
-                        $modelPerson->termsOfService = true;
+                        $modelPerson->survey_success_at = $startedButNotFinished ? date('Y-m-d H:i:s') : null;
                         if($modelPerson->save())
                         {
                             $transaction->commit();
@@ -323,7 +323,7 @@ class SurveyController extends Controller
                     if($condition2Commit)
                     {
                         $modelPerson->survey_success = true;
-                        $modelPerson->termsOfService = true;
+                        $modelPerson->survey_success_at = date('Y-m-d H:i:s');
                         if($modelPerson->save())
                         {
                             $transaction->commit();

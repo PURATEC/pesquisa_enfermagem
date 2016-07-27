@@ -57,7 +57,7 @@ class Person extends \yii\db\ActiveRecord
     {
         return [
             [['full_name', 'rg', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'phone'], 'required'],
-            ['termsOfService','required', 'requiredValue' => true, 
+            ['termsOfService','required', 'requiredValue' => true, 'on' => 'tos', 
                 'message'=> 'Você precisa concordar com o termo de consentimento'],
             [['survey_success', 'termsOfService'], 'boolean'],
             [['rg'], 'unique'],
@@ -92,6 +92,7 @@ class Person extends \yii\db\ActiveRecord
             'phone' => 'Telefone',
             'survey_success' => 'Formulário preenchido?',
             'created_at' => 'Data de criação',
+            'survey_success_at' => 'Data de finalização',
             'termsOfService' => 'Diante do exposto, declaro que estou ciente das informações '
             . 'recebidas e que concordo voluntariamente em participar deste estudo, '
             . 'recebendo uma via desse termo, o que me permitirá entrar em contato com o '

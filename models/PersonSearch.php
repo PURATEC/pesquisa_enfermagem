@@ -21,8 +21,7 @@ class PersonSearch extends Person
     {
         return [
             [['person_id'], 'integer'],
-            [['full_name', 'rg', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'complement', 'phone', 'created_at', 'user_email'], 'safe'],
-            [['survey_success'], 'boolean'],
+            [['full_name', 'rg', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'complement', 'phone', 'created_at', 'user_email', 'survey_success'], 'safe'],
         ];
     }
 

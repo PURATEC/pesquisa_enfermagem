@@ -137,7 +137,7 @@ VALUES (
     12,
     'checkbox',
     'Quais estratégias metodológicas são utilizadas na disciplina?',
-    'aulas expositivas;aulas expositivas dialogadas;discussão de textos;seminários;encenação teatralviagem didática;análise de documentos;outras', 
+    'aulas expositivas;aulas expositivas dialogadas;discussão de textos;seminários;encenação teatral;viagem didática;análise de documentos;outras', 
     2,13
 );
 INSERT INTO "question_option" ("size", "placeholder", "element_type", "question_id", "question_option_id")
@@ -452,7 +452,7 @@ VALUES (
     5,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     32,25
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -491,7 +491,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     34,28
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -522,7 +522,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     35,31
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -600,7 +600,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     38,38
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -623,7 +623,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     39,40
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -647,7 +647,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     40,42
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -671,7 +671,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     41,44
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -703,7 +703,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     42,47
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")
@@ -735,7 +735,7 @@ VALUES (
     4,
     'select',
     'Área ',
-    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de DOenças Contagiosas;Enfermagem de Saúde Pública',
+    'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
     43,50
 );
 INSERT INTO "question_option" ("size", "element_type", "label", "options", "question_id", "question_option_id")

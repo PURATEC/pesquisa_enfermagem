@@ -9,7 +9,6 @@ use yii\grid\GridView;
 <div class="survey-index">
 
     <div class="well-transparent" style="margin-bottom: 20px;">
-        <center>
             <a href="#" class="btn btn-sq-md btn-primary">
                 <i class="fa fa-user fa-5x"></i><br/>
                 TOTAL DE PESQUISAS <br> <?php echo count(app\models\Person::find()->all()) ?>
@@ -26,7 +25,6 @@ use yii\grid\GridView;
               <i class="fa fa-user fa-5x"></i><br/>
               TEMPO MÉDIO DE DURAÇÃO <br> Duração aqui
             </a>
-        </center>
     </div>
     
     <?= GridView::widget([
@@ -52,7 +50,7 @@ use yii\grid\GridView;
                 'attribute'=>'survey_success',
                 'label' => 'Situação da pesquisa',
                 'format' => 'html',
-                'filter' => [1 => 'Finalizada', 0 => 'Incompleta'],
+                'filter' => ['' => 'Ambas', 1 => 'Finalizada', 0 => 'Incompleta'],
                 'value' => function($model){
                     return $model->survey_success ? 'Finalizada' : 'Incompleta';
                 }

@@ -60,7 +60,6 @@ CREATE TABLE survey(
 CREATE TABLE question(
     question_id SERIAL,
     survey_id INTEGER NOT NULL,
-    question_option_id INTEGER DEFAULT NULL,
     element_type CHARACTER VARYING(20) NOT NULL,
     size INT DEFAULT 12,
     label TEXT NOT NULL,

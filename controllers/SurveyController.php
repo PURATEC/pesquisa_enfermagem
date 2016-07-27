@@ -4,7 +4,6 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Survey;
-use app\models\SurveySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -23,7 +22,7 @@ class SurveyController extends Controller
     {
         $this->layout = 'grid-layout';
         
-        $searchModel = new SurveySearch();
+        $searchModel = new \app\models\PersonSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [

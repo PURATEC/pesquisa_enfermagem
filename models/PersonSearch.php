@@ -12,6 +12,8 @@ use app\models\Person;
  */
 class PersonSearch extends Person
 {
+    public $user_email;
+    
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class PersonSearch extends Person
     {
         return [
             [['person_id'], 'integer'],
-            [['full_name', 'rg', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'complement', 'phone', 'created_at'], 'safe'],
+            [['full_name', 'rg', 'postalcode', 'state', 'city', 'neighborhood', 'streetname', 'number', 'complement', 'phone', 'created_at', 'user_email'], 'safe'],
             [['survey_success'], 'boolean'],
         ];
     }
@@ -50,6 +52,13 @@ class PersonSearch extends Person
             'query' => $query,
         ]);
 
+        $query->joinWith(['users']);
+        
+        $dataProvider->sort->attributes['user_email'] = [
+            'asc' => ['user.email' => SORT_ASC],
+            'desc' => ['user.email' => SORT_DESC],
+        ];
+        
         $this->load($params);
 
         if (!$this->validate()) {
@@ -66,15 +75,7 @@ class PersonSearch extends Person
         ]);
 
         $query->andFilterWhere(['like', 'full_name', $this->full_name])
-            ->andFilterWhere(['like', 'rg', $this->rg])
-            ->andFilterWhere(['like', 'postalcode', $this->postalcode])
-            ->andFilterWhere(['like', 'state', $this->state])
-            ->andFilterWhere(['like', 'city', $this->city])
-            ->andFilterWhere(['like', 'neighborhood', $this->neighborhood])
-            ->andFilterWhere(['like', 'streetname', $this->streetname])
-            ->andFilterWhere(['like', 'number', $this->number])
-            ->andFilterWhere(['like', 'complement', $this->complement])
-            ->andFilterWhere(['like', 'phone', $this->phone]);
+            ->andFilterWhere(['like', 'user.email', $this->user_email]);
 
         return $dataProvider;
     }

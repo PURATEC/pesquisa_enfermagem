@@ -123,6 +123,11 @@ a.desc:after {
   height: 180px !important;
 }
 
+.btn-sq-md {
+  width: 20% !important;
+  height: 150px !important;
+}
+
 .btn-sq-sm {
   width: 100px !important;
   height: 80px !important;

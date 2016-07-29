@@ -20,6 +20,8 @@ use Yii;
  */
 class QuestionOption extends \yii\db\ActiveRecord
 {
+    public $file;
+    
     /**
      * @inheritdoc
      */
@@ -37,6 +39,7 @@ class QuestionOption extends \yii\db\ActiveRecord
             [['question_id', 'element_type', 'label'], 'required'],
             [['question_id', 'size'], 'integer'],
             [['label', 'options'], 'string'],
+            [['file'], 'file'],
             [['element_type'], 'string', 'max' => 20],
             [['question_id'], 'exist', 'skipOnError' => true, 'targetClass' => Question::className(), 'targetAttribute' => ['question_id' => 'question_id']],
         ];

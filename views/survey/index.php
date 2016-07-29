@@ -8,10 +8,22 @@ use yii\grid\GridView;
 ?>
 <div class="survey-index">
 
+    <?php 
+    $personModels = app\models\Person::find(['survey_success' => true])->all();
+    $average_aux = 0;
+    foreach($personModels as $p):
+        $datetime1 = new DateTime($p->created_at);
+        $datetime2 = new DateTime($p->survey_success_at);
+        $interval = $datetime1->diff($datetime2);
+        $average_aux += $interval->d*24*60 + $interval->h*60 + $interval->i;
+    endforeach;
+    $average = $average_aux/count($personModels);
+    ?>
+    
     <div class="well-transparent" style="margin-bottom: 20px;">
             <a href="#" class="btn btn-sq-md btn-primary">
                 <i class="fa fa-user fa-5x"></i><br/>
-                TOTAL DE PESQUISAS <br> <?php echo count(app\models\Person::find()->all()) ?>
+                TOTAL DE PESQUISAS <br> <?php echo count($personModels) ?>
             </a>
             <a href="#" class="btn btn-sq-md btn-success">
               <i class="fa fa-user fa-5x"></i><br/>
@@ -23,7 +35,7 @@ use yii\grid\GridView;
             </a>
             <a href="#" class="btn btn-sq-md btn-warning">
               <i class="fa fa-user fa-5x"></i><br/>
-              TEMPO MÉDIO DE DURAÇÃO <br> Duração aqui
+              TEMPO MÉDIO DE DURAÇÃO <br> <?= number_format((int)$average, 0, '.', ''); ?> minutos
             </a>
     </div>
     

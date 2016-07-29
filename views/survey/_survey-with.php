@@ -36,7 +36,7 @@
     <br/>
     
     <?php if(!$modelPerson->survey_success): ?>
-        <?php $form = \yii\widgets\ActiveForm::begin(['id' => 'surveyForm']); ?>
+        <?php $form = \yii\widgets\ActiveForm::begin(['options' => ['enctype'=>'multipart/form-data']]); ?>
 
         <?= $form->field($model, 'survey_id')->hiddenInput()->label(false); ?>
     
@@ -121,6 +121,9 @@
                         echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answer")
                             ->radioList($options, ['separator' => "<br>"])
                             ->label($q2->label ? $q2->label : false);
+                    elseif($q2->element_type == 'file'):
+                        echo $form->field($modelsAnswerOption[$index][$index2], "[{$index}][{$index2}]option_answer")
+                            ->fileInput()->label($q2->label);
                     endif;
                     echo "</div>";
                 endforeach;

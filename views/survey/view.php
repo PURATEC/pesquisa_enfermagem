@@ -7,6 +7,7 @@
 <div class="survey-view">
     
     <div class="well">
+        <?= $modelPerson->users[0]->email ?>
         <?= yii\helpers\Html::a('Exportar', \yii\helpers\Url::to(['export', 'person_id' => $modelPerson->person_id])); ?>
     </div>
     
@@ -34,6 +35,8 @@
                         if($modelsAnswerOption[$index][$index2]->option_answer != ''):
                             echo $modelsAnswerOption[$index][$index2] ? "<br>&nbsp;&nbsp;&nbsp;R: &nbsp;&nbsp;&nbsp;".explode(';', $q2->options)[$modelsAnswerOption[$index][$index2]->option_answer] : '';
                         endif;
+                    elseif($q2->element_type == 'file'):
+                        echo \yii\helpers\Html::a('Download do anexo', yii\helpers\Url::to(['download', 'person_id' => $modelPerson->person_id, 'question_id' => $modelsQuestion[$index]->question_id, 'question_option_id' => $modelsQuestionOption[$index][$index2]->question_option_id]));
                     else:
                         echo $modelsAnswerOption[$index][$index2] ? "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R: &nbsp;&nbsp;&nbsp;".$modelsAnswerOption[$index][$index2]->option_answer : '';
                     endif;

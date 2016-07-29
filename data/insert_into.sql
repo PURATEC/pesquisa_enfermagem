@@ -773,9 +773,21 @@ VALUES (
     'Por favor, Anexar arquivo ou colar texto do programa da disciplina de História da Enfermagem ou disciplina que trabalha o conteúdo de História da Enfermagem, ou link para site institucional com programa.',
     2,46
 );
+INSERT INTO "question_option" ("element_type", "label", "question_id", "question_option_id")
+VALUES (
+    'file',
+    'Anexar arquivo',
+    46,53
+);
 INSERT INTO "question" ("element_type", "label",  "survey_id", "question_id")   
 VALUES (
     'textarea',
     'Por favor, Anexar arquivo ou colar texto com rede/grade curricular, do curso de Enfermagem com respectivas cargas horárias, ou link para site institucional com currículo.',
     2,47
+);
+INSERT INTO "question_option" ("element_type", "label", "question_id", "question_option_id")
+VALUES (
+    'file',
+    'Anexar arquivo',
+    47,54
 );

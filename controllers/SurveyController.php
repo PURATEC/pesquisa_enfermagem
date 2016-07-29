@@ -31,6 +31,29 @@ class SurveyController extends Controller
         ]);
     }
 
+    public function actionDownload($person_id, $question_id, $question_option_id)
+    {
+        $model = \app\models\PersonAnswerSurveyQuestionOption::findOne([
+            'person_id' => $person_id,
+            'question_id' => $question_id,
+            'question_option_id' => $question_option_id
+        ]);
+        
+        $decoded = base64_decode($model->option_answer);
+        $file = Yii::t('app', 'anexo-'.$question_option_id.'_'.$person_id).'.pdf';
+        file_put_contents($file, $decoded);
+        
+        header('Content-Description: File Transfer');
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="'.basename($file).'"');
+        header('Expires: 0');
+        header('Cache-Control: must-revalidate');
+        header('Pragma: public');
+        header('Content-Length: ' . filesize($file));
+        readfile($file);
+        exit;
+    }
+    
     /**
      * Displays a single Survey model.
      * @param integer $person_id
@@ -51,7 +74,7 @@ class SurveyController extends Controller
                 $modelsAnswer = [];
                 $modelsAnswerOption = [];
 
-                for($i=4; $i<47; $i++)
+                for($i=4; $i<=47; $i++)
                 {
                     $modelsQuestion[$i] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
                     $modelsQuestionOption[$i] = \app\models\QuestionOption::findAll(['question_id' => $i]);
@@ -170,7 +193,7 @@ class SurveyController extends Controller
                 }
             }
 
-            if ($model->load(Yii::$app->request->post()) && 
+            if ( $model->load(Yii::$app->request->post()) &&
                 ($modelsAnswer = Yii::$app->request->post('PersonAnswerSurveyQuestion')) &&
                 ($modelsAnswerOption = Yii::$app->request->post('PersonAnswerSurveyQuestionOption'))
             )
@@ -212,19 +235,38 @@ class SurveyController extends Controller
                                     $modelAnswerOption->question_id = $modelsQuestion[$index]->question_id;
                                     $modelAnswerOption->question_option_id = $modelsQuestionOption[$index][$index2]->question_option_id;
                                     
-                                    if(is_array($o['option_answer']))
+                                    if($modelsQuestionOption[$index][$index2]->element_type == 'file')
                                     {
-                                        $auxAnswerOptions = '';
-                                        foreach($o['option_answer'] as $tmp)
+                                        $configArray = [
+                                            'name' => $_FILES['PersonAnswerSurveyQuestionOption']['name'][$index][$index2]['option_answer'],
+                                            'type' => $_FILES['PersonAnswerSurveyQuestionOption']['type'][$index][$index2]['option_answer'],
+                                            'tmp_name' => $_FILES['PersonAnswerSurveyQuestionOption']['tmp_name'][$index][$index2]['option_answer'],
+                                            'error' => $_FILES['PersonAnswerSurveyQuestionOption']['error'][$index][$index2]['option_answer'],
+                                            'size' => $_FILES['PersonAnswerSurveyQuestionOption']['size'][$index][$index2]['option_answer']
+                                        ];
+                                        
+                                        if(move_uploaded_file($configArray['tmp_name'], '/tmp/' . $configArray['name']))
                                         {
-                                            $auxAnswerOptions = $auxAnswerOptions.';'.$tmp;
+                                            $modelAnswerOption->option_answer = base64_encode(file_get_contents('/tmp/'.$configArray['name']));
                                         }
-                                        $modelAnswerOption->option_answer = substr($auxAnswerOptions, 1);
                                     }
                                     else
-                                    {   
-                                        $modelAnswerOption->option_answer = $o['option_answer'];
+                                    {
+                                        if(is_array($o['option_answer']))
+                                        {
+                                            $auxAnswerOptions = '';
+                                            foreach($o['option_answer'] as $tmp)
+                                            {
+                                                $auxAnswerOptions = $auxAnswerOptions.';'.$tmp;
+                                            }
+                                            $modelAnswerOption->option_answer = substr($auxAnswerOptions, 1);
+                                        }
+                                        else
+                                        {   
+                                            $modelAnswerOption->option_answer = $o['option_answer'];
+                                        }
                                     }
+                                    
                                     
                                     if(! ($condition2Commit = $modelAnswerOption->save()))
                                     {
@@ -238,7 +280,7 @@ class SurveyController extends Controller
                             break;
                         }
                     }
-                    
+
                     if($condition2Commit)
                     {
                         $modelPerson->survey_success = $startedButNotFinished ? true : false;
@@ -378,7 +420,7 @@ class SurveyController extends Controller
         
         if($personAnswerSurveyQuestionModel)
         {
-            $filename = 'Data-'.Date('YmdGis').'-test.xls';
+            $filename = 'person-'.$person_id.'_'.Date('YmdGis').'.xls';
         
             header("Content-type: application/vnd-ms-excel");
             header("Content-Disposition: attachment; filename=".$filename);
@@ -413,8 +455,9 @@ class SurveyController extends Controller
                 echo '<table border="1" width="100%">
                     <thead>
                         <tr>';
+                        echo "<th>Email</th>";
                         foreach($modelsQuestion as $index => $q):
-                            echo "<th>$q->label</th>";
+                            echo "<th>".$q->label."</th>";
                             foreach($modelsQuestionOption[$index] as $index2 => $q2):
                                 echo "<th>$q2->label</th>";
                             endforeach;
@@ -422,6 +465,7 @@ class SurveyController extends Controller
                         '</tr>
                     </thead>';
                     echo '<tr>';
+                    echo "<td>".\app\models\Person::findOne($person_id)->users[0]->email."</td>";
                     foreach($modelsQuestion as $index => $q):
                         if($q->element_type == 'select'):
                             echo $modelsAnswer[$index] ? "<td>".explode(';', $q->options)[$modelsAnswer[$index]->answer]."</td>" : '<td></td>';
@@ -473,12 +517,14 @@ class SurveyController extends Controller
                 echo '<table border="1" width="100%">
                 <thead>
                     <tr>';
+                    echo "<th>Email</th>";
                     foreach($modelsQuestion as $index => $q):
                         echo "<th>$q->label</th>";
                     endforeach;
                     '</tr>
                 </thead>';
                 echo '<tr>';
+                echo "<td>".\app\models\Person::findOne($person_id)->users[0]->email."</td>";
                 foreach($modelsQuestion as $index => $q):
                     if($q->element_type == 'select'):
                         echo $modelsAnswer[$index] ? "<td>".explode(';', $q->options)[$modelsAnswer[$index]->answer]."</td>" : '<td></td>';

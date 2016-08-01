@@ -22,10 +22,10 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout'],
+                'only' => ['logout', 'send-mail'],
                 'rules' => [
                     [
-                        'actions' => ['logout, send-mail'],
+                        'actions' => ['logout', 'send-mail'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -61,7 +61,15 @@ class SiteController extends Controller
             {
                 if($user->tos == true)
                 {
-                    return $this->redirect(['survey/create']); 
+                    if($user->type == 'Pesquisador')
+                    {
+                        return $this->redirect(['survey/index']); 
+                    }
+                    
+                    else if($user->type == 'Entrevistado')
+                    {
+                        return $this->redirect(['survey/create']); 
+                    }
                 }
                 
                 else
@@ -87,7 +95,15 @@ class SiteController extends Controller
                 
                 if($user->tos == true)
                 {
-                    return $this->redirect(['survey/create']); 
+                    if($user->type == 'Pesquisador')
+                    {
+                        return $this->redirect(['survey/index']); 
+                    }
+                    
+                    else if($user->type == 'Entrevistado')
+                    {
+                        return $this->redirect(['survey/create']); 
+                    } 
                 }
                 
                 else

@@ -8,6 +8,7 @@ use app\models\PersonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * PersonController implements the CRUD actions for Person model.
@@ -30,6 +31,7 @@ class PersonController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['logout', 'terms-of-service'],
                 'rules' => [
                     [
                         'actions' => ['logout, terms-of-service'],

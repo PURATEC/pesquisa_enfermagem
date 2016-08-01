@@ -6,6 +6,7 @@ use Yii;
 use app\models\Survey;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use yii\filters\AccessControl;
 
 /**
  * SurveyController implements the CRUD actions for Survey model.
@@ -22,10 +23,18 @@ class SurveyController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['index', 'view', 'create', 'create-with', 'create-without', 'thanks', 'export'],
                 'rules' => [
                     [
-                        'actions' => ['index, viewWith, create, createWith, '
-                            . 'createWithout, thanks, export'],
+                        'actions' => [
+                            'index',
+                            'view',
+                            'create',
+                            'create-with',
+                            'create-without',
+                            'thanks',
+                            'export'
+                        ],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

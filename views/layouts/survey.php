@@ -27,6 +27,7 @@ AppAsset::register($this);
     <div class="wrap">    
         
         <?php
+        if(! Yii::$app->user->isGuest):
         NavBar::begin([
             'brandLabel' => 'História da Enfermagem',
             'brandUrl' => Yii::$app->homeUrl,
@@ -52,7 +53,7 @@ AppAsset::register($this);
             ],
         ]);
         NavBar::end();
-        ?>
+        endif;?>
         
         
         <div class="container">
@@ -74,7 +75,8 @@ AppAsset::register($this);
     </div>
     <footer class="footer">
         <div class="container">
-            <p class="pull-left">&copy; PURATEC <?= date('Y') ?></p>
+            <?= Html::img('@web/img/logo_puratec.png', ['width'=>'60', 'height' => '60', 'class' => 'pull-left']) ?>
+            <p class="pull-left" style="margin-top: 20px;">&nbsp; &copy; PURATEC <?= date('Y') ?></p>
         </div>
     </footer>
     <?php $this->endBody() ?>

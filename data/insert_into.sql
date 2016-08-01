@@ -18,14 +18,14 @@ VALUES (
 );
 INSERT INTO "question" ("placeholder", "element_type", "label", "survey_id", "question_id")
 VALUES (
-    'Ex: 2005',
+    'Conteúdo exemplo: 2005',
     'text',
     'Em que ano a disciplina ou conteúdo de História da Enfermagem deixou de ser oferecida como disciplina específica ou associada?',  
     1,2
 );
 INSERT INTO "question" ("placeholder", "element_type", "label", "survey_id", "question_id")
 VALUES (
-    'Coloque aqui o motivo da remoção da disciplina',
+    'Conteúdo exemplo: a disciplina foi removida porque...',
     'textarea',
     'Qual o motivo para a remoção da disciplina?', 
     1,3

@@ -31,9 +31,9 @@
         <?php foreach($questionGroup as $index => $q):
             echo "<div class='col-sm-".$q->size."' style='text-align: justify;'>";
             if($q->element_type == 'text'):
-                echo $form->field($answerGroup[$index], "[{$index}]answer")->textInput(['placeholder' => $q->placeholder])->label($index+1 . '. '.$q->label);
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->textInput(['value' => $q->placeholder])->label($index+1 . '. '.$q->label);
             elseif($q->element_type == 'textarea'):
-                echo $form->field($answerGroup[$index], "[{$index}]answer")->textarea(['placeholder' => $q->placeholder])->label($index+1 . '. '.$q->label);
+                echo $form->field($answerGroup[$index], "[{$index}]answer")->textarea(['value' => $q->placeholder])->label($index+1 . '. '.$q->label);
             elseif($q->element_type == 'select'):
                 $options = explode(';', $q->options);
                 echo $form->field($answerGroup[$index], "[{$index}]answer")->dropDownList($options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label($index+1 . '. '.$q->label);

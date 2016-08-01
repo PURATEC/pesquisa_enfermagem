@@ -6,7 +6,6 @@
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
@@ -57,11 +56,11 @@ AppAsset::register($this);
         
         
         <div class="container">
-            <div id="cabecalho"> 
-                <div id="cab_logo">
+            <div id="header"> 
+                <div id="logo">
                     <?= Html::img('@web/img/logo.png', ['width' => '130px','height' => '120px']);?>
                 </div>
-                <div id="cab_conteudo">
+                <div id="header_content">
                     <h4>Rastreamento no Ensino de História da Enfermagem no Estado de São Paulo
                             Escola de Enfermagem de Ribeirão Preto - EERP
                     </h4>

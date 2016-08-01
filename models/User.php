@@ -37,7 +37,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => false,
                 'value' => function() {
-                    return date('NOW()');
+                    return date('Y-m-d H:i:s');
                 },
             ],
         ];
@@ -150,5 +150,25 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         {
             return null;
         }
+    }
+    
+    /**
+     * Send email with user password
+     * @param string $email
+     * @return email
+     */
+    public function sendMail($email, $password)
+    {
+        // Envia um email com o termo de consentimento 
+        return Yii::$app->mailer->compose()
+        ->setTo($email)
+        ->setFrom(Yii::$app->params['adminEmail'])
+        ->setSubject('Acesso do usuário')
+        ->setHtmlBody('<p>' . Yii::t('app', 'Texto para estimular o usuário a responder a pesquisa.') . '</p>' .
+                '<p>E-mail: ' . $email . '</p>' . 
+                '<p>Senha: ' . $password . '</p>' . 
+                '<p>' . \yii\helpers\Html::a('http://www.rehe.com.br', 
+                        \yii\helpers\Url::to(['index'], 'http')) .'</p>')
+        ->send();
     }
 }

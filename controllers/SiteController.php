@@ -25,7 +25,7 @@ class SiteController extends Controller
                 'only' => ['logout'],
                 'rules' => [
                     [
-                        'actions' => ['logout'],
+                        'actions' => ['logout, send-mail'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -83,6 +83,7 @@ class SiteController extends Controller
             if($model->login())
             {
                 $user = $model->getUser();
+                $user->last_login = date('Y-m-d H:i:s');
                 
                 if($user->tos == true)
                 {
@@ -99,6 +100,44 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+    /**
+     * Send mail with generated user
+     * @return session
+     */
+    public function actionSendMail()
+    {
+        $this->layout = 'grid-layout';
+        
+        $model = new \app\models\User;
+        
+        if($model->load(Yii::$app->request->post()))
+        {     
+            // Valida regras que necessitam de ajax
+            if(Yii::$app->request->isAjax)
+            {
+                Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+                return \yii\widgets\ActiveForm::validate($model, ['email']);
+            }
+            
+            $randomPassword = \app\components\utils\Utils::getRandomAlphanumeric(8);
+            $model->password = Yii::$app->getSecurity()->generatePasswordHash(strtolower($randomPassword));
+            $model->type = 'Entrevistado';
+            $model->last_login = date('Y-m-d H:i:s');
+            
+            if($model->save())
+            {
+                if($model->sendMail($model->email, $randomPassword))
+                {
+                    Yii::$app->session->setFlash('success', 'E-mail enviado com sucesso!');
+                }
+            }
+        }
+        
+        return $this->render('send-mail', [
+            'model' => $model
+        ]); 
     }
 
     /**

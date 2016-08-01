@@ -15,6 +15,26 @@ class SurveyController extends Controller
     public $layout = 'survey';
     
     /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['index, viewWith, create, createWith, '
+                            . 'createWithout, thanks, export'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+    
+    /**
      * Lists all Survey models.
      * @return mixed
      */

@@ -28,6 +28,16 @@ class PersonController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['logout, terms-of-service'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
         ];
     }
 
@@ -60,10 +70,13 @@ class PersonController extends Controller
                     
                     if($user->save())
                     {
+                        if($model->sendTermsOfService($user->email))
+                        {
                         $this->redirect(['survey/create', 'person_id' => $model->person_id]);
                     }
                 }
             }   
+        }
         }
         
         else

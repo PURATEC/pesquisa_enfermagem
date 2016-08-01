@@ -9,7 +9,7 @@ use yii\grid\GridView;
 <div class="survey-index">
 
     <?php 
-    $personModels = app\models\Person::find(['survey_success' => true])->all();
+    $personModels = app\models\Person::find()->where(['survey_success' => true])->all();
     $average_aux = 0;
     foreach($personModels as $p):
         $datetime1 = new DateTime($p->created_at);
@@ -17,7 +17,10 @@ use yii\grid\GridView;
         $interval = $datetime1->diff($datetime2);
         $average_aux += $interval->d*24*60 + $interval->h*60 + $interval->i;
     endforeach;
-    $average = $average_aux/count($personModels);
+    if(! count($personModels) == 0)
+        $average = $average_aux/count($personModels);
+    else
+        $average = 0;
     ?>
     
     <div class="well-transparent" style="margin-bottom: 20px;">

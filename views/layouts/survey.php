@@ -73,6 +73,7 @@ AppAsset::register($this);
             <?= $content ?>
         </div>
     </div>
+    
     <footer class="footer">
         <div class="container">
             <?= Html::img('@web/img/logo_puratec.png', ['width'=>'60', 'height' => '60', 'class' => 'pull-left']) ?>

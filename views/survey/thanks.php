@@ -5,6 +5,6 @@
 ?>
 <div class="survey-thanks">
     <center>
-        <h1>Thanks!</h1>
+        <h1>Obrigado!</h1>
     </center>
 </div>

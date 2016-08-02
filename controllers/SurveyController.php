@@ -316,16 +316,18 @@ class SurveyController extends Controller
                         $modelPerson->survey_success_at = $startedButNotFinished ? date('Y-m-d H:i:s') : null;
                         if($modelPerson->save())
                         {
-                            $transaction->commit();
-                            if(! $modelPerson->survey_success)
+                            if($model->sendMail($modelPerson->users->email))
                             {
-                                return $this->redirect(['create-with', 'person_id' => $person_id]);
+                                $transaction->commit();
+                                if(! $modelPerson->survey_success)
+                                {
+                                    return $this->redirect(['create-with', 'person_id' => $person_id]);
+                                }
+                                else
+                                {
+                                    return $this->redirect(['thanks']);
+                                }
                             }
-                            else
-                            {
-                                return $this->redirect(['thanks']);
-                            }
-                            
                         }
                     }
                 } catch (Exception $ex) {
@@ -397,7 +399,10 @@ class SurveyController extends Controller
                         $modelPerson->survey_success_at = date('Y-m-d H:i:s');
                         if($modelPerson->save())
                         {
-                            $transaction->commit();
+                            if($model->sendMail($modelPerson->users->email))
+                            {
+                                $transaction->commit();
+                            }
                         }
                     }
                 } catch (Exception $ex) {

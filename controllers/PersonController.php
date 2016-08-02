@@ -67,11 +67,11 @@ class PersonController extends Controller
                     {
                         if($model->sendTermsOfService($user->email))
                         {
-                        $this->redirect(['survey/create', 'person_id' => $model->person_id]);
+                            $this->redirect(['survey/create', 'person_id' => $model->person_id]);
+                        }
                     }
-                }
-            }   
-        }
+                }   
+            }
         }
         
         else

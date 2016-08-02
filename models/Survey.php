@@ -63,4 +63,20 @@ class Survey extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Question::className(), ['survey_id' => 'survey_id']);
     }
+    
+    /**
+     * Send email with conclusion survey message
+     * @param string $email
+     * @return email
+     */
+    public function sendMail($email)
+    {
+        // Envia um email com o termo de consentimento 
+        return Yii::$app->mailer->compose()
+                ->setTo($email)
+                ->setFrom(Yii::$app->params['adminEmail'])
+                ->setSubject('Obrigado por responder a pesquisa!')
+                ->setHtmlBody('<p>Obrigado.</p>')
+                ->send();
+    }
 }

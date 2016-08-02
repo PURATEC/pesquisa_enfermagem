@@ -20,8 +20,6 @@ body {
 
 .footer {
     height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
 }
 
 .jumbotron {
@@ -121,18 +119,18 @@ a.desc:after {
 }
 
 .btn-sq-lg {
-  width: 500px !important;
-  height: 180px !important;
+    width: 500px !important;
+    height: 180px !important;
 }
 
 .btn-sq-md {
-  width: 20% !important;
-  height: 150px !important;
+    width: 20% !important;
+    height: 150px !important;
 }
 
 .btn-sq-sm {
-  width: 100px !important;
-  height: 80px !important;
+    width: 100px !important;
+    height: 80px !important;
 }
 
 #tos-header {
@@ -143,4 +141,8 @@ a.desc:after {
 #tos-footer {
     border: 1px solid #EDEDED;
     padding-top: 10px;
+}
+
+.form-control {
+    height: 40px;
 }

@@ -68,7 +68,7 @@ class SiteController extends Controller
                     
                     else if($user->type == 'Entrevistado')
                     {
-                        return $this->redirect(['survey/create']); 
+                        return $this->redirect(['survey/create', 'person_id' => $user->person_id]); 
                     }
                 }
                 
@@ -102,7 +102,7 @@ class SiteController extends Controller
                     
                     else if($user->type == 'Entrevistado')
                     {
-                        return $this->redirect(['survey/create']); 
+                        return $this->redirect(['survey/create', 'person_id' => $user->person_id]); 
                     } 
                 }
                 

@@ -7,7 +7,6 @@ use app\models\Person;
 use app\models\PersonSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
@@ -23,18 +22,12 @@ class PersonController extends Controller
     public function behaviors()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout', 'terms-of-service'],
                 'rules' => [
                     [
-                        'actions' => ['logout, terms-of-service'],
+                        'actions' => ['logout', 'terms-of-service'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

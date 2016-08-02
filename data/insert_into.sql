@@ -1,7 +1,3 @@
-INSERT INTO "person" ( "city", "complement", "created_at", "full_name", "neighborhood", "number", "person_id", "phone", "postalcode", "rg", "state", "streetname", "survey_success") 
-VALUES ( 'Ribeirão Preto', '', TO_TIMESTAMP('21/07/16 14:20:00', 'mm/dd/yyyy hh24:mi.ss.ff'), 'Diego Garcia Sanchez', 'Jd. Presidente Dutra I', '3280', 1, '16982334073', '14060620', '487871509', 'SP', 'Japurá', false);
-
-
 INSERT INTO "survey" ( "active", "name", "survey_id") 
 VALUES (TRUE, 'Instituições sem a disciplina ou conteúdo de história da enfermagem', 1);
 
@@ -688,7 +684,7 @@ VALUES (
     'select',
     'Quantidade de alunos com defesa concluídos: ',
     '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
-    41,
+    41,46
 );
 
 INSERT INTO "question" ("element_type", "label", "options",  "survey_id", "question_id")  
@@ -794,5 +790,7 @@ VALUES (
 
 INSERT INTO "user"
 VALUES
-(ID, null, 'luchesi@eerp.usp.br', '$2y$13$h.HIzwhE01cuEl7MQc5Kjuvn9mWbVAn3S5SKE4S754uzqiZJyvCdu', 'Pesquisador', true, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00'),
-(ID, null, 'nina.kriska12@gmail.com', '$2y$13$NYUFEkI2UAfOK72kA5l7hezEynGB.MjaiI14p0vm1FrDBzjMfgy/W', 'Pesquisador', true, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00')
+(1, null, 'luchesi@eerp.usp.br', '$2y$13$h.HIzwhE01cuEl7MQc5Kjuvn9mWbVAn3S5SKE4S754uzqiZJyvCdu', 'Pesquisador', true, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00'),
+(2, null, 'nina.kriska12@gmail.com', '$2y$13$NYUFEkI2UAfOK72kA5l7hezEynGB.MjaiI14p0vm1FrDBzjMfgy/W', 'Pesquisador', true, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00'),
+(3, null, 'd@fo5.com', '$2y$13$h.HIzwhE01cuEl7MQc5Kjuvn9mWbVAn3S5SKE4S754uzqiZJyvCdu', 'Entrevistado', false, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00'),
+(4, null, 'ds@fo5.com', '$2y$13$NYUFEkI2UAfOK72kA5l7hezEynGB.MjaiI14p0vm1FrDBzjMfgy/W', 'Entrevistado', false, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00')

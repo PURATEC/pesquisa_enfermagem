@@ -75,7 +75,7 @@ CREATE TABLE question_option(
     question_id INTEGER NOT NULL,
     element_type CHARACTER VARYING(20) NOT NULL,
     size INT DEFAULT 12,
-    label TEXT NOT NULL,
+    label TEXT DEFAULT NULL,
     placeholder TEXT DEFAULT NULL,
     options TEXT,
     PRIMARY KEY(question_option_id),

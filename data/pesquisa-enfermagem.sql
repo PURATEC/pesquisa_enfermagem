@@ -97,7 +97,7 @@ CREATE TABLE person_answer_survey_question(
 CREATE TABLE person_answer_survey_question_option(
     person_id INTEGER NOT NULL,
     question_id INTEGER NOT NULL,
-    question_option_id INTEGER NOT NULL,
+    question_option_id INTEGER DEFAULT NULL,
     option_answer TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
     PRIMARY KEY(person_id, question_option_id, question_id),

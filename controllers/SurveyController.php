@@ -316,17 +316,19 @@ class SurveyController extends Controller
                         $modelPerson->survey_success_at = $startedButNotFinished ? date('Y-m-d H:i:s') : null;
                         if($modelPerson->save())
                         {
-                            if($model->sendMail($modelPerson->users[0]->email))
+                            $transaction->commit();
+
+                            if(! $modelPerson->survey_success)
                             {
-                                $transaction->commit();
-                                if(! $modelPerson->survey_success)
-                                {
-                                    return $this->redirect(['create-with', 'person_id' => $person_id]);
-                                }
-                                else
+                                return $this->redirect(['create-with', 'person_id' => $person_id]);
+                            }
+                            else
+                            {
+                                if($model->sendMail($modelPerson->users[0]->email))
                                 {
                                     return $this->redirect(['thanks']);
                                 }
+
                             }
                         }
                     }
@@ -522,7 +524,9 @@ class SurveyController extends Controller
                                         echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
                                     endif;
                                 else:
-                                    echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
+                                    if(! $q2->element_type == 'file'):
+                                        echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
+                                    endif;
                                 endif;
                             else:
                                 echo "<td></td>";

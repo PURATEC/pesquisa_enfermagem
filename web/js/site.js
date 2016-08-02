@@ -4,7 +4,7 @@ $("#personanswersurveyquestion-12-answer").on("change", function()
     else $('#personanswersurveyquestionoption-12-0-option_answer').hide();
 });
 $("input[name='PersonAnswerSurveyQuestion[13][answer][]']").change(function() {
-    if(this.value === '6') $('#personanswersurveyquestionoption-13-0-option_answer').toggle();
+    if(this.value === '7') $('#personanswersurveyquestionoption-13-0-option_answer').toggle();
 });
 $("input[name='PersonAnswerSurveyQuestion[14][answer][]']").change(function() {
     if(this.value === '8') $('#personanswersurveyquestionoption-14-0-option_answer').toggle();

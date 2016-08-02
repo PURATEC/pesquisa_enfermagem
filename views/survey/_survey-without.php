@@ -11,9 +11,9 @@
             <?php if($modelPerson->survey_success):
                 $personSurveySuccessBtn = 'btn-success';
             else: 
-                $personSurveySuccessBtn = 'btn-default';
+                $personSurveySuccessBtn = 'btn-info';
             endif; ?>
-            <a href="javascript:void(0);" class="btn btn-sq-sm btn-info">
+            <a href="javascript:void(0);" class="btn btn-sq-sm <?= $personSurveySuccessBtn ?>">
                 <i class="fa fa-wpforms fa-5x"></i><br/><br/>
             </a>
             <b>Etapa única</b>

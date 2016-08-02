@@ -25,19 +25,19 @@ use yii\grid\GridView;
     
     <div class="well-transparent" style="margin-bottom: 20px;">
             <a href="#" class="btn btn-sq-md btn-primary">
-                <i class="fa fa-user fa-5x"></i><br/>
+                <i class="fa fa-file-text-o fa-5x"></i><br/><br/>
                 TOTAL DE PESQUISAS <br> <?php echo count($personModels) ?>
             </a>
             <a href="#" class="btn btn-sq-md btn-success">
-              <i class="fa fa-user fa-5x"></i><br/>
+              <i class="fa fa-calendar-check-o fa-5x"></i><br/><br/>
               PESQUISAS RESPONDIDAS <br> <?php echo count(app\models\Person::find()->where(['survey_success' => true])->all()) ?>
             </a>
             <a href="#" class="btn btn-sq-md btn-info">
-              <i class="fa fa-user fa-5x"></i><br/>
+              <i class="fa fa-calendar-times-o fa-5x"></i><br/><br/>
               PESQUISAS NÃO FINALIZADAS <br> <?php echo count(app\models\Person::find()->where(['survey_success' => false])->all()) ?>
             </a>
             <a href="#" class="btn btn-sq-md btn-warning">
-              <i class="fa fa-user fa-5x"></i><br/>
+              <i class="fa fa-clock-o fa-5x"></i><br/><br/>
               TEMPO MÉDIO DE DURAÇÃO <br> <?= number_format((int)$average, 0, '.', ''); ?> minutos
             </a>
     </div>

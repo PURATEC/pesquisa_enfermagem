@@ -35,3 +35,5 @@ use yii\bootstrap\ActiveForm;
         </div>
     </div>
 </div>
+
+<?php $this->registerJs("setActiveTab('custom-model');", \yii\web\VIEW::POS_READY); ?>

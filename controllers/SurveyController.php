@@ -316,7 +316,7 @@ class SurveyController extends Controller
                         $modelPerson->survey_success_at = $startedButNotFinished ? date('Y-m-d H:i:s') : null;
                         if($modelPerson->save())
                         {
-                            if($model->sendMail($modelPerson->users->email))
+                            if($model->sendMail($modelPerson->users[0]->email))
                             {
                                 $transaction->commit();
                                 if(! $modelPerson->survey_success)
@@ -399,7 +399,7 @@ class SurveyController extends Controller
                         $modelPerson->survey_success_at = date('Y-m-d H:i:s');
                         if($modelPerson->save())
                         {
-                            if($model->sendMail($modelPerson->users->email))
+                            if($model->sendMail($modelPerson->users[0]->email))
                             {
                                 $transaction->commit();
                             }

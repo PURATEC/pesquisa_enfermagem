@@ -523,10 +523,10 @@ class SurveyController extends Controller
                                     else:
                                         echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
                                     endif;
+                                elseif($q2->element_type == 'file'):
+                                    echo "<td></td>";
                                 else:
-                                    if(! $q2->element_type == 'file'):
-                                        echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
-                                    endif;
+                                    echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
                                 endif;
                             else:
                                 echo "<td></td>";

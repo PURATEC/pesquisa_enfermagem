@@ -98,7 +98,7 @@ CREATE TABLE person_answer_survey_question_option(
     person_id INTEGER NOT NULL,
     question_id INTEGER NOT NULL,
     question_option_id INTEGER NOT NULL,
-    option_answer TEXT NOT DEFAULT NULL,
+    option_answer TEXT DEFAULT NULL,
     created_at TIMESTAMP NOT NULL,
     PRIMARY KEY(person_id, question_option_id, question_id),
     FOREIGN KEY(question_id) REFERENCES question(question_id),

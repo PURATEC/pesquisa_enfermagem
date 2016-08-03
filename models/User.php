@@ -168,7 +168,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 '<p>E-mail: ' . $email . '</p>' . 
                 '<p>Senha: ' . $password . '</p>' . 
                 '<p>' . \yii\helpers\Html::a('http://www.rehe.com.br', 
-                        \yii\helpers\Url::to(['index'], 'http')) .'</p>')
+                        \yii\helpers\Url::to(['login'], 'http')) .'</p>')
         ->send();
     }
 }

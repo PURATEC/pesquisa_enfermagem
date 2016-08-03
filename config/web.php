@@ -18,6 +18,7 @@ $config = [
         'user' => [
             'identityClass' => 'app\models\User',
             'enableAutoLogin' => true,
+            'authTimeout' => 3600, // 60 minutes
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -34,6 +35,7 @@ $config = [
                 'encryption' => 'tls',
             ],
         ],
+        /*
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
@@ -43,6 +45,7 @@ $config = [
                 ],
             ],
         ],
+         */
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -51,6 +54,8 @@ $config = [
     ],
     'params' => $params,
 ];
+
+/*
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
@@ -65,5 +70,7 @@ if (YII_ENV_DEV) {
         'allowedIPs' => ['127.0.0.1', '::1', '192.168.0.*', '192.168.192.*'],
     ];
 }
+ 
+ */
 
 return $config;

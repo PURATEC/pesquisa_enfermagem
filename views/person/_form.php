@@ -113,8 +113,8 @@ use yii\widgets\ActiveForm;
         <div id="tos-footer" class="col-md-12">
             <p class="text-center">
                 Comitê de Ética em Pesquisa da Escola de Enfermagem de Ribeirão Preto - USP<br/>
-                Telefone: (16) 3315-3386<br/>
-                Horário de funcionamento: de segunda a sexta-feira, das 09h às 18h<br/>
+                Telefone: (16) 3315-9197<br/>
+                Horário de funcionamento: de segunda a sexta-feira, das 09h às 17h<br/>
                 Escola de Enfermagem de Ribeirão Preto - USP<br/>
                 Avenida Bandeirantes, 3.900 - CEP: 14.040-902
             </p>

@@ -792,5 +792,3 @@ INSERT INTO "user"
 VALUES
 (1, null, 'luchesi@eerp.usp.br', '$2y$13$h.HIzwhE01cuEl7MQc5Kjuvn9mWbVAn3S5SKE4S754uzqiZJyvCdu', 'Pesquisador', true, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00'),
 (2, null, 'nina.kriska12@gmail.com', '$2y$13$NYUFEkI2UAfOK72kA5l7hezEynGB.MjaiI14p0vm1FrDBzjMfgy/W', 'Pesquisador', true, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00'),
-(3, null, 'd@fo5.com', '$2y$13$h.HIzwhE01cuEl7MQc5Kjuvn9mWbVAn3S5SKE4S754uzqiZJyvCdu', 'Entrevistado', false, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00'),
-(4, null, 'ds@fo5.com', '$2y$13$NYUFEkI2UAfOK72kA5l7hezEynGB.MjaiI14p0vm1FrDBzjMfgy/W', 'Entrevistado', false, '2016-08-01 22:00:00', true, '2016-08-01 22:00:00')

@@ -158,20 +158,17 @@ class SurveyController extends Controller
      * The purpose of this function is to render a view for user choose survey type.
      * @return mixed
      */
-    public function actionCreate($person_id = null)
+    public function actionCreate($person_id)
     {
-        if($person_id)
+        $personModel = \app\models\Person::findOne($person_id);
+        if($personModel && $personModel->survey_success)
         {
-            if(\app\models\Person::findOne($person_id)->survey_success)
-            {
-                return $this->render('thanks');
-            }
-            else
-            {
-                return $this->render('pre-create', ['person_id' => $person_id]);
-            }
+            return $this->render('thanks');
         }
-        return $this->redirect(['index']);
+        else
+        {
+            return $this->render('pre-create', ['person_id' => $person_id]);
+        }
     }
     
     /**
@@ -184,7 +181,11 @@ class SurveyController extends Controller
         $model = Survey::findOne(2);
         $modelPerson = \app\models\Person::findOne($person_id);
         
-        if(! $modelPerson->survey_success)
+        if($modelPerson->survey_success)
+        {
+            return $this->render('thanks');
+        }
+        else
         {
             $startedButNotFinished = false;
             if(\app\models\PersonAnswerSurveyQuestion::findOne(['person_id' => $person_id, 'question_id'=> 20, 'survey_id' => 2]))
@@ -346,10 +347,6 @@ class SurveyController extends Controller
                 'modelsAnswerOption' => $modelsAnswerOption,
                 'startedButNotFinished' => $startedButNotFinished
             ]);
-        }
-        else
-        {
-            return $this->redirect(['thanks']);
         }
     }
     

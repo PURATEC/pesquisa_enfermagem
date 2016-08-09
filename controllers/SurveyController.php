@@ -23,20 +23,25 @@ class SurveyController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['index', 'view', 'create', 'create-with', 'create-without', 'thanks', 'export'],
+                'only' => ['index', 'view', 'pre-create', 'create', 'download', 'thanks', 'export'],
                 'rules' => [
                     [
-                        'actions' => [
-                            'index',
-                            'view',
-                            'create',
-                            'create-with',
-                            'create-without',
-                            'thanks',
-                            'export'
-                        ],
+                        'actions' => ['index', 'view', 'download', 'export'],
                         'allow' => true,
                         'roles' => ['@'],
+                        'matchCallback' => function($rule, $action) {
+                                $user = Yii::$app->user->identity;
+                                return ($user->type == 'Pesquisador');
+                        }
+                    ],
+                    [
+                        'actions' => ['pre-create', 'create', 'thanks'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                        'matchCallback' => function($rule, $action) {
+                                $user = Yii::$app->user->identity;
+                                return ($user->type == 'Entrevistado');
+                        }
                     ],
                 ],
             ],

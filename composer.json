@@ -19,7 +19,8 @@
         "yiisoft/yii2-bootstrap": "*",
         "FortAwesome/Font-Awesome": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "kartik-v/yii2-slider": "*"
+        "kartik-v/yii2-slider": "*",
+        "yiisoft/yii2-jui": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

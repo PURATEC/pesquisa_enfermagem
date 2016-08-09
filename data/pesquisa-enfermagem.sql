@@ -52,58 +52,21 @@ CREATE TABLE "user"(
 
 CREATE TABLE survey(
     survey_id SERIAL,
-    name TEXT NOT NULL,
+    type CHARACTER VARYING(64) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT TRUE,
     PRIMARY KEY(survey_id)
 );
 
-CREATE TABLE question(
-    question_id SERIAL,
-    survey_id INTEGER NOT NULL,
-    element_type CHARACTER VARYING(20) NOT NULL,
-    size INT DEFAULT 12,
-    label TEXT NOT NULL,
-    placeholder TEXT DEFAULT NULL,
-    options TEXT DEFAULT NULL,
-    active BOOLEAN DEFAULT TRUE NOT NULL,
-    PRIMARY KEY(question_id),
-    FOREIGN KEY(survey_id) REFERENCES survey(survey_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE question_option(
-    question_option_id SERIAL,
-    question_id INTEGER NOT NULL,
-    element_type CHARACTER VARYING(20) NOT NULL,
-    size INT DEFAULT 12,
-    label TEXT DEFAULT NULL,
-    placeholder TEXT DEFAULT NULL,
-    options TEXT,
-    PRIMARY KEY(question_option_id),
-    FOREIGN KEY(question_id) REFERENCES question(question_id)
-);
-
-CREATE TABLE person_answer_survey_question(
+CREATE TABLE person_has_survey_answer(
+    person_has_survey_answer_id SERIAL,
     person_id INTEGER NOT NULL,
     survey_id INTEGER NOT NULL,
-    question_id INTEGER NOT NULL,
+    question TEXT NOT NULL,
     answer TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL,
-    PRIMARY KEY(person_id, survey_id, question_id),
+    PRIMARY KEY(person_has_survey_answer_id, person_id, survey_id),
     FOREIGN KEY(person_id) REFERENCES person(person_id),
-    FOREIGN KEY(survey_id) REFERENCES survey(survey_id),
-    FOREIGN KEY(question_id) REFERENCES question(question_id)
-);
-
-CREATE TABLE person_answer_survey_question_option(
-    person_id INTEGER NOT NULL,
-    question_id INTEGER NOT NULL,
-    question_option_id INTEGER NOT NULL,
-    option_answer TEXT DEFAULT NULL,
-    created_at TIMESTAMP NOT NULL,
-    PRIMARY KEY(person_id, question_option_id, question_id),
-    FOREIGN KEY(question_id) REFERENCES question(question_id),
-    FOREIGN KEY(question_option_id) REFERENCES question_option(question_option_id),
-    FOREIGN KEY(person_id) REFERENCES person(person_id)
+    FOREIGN KEY(survey_id) REFERENCES survey(survey_id)
 );
 
 CREATE TABLE import_address(

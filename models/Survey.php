@@ -8,11 +8,8 @@ use Yii;
  * This is the model class for table "survey".
  *
  * @property integer $survey_id
- * @property string $name
+ * @property string $type
  * @property boolean $active
- *
- * @property PersonAnswerSurveyQuestion[] $personAnswerSurveyQuestions
- * @property Question[] $questions
  */
 class Survey extends \yii\db\ActiveRecord
 {
@@ -30,9 +27,9 @@ class Survey extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name'], 'required'],
-            [['name'], 'string'],
+            [['type'], 'required'],
             [['active'], 'boolean'],
+            [['type'], 'string', 'max' => 64],
         ];
     }
 
@@ -43,25 +40,9 @@ class Survey extends \yii\db\ActiveRecord
     {
         return [
             'survey_id' => 'Survey ID',
-            'name' => 'Name',
+            'type' => 'Type',
             'active' => 'Active',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getPersonAnswerSurveyQuestions()
-    {
-        return $this->hasMany(PersonAnswerSurveyQuestion::className(), ['survey_id' => 'survey_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getQuestions()
-    {
-        return $this->hasMany(Question::className(), ['survey_id' => 'survey_id']);
     }
     
     /**
@@ -73,10 +54,10 @@ class Survey extends \yii\db\ActiveRecord
     {
         // Envia um email com o termo de consentimento 
         return Yii::$app->mailer->compose()
-                ->setTo($email)
-                ->setFrom(Yii::$app->params['adminEmail'])
-                ->setSubject('Obrigado por responder a pesquisa!')
-                ->setHtmlBody('<p>Obrigado.</p>')
-                ->send();
+            ->setTo($email)
+            ->setFrom(Yii::$app->params['adminEmail'])
+            ->setSubject('Obrigado por responder a pesquisa!')
+            ->setHtmlBody('<p>Obrigado.</p>')
+            ->send();
     }
 }

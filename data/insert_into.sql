@@ -1,8 +1,8 @@
-INSERT INTO "survey" ( "active", "name", "survey_id") 
-VALUES (TRUE, 'Instituições sem a disciplina ou conteúdo de história da enfermagem', 1);
+INSERT INTO "survey" ( "active", "type", "survey_id") 
+VALUES (TRUE, 'without', 1);
 
-INSERT INTO "survey" ( "active", "name", "survey_id") 
-VALUES (TRUE, 'Instituições com a disciplina ou conteúdo de história da enfermagem', 2);
+INSERT INTO "survey" ( "active", "type", "survey_id") 
+VALUES (TRUE, 'with', 2);
 
 
 INSERT INTO "question" ("element_type", "label", "options", "survey_id", "question_id")  

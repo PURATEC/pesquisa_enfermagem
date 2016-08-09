@@ -1,7 +1,5 @@
 <?php
-
 use yii\grid\GridView;
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\SurveySearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -26,11 +24,11 @@ use yii\grid\GridView;
     <div class="well-transparent" style="margin-bottom: 20px;">
             <a href="#" class="btn btn-sq-md btn-primary">
                 <i class="fa fa-file-text-o fa-5x"></i><br/><br/>
-                TOTAL DE PESQUISAS <br> <?php echo count($personModels) ?>
+                TOTAL DE PESQUISAS <br> <?php echo count(\app\models\Person::find()->all()) ?>
             </a>
             <a href="#" class="btn btn-sq-md btn-success">
               <i class="fa fa-calendar-check-o fa-5x"></i><br/><br/>
-              PESQUISAS RESPONDIDAS <br> <?php echo count(app\models\Person::find()->where(['survey_success' => true])->all()) ?>
+              PESQUISAS RESPONDIDAS <br> <?php echo count($personModels) ?>
             </a>
             <a href="#" class="btn btn-sq-md btn-info">
               <i class="fa fa-calendar-times-o fa-5x"></i><br/><br/>

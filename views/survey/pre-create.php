@@ -21,7 +21,7 @@ $this->title = 'Selecionar tipo de pesquisa';
             <div class="row">
                 <div class="col-md-12">
                     <?= \yii\helpers\Html::a('Acessar questionário para instituições sem o conteúdo de história da enfermagem', 
-                        ['create-without?person_id='.$person_id],
+                        ['create?survey_type=without&person_id='.$person_id],
                         ['class' => 'btn btn-warning btn-lg btn-block']
                     ); ?>
                 </div>
@@ -48,7 +48,7 @@ $this->title = 'Selecionar tipo de pesquisa';
             <div class="row">
                 <div class="col-sm-12">
                     <?= \yii\helpers\Html::a('Acessar questionário para instituições com o conteúdo de história da enfermagem', 
-                        ['create-with?person_id='.$person_id],
+                        ['create?survey_type=with&person_id='.$person_id],
                         ['class' => 'btn btn-warning btn-lg btn-block']
                     ); ?>
                 </div>

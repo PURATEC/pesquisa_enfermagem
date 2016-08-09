@@ -161,6 +161,10 @@ class SurveyController extends Controller
      */
     public function actionPreCreate($person_id)
     {
+        if (\app\models\Person::findOne($person_id)->survey_success) {
+            return $this->redirect('thanks');
+        }
+        
         return $this->render('pre-create', [
             'model' => $model = new Survey,
             'person_id' => $person_id
@@ -273,136 +277,14 @@ class SurveyController extends Controller
     
     public function actionExport($person_id)
     {
-        $personAnswerSurveyQuestionModel = \app\models\PersonAnswerSurveyQuestion::findOne([
-            'person_id' => $person_id,
-        ]);
+        $ans = \app\models\PersonHasSurveyAnswer::findAll(['person_id' => $person_id]);
         
-        if($personAnswerSurveyQuestionModel)
+        foreach($ans as $a)
         {
-            $filename = 'person-'.$person_id.'_'.Date('YmdGis').'.xls';
-        
-            header("Content-type: application/vnd-ms-excel");
-            header("Content-Disposition: attachment; filename=".$filename);
+            echo $a->question."<br>";
             
-            if($personAnswerSurveyQuestionModel->survey_id == 2)
-            {
-                $modelsQuestion = [];
-                $modelsQuestionOption = [];
-                $modelsAnswer = [];
-                $modelsAnswerOption = [];
-
-                for($i=4; $i<47; $i++)
-                {
-                    $modelsQuestion[$i] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
-                    $modelsQuestionOption[$i] = \app\models\QuestionOption::findAll(['question_id' => $i]);
-                    $modelsAnswer[$i] = \app\models\PersonAnswerSurveyQuestion::findOne([
-                        'survey_id' => 2,
-                        'person_id' => $person_id,
-                        'question_id' => $modelsQuestion[$i]->question_id
-                    ]);
-
-                    foreach($modelsQuestionOption[$i] as $index => $op)
-                    {
-                        $modelsAnswerOption[$i][] = \app\models\PersonAnswerSurveyQuestionOption::findOne([
-                            'person_id' => $person_id,
-                            'question_id' => $modelsQuestion[$i]->question_id,
-                            'question_option_id' => $modelsQuestionOption[$i][$index]->question_option_id,  
-                        ]);
-                    }
-                }
-                
-                echo '<table border="1" width="100%">
-                    <thead>
-                        <tr>';
-                        echo "<th>Email</th>";
-                        foreach($modelsQuestion as $index => $q):
-                            echo "<th>".$q->label."</th>";
-                            foreach($modelsQuestionOption[$index] as $index2 => $q2):
-                                echo "<th>$q2->label</th>";
-                            endforeach;
-                        endforeach;
-                        '</tr>
-                    </thead>';
-                    echo '<tr>';
-                    echo "<td>".\app\models\Person::findOne($person_id)->users[0]->email."</td>";
-                    foreach($modelsQuestion as $index => $q):
-                        if($q->element_type == 'select'):
-                            echo $modelsAnswer[$index] ? "<td>".explode(';', $q->options)[$modelsAnswer[$index]->answer]."</td>" : '<td></td>';
-                        elseif($q->element_type == 'checkbox' || $q->element_type == 'radio'):
-                            echo "<td>";
-                            foreach(explode(';', $modelsAnswer[$index]->answer) as $exp):
-                                echo explode(';', $q->options)[$exp]."; ";
-                            endforeach;
-                            echo "</td>";
-                        else:
-                            echo $modelsAnswer[$index] ? "<td>".$modelsAnswer[$index]->answer."</td>" : "<td></td>";
-                        endif;
-
-                        foreach($modelsQuestionOption[$index] as $index2 => $q2):
-                            if($modelsAnswerOption[$index][$index2]):
-                                if($q2->element_type == 'select'):
-                                    if($modelsAnswerOption[$index][$index2]->option_answer != ''):
-                                        echo "<td>".explode(';', $q2->options)[$modelsAnswerOption[$index][$index2]->option_answer]."</td>";
-                                    else:
-                                        echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
-                                    endif;
-                                elseif($q2->element_type == 'file'):
-                                    echo "<td></td>";
-                                else:
-                                    echo "<td>".$modelsAnswerOption[$index][$index2]->option_answer."</td>";
-                                endif;
-                            else:
-                                echo "<td></td>";
-                            endif;
-                        endforeach;
-                    endforeach;
-                    '</tr>';
-                echo '</table>';
-            }
-            else
-            {
-                $modelsQuestion = [];
-                $modelsAnswer = [];
-                $modelsAnswerOption = [];
-
-                for($i=1; $i<4; $i++)
-                {
-                    $modelsQuestion[$i] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 1]);
-                    $modelsAnswer[$i] = \app\models\PersonAnswerSurveyQuestion::findOne([
-                        'survey_id' => 1,
-                        'person_id' => $person_id,
-                        'question_id' => $modelsQuestion[$i]->question_id
-                    ]);
-                }
-                
-                echo '<table border="1" width="100%">
-                <thead>
-                    <tr>';
-                    echo "<th>Email</th>";
-                    foreach($modelsQuestion as $index => $q):
-                        echo "<th>$q->label</th>";
-                    endforeach;
-                    '</tr>
-                </thead>';
-                echo '<tr>';
-                echo "<td>".\app\models\Person::findOne($person_id)->users[0]->email."</td>";
-                foreach($modelsQuestion as $index => $q):
-                    if($q->element_type == 'select'):
-                        echo $modelsAnswer[$index] ? "<td>".explode(';', $q->options)[$modelsAnswer[$index]->answer]."</td>" : '<td></td>';
-                    elseif($q->element_type == 'checkbox' || $q->element_type == 'radio'):
-                        echo "<td>";
-                        foreach(explode(';', $modelsAnswer[$index]->answer) as $exp):
-                            echo explode(';', $q->options)[$exp]."; ";
-                        endforeach;
-                        echo "</td>";
-                    else:
-                        echo $modelsAnswer[$index] ? "<td>".$modelsAnswer[$index]->answer."</td>" : "<td></td>";
-                    endif;
-                endforeach;
-                '</tr>';
-            echo '</table>';
-            }
         }
+        die(); 
     }
     
     /**

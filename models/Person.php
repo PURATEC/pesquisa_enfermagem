@@ -126,9 +126,9 @@ class Person extends \yii\db\ActiveRecord
     {
         // Envia um email com o termo de consentimento 
         return Yii::$app->mailer->compose(['html' => 'layouts/mail'])
-        ->setTo($email)
-        ->setFrom(Yii::$app->params['adminEmail'])
-        ->setSubject('Termo de consentimento')
-        ->send();
+                ->setTo($email)
+                ->setFrom(Yii::$app->params['adminEmail'])
+                ->setSubject('Termo de consentimento')
+                ->send();
     }
 }

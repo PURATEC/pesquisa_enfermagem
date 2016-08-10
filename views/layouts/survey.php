@@ -78,6 +78,10 @@ AppAsset::register($this);
         <div class="container">
             <?= Html::img('@web/img/logo_puratec.png', ['width'=>'60', 'height' => '60', 'class' => 'pull-left']) ?>
             <p class="pull-left" style="margin-top: 20px;">&nbsp; &copy; PURATEC <?= date('Y') ?></p>
+            <p class="pull-right" style="margin-top: 10px;">
+                <small><strong>Levantamento de requisitos:</strong> André Freitas</small> <br>
+                <small><strong>Modelagem/Projeto/Desenvolvimento/Testes:</strong> PURATEC</small> <br>
+            </p>
         </div>
     </footer>
     <?php $this->endBody() ?>

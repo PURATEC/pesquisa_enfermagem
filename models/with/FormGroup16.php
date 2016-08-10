@@ -23,7 +23,6 @@ class FormGroup16 extends \yii\base\Model
         return [
             [['q40', 'q41'], 'required'],
             [['q42', 'q43'], 'safe'],
-            [['q42_file', 'q43_file'], 'safe'],
             [['q42_file'], 'file', 'extensions' => 'pdf'],
             [['q43_file'], 'file', 'extensions' => 'pdf']
         ];

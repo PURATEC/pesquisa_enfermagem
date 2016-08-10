@@ -39,6 +39,22 @@
                 ?>
             </div>
         </div>
+        <hr>
+        <div class="row">
+            <div class="col-sm-12">
+                <?php
+                    $q5_extra_options1 = explode(';', $questionGroupModel->attributeLabels()['q5_extra_options1']);
+                    echo $form->field($questionGroupModel, "q5_extra1")->dropDownList($q5_extra_options1, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
+                ?>
+            </div>
+
+            <div class="col-sm-12">
+                <?php
+                    $q5_extra_options2 = explode(';', $questionGroupModel->attributeLabels()['q5_extra_options2']);
+                    echo $form->field($questionGroupModel, "q5_extra2")->dropDownList($q5_extra_options2, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
+                ?>
+            </div>
+        </div>
     </div>
     
     <div class="panel-footer">

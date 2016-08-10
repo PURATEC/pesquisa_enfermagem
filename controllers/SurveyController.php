@@ -155,7 +155,17 @@ class SurveyController extends Controller
                         $personHasSurveyAnswerModel->person_id = $person_id;
                         $personHasSurveyAnswerModel->survey_id = $survey_type == 'with' ? 2 : 1;
                         $personHasSurveyAnswerModel->question = $index;
-                        $personHasSurveyAnswerModel->answer = $this->getAnswer($attribute);
+                        
+                        if($index == 'q42_file' || $index == 'q43_file') {
+                            $questionGroupModel->$index = \yii\web\UploadedFile::getInstance($questionGroupModel, $index);
+                            if($questionGroupModel->$index) {
+                                $questionGroupModel->$index->saveAs($questionGroupModel->$index->baseName . '.' . $questionGroupModel->$index->extension);
+                                $personHasSurveyAnswerModel->answer = base64_encode(file_get_contents($questionGroupModel->$index->baseName . '.' . $questionGroupModel->$index->extension));
+                            }
+                        } else {
+                            $personHasSurveyAnswerModel->answer = $this->getAnswer($attribute);
+                        }
+                        
                         $personHasSurveyAnswerModel->save();
                     }
                 }
@@ -237,6 +247,8 @@ class SurveyController extends Controller
             'q3_options' => 'É oferecido em disciplina própria;É oferecido em disciplina integrada com outros conteúdos',
             'q4' => '4. Departamento ou setor responsável pelo conteúdo ou disciplina de História da Enfermagem:',
             'q5' => '5. Ano de oferecimento conteúdo ou disciplina de História da Enfermagem no curso de graduação:',
+            'q5_extra1' => '5.2 a) Modalidade de oferecimento da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
+            'q5_extra2' => '5.2 b) Natureza / Tipo da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
             'q5_options' => '1º Ano;2º Ano;3º Ano;4º Ano;5º Ano',
             'q5_extra' => '5.1. Período de oferecimento:',
             'q5_extra_options' => '1º Semestre;2º Semestre;Anual',
@@ -449,7 +461,11 @@ class SurveyController extends Controller
             'q43' => '25. Por favor, Anexar arquivo ou colar texto com rede/grade curricular, do curso de Enfermagem com respectivas cargas horárias, ou link para site institucional com currículo.'
         ];
         
-        if (\app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id])->survey_id == 1) {
+        $model = \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id]);
+        
+        if(! $model) return false;
+        
+            if ($model->survey_id == 1) {
             $questions = $questions1;
             $survey_id = 1;
         } else {
@@ -498,6 +514,12 @@ class SurveyController extends Controller
     public function getLastQuestionGroupAnswered($question_form_group, $survey_type, $person_id)
     {   
         if (\app\models\Person::findOne($person_id)->survey_success) return false;
+        
+        if (\app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id])->survey_id == 1 && $survey_type == 'with' ||
+            \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id])->survey_id == 2 && $survey_type == 'without') {
+            \app\models\PersonHasSurveyAnswer::deleteAll(['person_id' => $person_id]);
+        }
+        
         while(true) {
             $questionFormGroupClass = "\app\models\\".$survey_type."\\FormGroup".$question_form_group;
             $questionGroupModel = new $questionFormGroupClass;

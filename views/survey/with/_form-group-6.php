@@ -14,7 +14,7 @@
         </div>
         <div id="q17_extra" class="row" style="display:none;">
             <div class="col-sm-10">
-                <?= $form->field($questionGroupModel, "q17_extra")->textarea(['placeholder' => 'Cite aqui as outras ...', 'rows' => 5])->label(false); ?>
+                <?= $form->field($questionGroupModel, "q17_extra")->textarea(['placeholder' => 'Cite aqui os outros ...', 'rows' => 5])->label(false); ?>
             </div>
         </div>
         

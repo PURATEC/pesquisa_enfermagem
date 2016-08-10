@@ -243,8 +243,7 @@ $("#formgroup13-q33").on("change", function(){
 });
 $("#formgroup13-q34").on("change", function(){
     if($(this).val() !== '0') 
-    {<?php
-$this->registerJs("$('#current_page_form_group').find('small').text($questionGroupModel->page);", \yii\web\View::POS_END);
+    {
         $('#q34_extra').show();
     }
     else

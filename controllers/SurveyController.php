@@ -224,6 +224,7 @@ class SurveyController extends Controller
                 if (($survey_type == 'without' && $question_form_group == 1) || ($survey_type == 'with' && $question_form_group == 16)) {
                     $modelPerson = \app\models\Person::findOne ($person_id);
                     $modelPerson->survey_success = true;
+                    $modelPerson->survey_success_at = date('Y-m-d H:i:s');
                     $modelPerson->save();
                     $survey_id = $survey_type == 'with' ? 2 : 1;
                     $model = Survey::findOne($survey_id);
@@ -282,14 +283,136 @@ class SurveyController extends Controller
     
     public function actionExport($person_id)
     {
-        $ans = \app\models\PersonHasSurveyAnswer::findAll(['person_id' => $person_id]);
+        $questions1 = [
+            'q1' => '1. A disciplina ou conteúdo de História da Enfermagem já foi oferecido em períodos anteriores?',
+            'q1_options' => 'Não;Sim, o conteúdo era ministrado em Disciplina própria;Sim, o conteúdo era ministrado em Disciplina integrada a outros temas',
+            'q2' => '2. Em que ano a disciplina ou conteúdo de História da Enfermagem deixou de ser oferecida como disciplina específica ou associada?',
+            'q3' => '3. Qual o motivo para a remoção da disciplina?',
+        ];
         
-        foreach($ans as $a)
-        {
-            echo $a->question."<br>";
-            
+        $questions2 = [
+            'q1' => '1. Qual a sua instituição?',
+            'q1_extra' => '1.1. Ano de contratação',
+            'q2' => '2. Nome e código da disciplina',
+            'q3' => '3. O conteúdo de História da Enfermagem:',
+            'q3_options' => 'É oferecido em disciplina própria;É oferecido em disciplina integrada com outros conteúdos',
+            'q4' => '4. Departamento ou setor responsável pelo conteúdo ou disciplina de História da Enfermagem:',
+            'q5' => '5. Ano de oferecimento conteúdo ou disciplina de História da Enfermagem no curso de graduação:',
+            'q5_options' => '1º Ano;2º Ano;3º Ano;4º Ano;5º Ano',
+            'q5_extra' => '5.1. Período de oferecimento:',
+            'q5_extra_options' => '1º Semestre;2º Semestre;Anual',
+            'q6' => '6. Carga horária total da Disciplina:',
+            'q7' => '7. Carga horária do conteúdo de História:',
+            'q8' => '8. Como você percebe a importância do conteúdo ou da disciplina de História da Enfermagem na formação do enfermeiro?',
+            'q9' => '9. Encontra dificuldades para ministrar o conteúdo ou disciplina de História da Enfermagem?',
+            'q9_options' => 'Não;Sim, quais?',
+            'q10' => '10. Quais estratégias metodológicas são utilizadas na disciplina?',
+            'q10_options' => 'aulas expositivas;aulas expositivas dialogadas;discussão de textos;seminários;encenação teatral;viagem didática;análise de documentos;outras',
+            'q11' => '11. Quais os métodos de avaliação do aluno?',
+            'q11_options' => 'participação em sala de aula;frequência;trabalhos individuais escritos;trabalhos em grupo escritos;apresentação de seminários;prova escrita;estudo dirigido;exercícios em sala de aula;outros',
+            'q12' => '12. Qual a bibliografia utilizada na disciplina? Favor colar as referências utilizadas nesse espaço.',
+            'q13' => '13. De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a importância do conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
+            'q14' => '14. De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a valorização dos estudantes para o conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
+            'q15' => '15. De 0 a 10, sendo 0, nenhuma importância e 10 muita importância, como você classifica a valorização que a sua instituição atribui ao conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
+            'q16' => '16. De 0 a 10, sendo 0, nenhum e 10 excelente, como você classifica seu domínio dos conhecimentos para ministrar o conteúdo ou disciplina de História da Enfermagem?',
+            'q17' => '17. Como geralmente se dá a escolha do docente desse conteúdo ou disciplina de História da Enfermagem na sua instituição? Quais os critérios?',
+            'q17_options' => 'Currículo específico;Concurso específico para a disciplina;Processo Seletivo específico para a disciplina;Afinidade com o tema;Professor contratado com menor carga horária;Disponibilidade;Outros',
+            'q18' => '1. Gênero:',
+            'q18_options' => 'Masculino;Feminino',
+            'q19' => '2. Idade:',
+            'q20' => '3. Qual sua formação inicial?',
+            'q20_options' => 'Bacharel em Enfermagem;Bacharel e Licenciado em Enfermagem; Bacharel ou Licencitura em História;Outro',
+            'q20_extra2' => '3.1. Ano de conclusão:',
+            'q21' => '4. Possui outro curso de graduação?',
+            'q21_options' => 'Não;Sim',
+            'q21_extra2' => '4.1. Ano de conclusão:',
+            'q22' => '5. Possui curso de especialização?',
+            'q22_options' => 'Não;Sim',
+            'q22_extra2' => '5.1. Ano de conclusão:',
+            'q23' => '6. Possui Pós-graduação Stricto Sensu?',
+            'q23_options' => 'Mestrado;Doutorado;Pós-Doutorado',
+            'q23_extra' => '6.2. Ano de conclusão:',
+            'q23_extra_sit' => '6.1. Andamento:',
+            'q23_extra_sit_options' => 'Em andamento;Concluído',
+            'q23_extra2' => '6.2. Ano de conclusão:',
+            'q23_extra2_sit' => '6.1. Andamento:',
+            'q23_extra2_sit_options' => 'Em andamento;Concluído',
+            'q23_extra3' => '6.2. Ano de conclusão:',
+            'q23_extra3_sit' => '6.1. Andamento:',
+            'q23_extra3_sit_options' => 'Em andamento;Concluído',
+            'q24' => '7. Há quanto tempo é responsável pela disciplina ou conteúdo de História da Enfermagem?',
+            'q24_options' => 'Menos de 1 ano;De 1 à 3 anos;De 4 à 6 anos;De 7 à 9 anos;Mais de 10 anos',
+            'q25' => '8. Qual a sua carga horária semanal média nessa instituição de ensino?',
+            'q26' => '9. Possui outro vinculo empregatício?',
+            'q26_options' => 'Não;Sim',
+            'q27' => '10. Idiomas',
+            'q27_extra1' => 'Ingles: ',
+            'q27_extra2' => 'Espanhol: ',
+            'q27_extra3' => 'Outros',
+            'q27_extra_options' => 'Sem conhecimento;Básico ou Regular;Avançado;Fluente',
+            'q28' => '11. Você é responsável por outras disciplinas?',
+            'q28_options' => 'Não;Sim',
+            'q28_qt' => 'Quantas?',
+            'q28_extra2' => 'Área',
+            'q28_extra5' => 'Área',
+            'q28_extra8' => 'Área:',
+            'q28_extra9' => 'Outras? Quais?',
+            'q28_extra_options' => 'Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q29' => '12. Participa de algum grupo de pesquisa?',
+            'q29_options' => 'Não;Sim',
+            'q29_options_1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
+            'q29_options_2' => 'Paritipante;Líder;Vice-Líder',
+            'q29_extra8' => 'Outros? Quais?',
+            'q30' => '13. Atua em alguma linha ou linhas de pesquisa?',
+            'q30_options' => 'Não;Sim',
+            'q31' => '14. Participa de projetos de pesquisa?',
+            'q31_options' => 'Não;Sim',
+            'q31_options_1' => '1;2;3;4;5;6;7;8;9;10; Mais de 10',
+            'q32' => '15. Atua em algum projeto de extensão?',
+            'q32_options' => 'Não;Sim',
+            'q33' => '16. Produziu artigos completos publicados em periódicos na área de História da Enfermagem?',
+            'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
+            'q33_options' => 'Não;Sim',
+            'q33_extra_options' => 'Nenhuma;Revista Latino Americana de Enfermagem;Revista de Escola de Enfermagem da USP;Acta Paulista de Enfermagem;Revista Brasileira de Enfermagem;Revista Texto e Contexto;Revista Escola de Enfermagem Anna Nery;Revista Gaúcha de Enfermagem;Revista Reuol;Revista Mineira de Enfermagem REME;Revista Escola de Enfermagem da UERJ;História da Enfermagem - Revista Eletrônica (HERE)',
+            'q34_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
+            'q35' => '17. Produziu livros e capítulos',
+            'q35_extra_options' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
+            'q35_extra' => 'a) Livros',
+            'q35_extra6' => 'b) Capítulos',
+            'q36' => '18. Participação em congressos ou eventos de porte nacional/regional?',
+            'q36_options' => 'Não;Sim',
+            'q36_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q36_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
+            'q37' => '19. Possui orientação de alunos de mestrado?',
+            'q38' => '20. Possui orientação em Tese de doutorado?',
+            'q39' => '21. Possui orientação em Trabalho de Conclusão de Curso ou Iniciação científica?',
+            'q37_options' => 'Não;Sim',
+            'q37_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q37_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
+            'q40' => '22. O programa da disciplina de História da Enfermagem ou de seu conteúdo está de acordo com o que é ministrado em sala de aula? Ou atualizado?',
+            'q41' => '23. Existe alguma atividade da disciplina de História da Enfermagem ou de seu conteúdo, que ainda não consta no programa da disciplina ou de sua bibliografia?',
+            'q42' => '24. Por favor, Anexar arquivo ou colar texto do programa da disciplina de História da Enfermagem ou disciplina que trabalha o conteúdo de História da Enfermagem, ou link para site institucional com programa.',
+            'q43' => '25. Por favor, Anexar arquivo ou colar texto com rede/grade curricular, do curso de Enfermagem com respectivas cargas horárias, ou link para site institucional com currículo.'
+        ];
+        
+        if (\app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id])->survey_id == 1) {
+            $questions = $questions1;
+            $survey_id = 1;
+        } else {
+            $questions = $questions2;
+            $survey_id = 2;
         }
-        die(); 
+        
+        foreach($questions as $index => $q) {
+            if (!(strpos($index, 'options') !== false)  && 
+                !(strpos($index, 'extra') !== false)    && 
+                !(strpos($index, 'qt') !== false)       &&
+                !(strpos($index, 'file') !== false)
+            ) { 
+                $ans = \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id, 'survey_id' => $survey_id, 'question' => $index]);
+                echo $q.'        <br>R: '.$ans->answer."<br><br>";
+            }
+        }
     }
     
     /**

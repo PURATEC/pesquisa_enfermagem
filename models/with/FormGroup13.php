@@ -42,6 +42,7 @@ class FormGroup13 extends \yii\base\Model
     public $q35_extra10;
     public $q35_extra11;
     public $q35_extra12;
+    public $q35_extra13;
     public $page = 13;
 
     /**
@@ -55,7 +56,7 @@ class FormGroup13 extends \yii\base\Model
                 'q34_extra', 'q34_extra1', 'q34_extra2', 'q34_extra3', 'q34_extra4', 'q34_extra5',
                     'q34_extra6', 'q34_extra7', 'q34_extra8', 'q34_extra9', 'q34_extra10', 'q34_extra11',
                 'q35_extra', 'q35_extra1', 'q35_extra2', 'q35_extra3', 'q35_extra4', 'q35_extra5',
-                   'q35_extra7', 'q35_extra8', 'q35_extra9', 'q35_extra10', 'q35_extra11'], 'safe'],
+                   'q35_extra7', 'q35_extra8', 'q35_extra9', 'q35_extra10', 'q35_extra11', 'q35_extra12', 'q35_extra13'], 'safe'],
         ];
     }
     

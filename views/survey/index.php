@@ -79,7 +79,7 @@ use yii\grid\GridView;
                         $url = str_replace('view?id=', 'view?person_id=', $url);
                         if($model->survey_success)
                         {
-                            return \yii\helpers\Html::a('<span class="fa fa-eye"></span> Visualizar', $url, [
+                            return \yii\helpers\Html::a('<span class="fa fa-file"></span> Arquivos', $url, [
                                 'title' => 'Visualizar',
                                 'class'=>'btn btn-primary btn-xs',                         
                             ]);

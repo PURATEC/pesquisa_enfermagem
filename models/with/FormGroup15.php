@@ -51,9 +51,9 @@ class FormGroup15 extends \yii\base\Model
     {
         return [
             [['q37', 'q38', 'q39'], 'required'],
-            [['q37_extra', 'q37_extra1', 'q37_extra2', 'q37_extra3', 'q37_extra4', 'q37_extra5', 'q37_extra6', 'q37_extra7', 'q37_extra8', 
-                'q38_extra', 'q38_extra1', 'q38_extra2', 'q38_extra3', 'q38_extra4', 'q38_extra5', 'q38_extra6', 'q38_extra7', 'q38_extra8',
-                'q39_extra', 'q39_extra1', 'q39_extra2', 'q39_extra3', 'q39_extra4', 'q39_extra5', 'q39_extra6', 'q39_extra7', 'q39_extra8'], 'safe'],
+            [['q37_extra', 'q37_extra1', 'q37_extra2', 'q37_extra3', 'q37_extra4', 'q37_extra5', 'q37_extra6', 'q37_extra7', 'q37_extra8', 'q37_extra9',
+                'q38_extra', 'q38_extra1', 'q38_extra2', 'q38_extra3', 'q38_extra4', 'q38_extra5', 'q38_extra6', 'q38_extra7', 'q38_extra8', 'q38_extra9',
+                'q39_extra', 'q39_extra1', 'q39_extra2', 'q39_extra3', 'q39_extra4', 'q39_extra5', 'q39_extra6', 'q39_extra7', 'q39_extra8', 'q39_extra9'], 'safe'],
         ];
     }
     

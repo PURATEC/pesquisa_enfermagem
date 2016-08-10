@@ -65,27 +65,25 @@ class SurveyController extends Controller
         ]);
     }
 
-    public function actionDownload($person_id, $question_id, $question_option_id)
+    public function actionDownload($person_id, $question)
     {
-        $model = \app\models\PersonAnswerSurveyQuestionOption::findOne([
-            'person_id' => $person_id,
-            'question_id' => $question_id,
-            'question_option_id' => $question_option_id
-        ]);
+        $ans = \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id, 'question' => $question]);
         
-        $decoded = base64_decode($model->option_answer);
-        $file = Yii::t('app', 'anexo-'.$question_option_id.'_'.$person_id).'.pdf';
-        file_put_contents($file, $decoded);
-        
-        header('Content-Description: File Transfer');
-        header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.basename($file).'"');
-        header('Expires: 0');
-        header('Cache-Control: must-revalidate');
-        header('Pragma: public');
-        header('Content-Length: ' . filesize($file));
-        readfile($file);
-        exit;
+        if($ans) {
+            $decoded = base64_decode($ans->answer);
+            $file = Yii::t('app', 'anexo-'.$question.'_'.$person_id).'.pdf';
+            file_put_contents($file, $decoded);
+
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($file));
+            readfile($file);
+            exit;
+        }
     }
     
     /**
@@ -94,69 +92,10 @@ class SurveyController extends Controller
      * @return mixed
      */
     public function actionView($person_id)
-    {
-        $personAnswerSurveyQuestionModel = \app\models\PersonAnswerSurveyQuestion::findOne([
-            'person_id' => $person_id,
+    {   
+        return $this->render('view', [
+            'person_id' => $person_id
         ]);
-        
-        if($personAnswerSurveyQuestionModel)
-        {
-            if($personAnswerSurveyQuestionModel->survey_id == 2)
-            {
-                $modelsQuestion = [];
-                $modelsQuestionOption = [];
-                $modelsAnswer = [];
-                $modelsAnswerOption = [];
-
-                for($i=4; $i<=47; $i++)
-                {
-                    $modelsQuestion[$i] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 2]);
-                    $modelsQuestionOption[$i] = \app\models\QuestionOption::findAll(['question_id' => $i]);
-                    $modelsAnswer[$i] = \app\models\PersonAnswerSurveyQuestion::findOne([
-                        'survey_id' => 2,
-                        'person_id' => $person_id,
-                        'question_id' => $modelsQuestion[$i]->question_id
-                    ]);
-
-                    foreach($modelsQuestionOption[$i] as $index => $op)
-                    {
-                        $modelsAnswerOption[$i][] = \app\models\PersonAnswerSurveyQuestionOption::findOne([
-                            'person_id' => $person_id,
-                            'question_id' => $modelsQuestion[$i]->question_id,
-                            'question_option_id' => $modelsQuestionOption[$i][$index]->question_option_id,  
-                        ]);
-                    }
-                }
-            }
-            else
-            {
-                $modelsQuestion = [];
-                $modelsQuestionOption = [];
-                $modelsAnswer = [];
-                $modelsAnswerOption = [];
-
-                for($i=1; $i<4; $i++)
-                {
-                    $modelsQuestion[$i] = \app\models\Question::findOne(['question_id' => $i, 'survey_id' => 1]);
-                    $modelsAnswer[$i] = \app\models\PersonAnswerSurveyQuestion::findOne([
-                        'survey_id' => 1,
-                        'person_id' => $person_id,
-                        'question_id' => $modelsQuestion[$i]->question_id
-                    ]);
-                }
-            }
-            return $this->render('view', [
-                'modelPerson' => \app\models\Person::findOne($person_id),
-                'modelsQuestion' => $modelsQuestion,
-                'modelsQuestionOption' => $modelsQuestionOption,
-                'modelsAnswer' => $modelsAnswer,
-                'modelsAnswerOption' => $modelsAnswerOption,
-            ]);
-        }
-        else
-        {
-            return $this->redirect(['index']);
-        }
     }
 
     /**
@@ -353,24 +292,87 @@ class SurveyController extends Controller
             'q28' => '11. Você é responsável por outras disciplinas?',
             'q28_options' => 'Não;Sim',
             'q28_qt' => 'Quantas?',
+            'q28_extra' => 'Nome da disciplina',
+            'q28_extra1' => 'Carga horária',
             'q28_extra2' => 'Área',
+            'q28_extra3' => 'Nome da disciplina',
+            'q28_extra4' => 'Carga horária',
             'q28_extra5' => 'Área',
-            'q28_extra8' => 'Área:',
+            'q28_extra6' => 'Nome da disciplina',
+            'q28_extra7' => 'Carga horária',
+            'q28_extra8' => 'Área',
             'q28_extra9' => 'Outras? Quais?',
             'q28_extra_options' => 'Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q29' => '12. Participa de algum grupo de pesquisa?',
             'q29_options' => 'Não;Sim',
             'q29_options_1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
             'q29_options_2' => 'Paritipante;Líder;Vice-Líder',
+            'q29_extra' => 'Área',
+            'q29_extra1' => 'Função',
+            'q29_extra2' => 'Área',
+            'q29_extra3' => 'Função',
+            'q29_extra4' => 'Área',
+            'q29_extra5' => 'Função',
+            'q29_extra6' => 'Área',
+            'q29_extra7' => 'Função',
+            'q29_extra8' => 'Área',
+            'q29_extra9' => 'Função',
             'q29_extra8' => 'Outros? Quais?',
             'q30' => '13. Atua em alguma linha ou linhas de pesquisa?',
             'q30_options' => 'Não;Sim',
+            'q30_extra' => 'Linha de pesquisa',
+            'q30_extra1' => 'Linha de pesquisa',
+            'q30_extra2' => 'Linha de pesquisa',
+            'q30_extra3' => 'Linha de pesquisa',
+            'q30_extra4' => 'Linha de pesquisa',
             'q31' => '14. Participa de projetos de pesquisa?',
             'q31_options' => 'Não;Sim',
             'q31_options_1' => '1;2;3;4;5;6;7;8;9;10; Mais de 10',
+            'q31_extra' => 'Área',
+            'q31_extra1' => 'Quantidade de projetos em andamento',
+            'q31_extra2' => 'Quantidade de projetos concluídos',
+            'q31_extra3' => 'Área',
+            'q31_extra4' => 'Quantidade de projetos em andamento',
+            'q31_extra5' => 'Quantidade de projetos concluídos',
+            'q31_extra6' => 'Área',
+            'q31_extra7' => 'Quantidade de projetos em andamento',
+            'q31_extra8' => 'Quantidade de projetos concluídos',
+            'q31_extra9' => 'Área',
+            'q31_extra10' => 'Quantidade de projetos em andamento',
+            'q31_extra11' => 'Quantidade de projetos concluídos',
+            'q32_extra' => 'Área',
+            'q32_extra1' => 'Quantidade de projetos em andamento',
+            'q32_extra2' => 'Quantidade de projetos concluídos',
+            'q32_extra3' => 'Área',
+            'q32_extra4' => 'Quantidade de projetos em andamento',
+            'q32_extra5' => 'Quantidade de projetos concluídos',
+            'q32_extra6' => 'Área',
+            'q32_extra7' => 'Quantidade de projetos em andamento',
+            'q32_extra8' => 'Quantidade de projetos concluídos',
+            'q32_extra9' => 'Área',
+            'q32_extra10' => 'Quantidade de projetos em andamento',
+            'q32_extra11' => 'Quantidade de projetos concluídos',
             'q32' => '15. Atua em algum projeto de extensão?',
             'q32_options' => 'Não;Sim',
             'q33' => '16. Produziu artigos completos publicados em periódicos na área de História da Enfermagem?',
+            'q33_extra' => 'Revista',
+            'q33_extra1' => 'Quantidade',
+            'q33_extra2' => 'Revista',
+            'q33_extra3' => 'Quantidade',
+            'q33_extra4' => 'Revista',
+            'q33_extra5' => 'Quantidade',
+            'q34_extra' => 'Área',
+            'q34_extra1' => 'Quantidade',
+            'q34_extra2' => 'Área',
+            'q34_extra3' => 'Quantidade',
+            'q34_extra4' => 'Área',
+            'q34_extra5' => 'Quantidade',
+            'q34_extra6' => 'Área',
+            'q34_extra7' => 'Total de artigos',
+            'q34_extra8' => 'Área',
+            'q34_extra9' => 'Total de artigos',
+            'q34_extra10' => 'Área',
+            'q34_extra11' => 'Total de artigos',
             'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
             'q33_options' => 'Não;Sim',
             'q33_extra_options' => 'Nenhuma;Revista Latino Americana de Enfermagem;Revista de Escola de Enfermagem da USP;Acta Paulista de Enfermagem;Revista Brasileira de Enfermagem;Revista Texto e Contexto;Revista Escola de Enfermagem Anna Nery;Revista Gaúcha de Enfermagem;Revista Reuol;Revista Mineira de Enfermagem REME;Revista Escola de Enfermagem da UERJ;História da Enfermagem - Revista Eletrônica (HERE)',
@@ -378,14 +380,66 @@ class SurveyController extends Controller
             'q35' => '17. Produziu livros e capítulos',
             'q35_extra_options' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q35_extra' => 'a) Livros',
-            'q35_extra6' => 'b) Capítulos',
+            'q35_extra1' => 'Área',
+            'q35_extra2' => 'Quantidade',
+            'q35_extra3' => 'Área',
+            'q35_extra4' => 'Quantidade',
+            'q35_extra5' => 'Área',
+            'q35_extra6' => 'Quantidade',
+            'q35_extra7' => 'b) Capítulos',
+            'q35_extra8' => 'Área',
+            'q35_extra9' => 'Quantidade',
+            'q35_extra10' => 'Área',
+            'q35_extra11' => 'Quantidade',
+            'q35_extra12' => 'Área',
+            'q35_extra13' => 'Quantidade',
             'q36' => '18. Participação em congressos ou eventos de porte nacional/regional?',
             'q36_options' => 'Não;Sim',
             'q36_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q36_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
+            'q36_extra' => 'Área',
+            'q36_extra1' => 'Quantidade',
+            'q36_extra2' => 'Área',
+            'q36_extra3' => 'Quantidade',
+            'q36_extra4' => 'Área',
+            'q36_extra5' => 'Quantidade',
+            'q36_extra6' => 'Área',
+            'q36_extra7' => 'Quantidade',
+            'q36_extra8' => 'Área',
+            'q36_extra9' => 'Quantidade',
             'q37' => '19. Possui orientação de alunos de mestrado?',
+            'q37_extra' => 'Área',
+            'q37_extra1' => 'Quantidade em andamento',
+            'q37_extra2' => 'Quantidade concluídos',
+            'q37_extra3' => 'Área',
+            'q37_extra4' => 'Quantidade em andamento',
+            'q37_extra5' => 'Quantidade concluídos',
+            'q37_extra6' => 'Área',
+            'q37_extra7' => 'Quantidade em andamento',
+            'q37_extra8' => 'Quantidade concluídos',
+            'q37_extra9' => 'Área',
             'q38' => '20. Possui orientação em Tese de doutorado?',
+            'q38_extra' => 'Área',
+            'q38_extra1' => 'Quantidade em andamento',
+            'q38_extra2' => 'Quantidade concluídos',
+            'q38_extra3' => 'Área',
+            'q38_extra4' => 'Quantidade em andamento',
+            'q38_extra5' => 'Quantidade concluídos',
+            'q38_extra6' => 'Área',
+            'q38_extra7' => 'Quantidade em andamento',
+            'q38_extra8' => 'Quantidade concluídos',
+            'q38_extra9' => 'Área',
             'q39' => '21. Possui orientação em Trabalho de Conclusão de Curso ou Iniciação científica?',
+            'q37_extra' => 'Área',
+            'q39_extra1' => 'Quantidade em andamento',
+            'q39_extra2' => 'Quantidade concluídos',
+            'q39_extra3' => 'Área',
+            'q39_extra4' => 'Quantidade em andamento',
+            'q39_extra5' => 'Quantidade concluídos',
+            'q39_extra6' => 'Área',
+            'q39_extra7' => 'Quantidade em andamento',
+            'q39_extra8' => 'Quantidade concluídos',
+            'q39_extra9' => 'Área',
             'q37_options' => 'Não;Sim',
             'q37_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q37_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
@@ -403,16 +457,36 @@ class SurveyController extends Controller
             $survey_id = 2;
         }
         
-        foreach($questions as $index => $q) {
-            if (!(strpos($index, 'options') !== false)  && 
-                !(strpos($index, 'extra') !== false)    && 
-                !(strpos($index, 'qt') !== false)       &&
-                !(strpos($index, 'file') !== false)
-            ) { 
-                $ans = \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id, 'survey_id' => $survey_id, 'question' => $index]);
-                echo $q.'        <br>R: '.$ans->answer."<br><br>";
-            }
-        }
+        $filename = 'person-'.$person_id.'_'.Date('YmdGis').'.xls';
+        header("Content-type: application/vnd-ms-excel");
+        header("Content-Disposition: attachment; filename=".$filename);
+        
+        echo '<table border="1" width="100%">
+                <thead>
+                    <tr>';
+                    foreach($questions as $index => $q) {
+                        if (!(strpos($index, 'options') !== false)  && 
+                            !(strpos($index, 'file') !== false)
+                        ) { 
+                            echo '<th>'.$q.'</th>';
+                        }
+                    }
+                    echo '</tr>
+                </thead>
+                    <tr>';
+                    foreach($questions as $index => $q) {
+                        if (!(strpos($index, 'options') !== false)  && 
+                            !(strpos($index, 'file') !== false)
+                        ) { 
+                            echo '<td>';
+                            $ans = \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id, 'question' => $index]);
+                            if ($ans) echo $ans->answer;
+                            else echo 'SEM REPSOSTA';
+                            echo '</td>';
+                        }
+                    }
+                    echo '</tr>
+            </table>';
     }
     
     /**

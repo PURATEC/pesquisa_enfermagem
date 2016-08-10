@@ -145,23 +145,23 @@
                         </div>
                         <div class="col-sm-4">
                             <?php $q35_extra_options = explode(';', $questionGroupModel->attributeLabels()['q35_extra_options']); ?>
-                            <?= $form->field($questionGroupModel, "q35_extra1")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra2")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra2")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra3")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra3")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra4")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra4")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra5")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra5")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra6")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
                         </div>
                     </div>
                 </div>
@@ -169,7 +169,7 @@
             <div class="col-sm-12">
                 <div class="col-sm-12">
                     <?php
-                        echo $form->field($questionGroupModel, "q35_extra6")->dropDownList($q33_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
+                        echo $form->field($questionGroupModel, "q35_extra7")->dropDownList($q33_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
                     ?>
                 </div>
             </div>
@@ -177,26 +177,26 @@
                 <div id="q35_extra_capitulos" style="display:none;">
                     <div class="col-sm-12">
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra7")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra8")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra8")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
-                        </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra9")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
-                        </div>
-                        <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra10")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra9")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra11")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra10")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
                         </div>
                         <div class="col-sm-4">
-                            <?= $form->field($questionGroupModel, "q35_extra12")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
+                            <?= $form->field($questionGroupModel, "q35_extra11")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <?= $form->field($questionGroupModel, "q35_extra12")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                        </div>
+                        <div class="col-sm-4">
+                            <?= $form->field($questionGroupModel, "q35_extra13")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
                         </div>
                     </div>
                 </div>

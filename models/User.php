@@ -56,6 +56,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['password'], 'string', 'max' => 64],
             [['type'], 'string', 'max' => 20],
             [['email'], 'unique'],
+            [['email'], 'email', 'on' => 'sendMail'],
             [['person_id'], 'exist', 'skipOnError' => false, 'targetClass' => Person::className(), 
                 'targetAttribute' => ['person_id' => 'person_id']],
         ];

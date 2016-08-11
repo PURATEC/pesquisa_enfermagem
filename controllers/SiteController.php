@@ -127,6 +127,7 @@ class SiteController extends Controller
         $this->layout = 'grid-layout';
         
         $model = new \app\models\User;
+        $model->scenario = 'sendMail';
         
         if($model->load(Yii::$app->request->post()))
         {     

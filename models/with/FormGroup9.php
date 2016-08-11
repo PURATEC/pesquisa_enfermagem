@@ -10,6 +10,8 @@ class FormGroup9 extends \yii\base\Model
     public $q24;
     public $q24_options;
     public $q25;
+    public $q25_extra;
+    public $q25_extra1;
     public $q26;
     public $q26_extra;
     public $q26_extra1;
@@ -29,7 +31,7 @@ class FormGroup9 extends \yii\base\Model
     {
         return [
             [['q24', 'q25', 'q26'], 'required'],
-            [['q26_extra', 'q26_extra1', 'q26_extra2', 'q26_extra3', 'q26_extra4', 'q26_extra5', 'q26_extra6', 'q26_extra7', 'q26_extra8'], 'safe'],
+            [['q25_extra', 'q25_extra1', 'q26_extra', 'q26_extra1', 'q26_extra2', 'q26_extra3', 'q26_extra4', 'q26_extra5', 'q26_extra6', 'q26_extra7', 'q26_extra8'], 'safe'],
         ];
     }
     
@@ -42,6 +44,8 @@ class FormGroup9 extends \yii\base\Model
             'q24' => '7. Há quanto tempo é responsável pela disciplina ou conteúdo de História da Enfermagem?',
             'q24_options' => 'Menos de 1 ano;De 1 à 3 anos;De 4 à 6 anos;De 7 à 9 anos;Mais de 10 anos',
             'q25' => '8. Qual a sua carga horária semanal média nessa instituição de ensino?',
+            'q25_extra' => ' 8.1 Qual o cargo atual que você desempenha na instituição de ensino em que ministra o conteúdo de História da Enfermagem?',
+            'q25_extra_options' => 'Enfermeiro;Enfermeiro Especialista;Professor Mestre;Professor Doutor;Professor Associado ou Livre-Docente;Professor Assistente;Professor Titular;Outro',
             'q26' => '9. Possui outro vinculo empregatício?',
             'q26_options' => 'Não;Sim'
         ];

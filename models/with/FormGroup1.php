@@ -18,7 +18,7 @@ class FormGroup1 extends \yii\base\Model
     {
         return [
             [['q1', 'q1_extra'], 'required'],
-            [['q2'], 'integer'],
+            [['q1_extra'], 'integer'],
         ];
     }
     

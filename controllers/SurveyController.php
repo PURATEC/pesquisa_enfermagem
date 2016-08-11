@@ -254,6 +254,8 @@ class SurveyController extends Controller
             'q5_extra_options' => '1º Semestre;2º Semestre;Anual',
             'q6' => '6. Carga horária total da Disciplina:',
             'q7' => '7. Carga horária do conteúdo de História:',
+            'q7_extra' => '7.1 Você considera a carga horária do conteúdo ou disciplina de História da Enfermagem suficiente no curso de graduação em Enfermagem que está inserido?',
+            'q7_extra1' => 'Horas necessárias',
             'q8' => '8. Como você percebe a importância do conteúdo ou da disciplina de História da Enfermagem na formação do enfermeiro?',
             'q9' => '9. Encontra dificuldades para ministrar o conteúdo ou disciplina de História da Enfermagem?',
             'q9_options' => 'Não;Sim, quais?',
@@ -294,6 +296,8 @@ class SurveyController extends Controller
             'q24' => '7. Há quanto tempo é responsável pela disciplina ou conteúdo de História da Enfermagem?',
             'q24_options' => 'Menos de 1 ano;De 1 à 3 anos;De 4 à 6 anos;De 7 à 9 anos;Mais de 10 anos',
             'q25' => '8. Qual a sua carga horária semanal média nessa instituição de ensino?',
+            'q25_extra' => 'Qual o cargo atual que você desempenha na instituição de ensino em que ministra o conteúdo de História da Enfermagem?',
+            'q25_extra1' => 'Outro cargo',
             'q26' => '9. Possui outro vinculo empregatício?',
             'q26_options' => 'Não;Sim',
             'q27' => '10. Idiomas',
@@ -373,6 +377,7 @@ class SurveyController extends Controller
             'q33_extra3' => 'Quantidade',
             'q33_extra4' => 'Revista',
             'q33_extra5' => 'Quantidade',
+            'q33_extra6' => 'Outros',
             'q34_extra' => 'Área',
             'q34_extra1' => 'Quantidade',
             'q34_extra2' => 'Área',
@@ -385,6 +390,7 @@ class SurveyController extends Controller
             'q34_extra9' => 'Total de artigos',
             'q34_extra10' => 'Área',
             'q34_extra11' => 'Total de artigos',
+            'q34_extra12' => 'Outros',
             'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
             'q33_options' => 'Não;Sim',
             'q33_extra_options' => 'Nenhuma;Revista Latino Americana de Enfermagem;Revista de Escola de Enfermagem da USP;Acta Paulista de Enfermagem;Revista Brasileira de Enfermagem;Revista Texto e Contexto;Revista Escola de Enfermagem Anna Nery;Revista Gaúcha de Enfermagem;Revista Reuol;Revista Mineira de Enfermagem REME;Revista Escola de Enfermagem da UERJ;História da Enfermagem - Revista Eletrônica (HERE)',
@@ -405,6 +411,8 @@ class SurveyController extends Controller
             'q35_extra11' => 'Quantidade',
             'q35_extra12' => 'Área',
             'q35_extra13' => 'Quantidade',
+            'q35_extra14' => 'Outros',
+            'q35_extra15' => 'Outros',
             'q36' => '18. Participação em congressos ou eventos de porte nacional/regional?',
             'q36_options' => 'Não;Sim',
             'q36_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
@@ -419,6 +427,7 @@ class SurveyController extends Controller
             'q36_extra7' => 'Quantidade',
             'q36_extra8' => 'Área',
             'q36_extra9' => 'Quantidade',
+            'q36_extra10' => 'Outros',
             'q37' => '19. Possui orientação de alunos de mestrado?',
             'q37_extra' => 'Área',
             'q37_extra1' => 'Quantidade em andamento',
@@ -515,10 +524,14 @@ class SurveyController extends Controller
     {   
         if (\app\models\Person::findOne($person_id)->survey_success) return false;
         
-        if (\app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id])->survey_id == 1 && $survey_type == 'with' ||
-            \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id])->survey_id == 2 && $survey_type == 'without') {
-            \app\models\PersonHasSurveyAnswer::deleteAll(['person_id' => $person_id]);
+        if(($aux = \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id]))) {
+            if ($aux->survey_id == 1 && $survey_type == 'with' ||
+                $aux->survey_id == 2 && $survey_type == 'without'
+            ) {
+                \app\models\PersonHasSurveyAnswer::deleteAll(['person_id' => $person_id]);
+            }
         }
+        
         
         while(true) {
             $questionFormGroupClass = "\app\models\\".$survey_type."\\FormGroup".$question_form_group;

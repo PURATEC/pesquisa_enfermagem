@@ -1,6 +1,6 @@
 <div class="row">
     <div id="current_page_form_group" class="col-sm-6 pull-left"><h4>Página atual: <small>1</small></h4> </div>
-    <div class="col-sm-2 pull-right"><h4>Total de Páginas: <small>16</small></h4></div>
+    <div class="col-sm-2 pull-right"><h4>Total de Páginas: <small><?= $survey_type == 'with' ? '17' : '1'; ?></small></h4></div>
 </div>
 
 <div class="panel panel-default">

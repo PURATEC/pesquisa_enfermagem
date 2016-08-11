@@ -17,9 +17,6 @@ class FormGroup14 extends \yii\base\Model
     public $q36_extra4;
     public $q36_extra5;
     public $q36_extra6;
-    public $q36_extra7;
-    public $q36_extra8;
-    public $q36_extra9;
     public $page = 14;
 
     /**

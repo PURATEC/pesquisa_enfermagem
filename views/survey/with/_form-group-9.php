@@ -14,8 +14,23 @@
         </div>
         <hr>
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-7">
                 <?= $form->field($questionGroupModel, "q25")->textInput(['placeholder' => 'Ex: 40 horas']); ?>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-12">
+                     <?php
+                        $q25_extra_options = explode(';', $questionGroupModel->attributeLabels()['q25_extra_options']);
+                        echo $form->field($questionGroupModel, "q25_extra")->dropDownList($q25_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
+                    ?>
+                </div>
+                <div id="q25_extra1" style="display:none;">
+                    <div class="col-sm-3">
+                        <?= $form->field($questionGroupModel, "q25_extra1")->textInput(['placeholder' => 'Outro cargo aqui'])->label('Outro cargo'); ?>
+                    </div>
+                </div>
             </div>
         </div>
         <hr>
@@ -99,6 +114,16 @@ $("#formgroup9-q26").on("change", function(){
     else
     {
     $('#q26_extra').hide();
+    }
+});
+$("#formgroup9-q25_extra").on("change", function(){
+    if($(this).val() === '7') 
+    {
+        $('#q25_extra1').show();
+    }
+    else
+    {
+    $('#q25_extra1').hide();
     }
 });
 

@@ -45,6 +45,9 @@
                                 <?= $form->field($questionGroupModel, "q33_extra5")->textInput(['placeholder' => 'Ex: 4'])->label('Quantidade:'); ?>
                             </div>
                         </div>
+                        <div class="col-sm-12">
+                            <?= $form->field($questionGroupModel, "q33_extra6")->textarea(['placeholder' => 'Outros ...'])->label('Outros:'); ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -60,7 +63,7 @@
         <div id="q34_extra" style="display:none;">
             <div class="col-sm-12">
                 <hr>
-                <?= \yii\helpers\Html::label('16.3 - Em quais áreas?') ?>
+                <?= \yii\helpers\Html::label('16.2.1 - Em quais áreas?') ?>
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-4">
@@ -90,7 +93,7 @@
             
             <div class="col-sm-12">
                 <hr>
-                <?= \yii\helpers\Html::label('16.3 - Em quais Revistas?') ?>
+                <?= \yii\helpers\Html::label('16.2.2 - Em quais Revistas?') ?>
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-4">
@@ -120,6 +123,10 @@
                     <?= $form->field($questionGroupModel, "q34_extra11")->textInput(['placeholder' => 'Ex: 4'])->label('Total de artigos'); ?>
                 </div>
             </div>
+            <div class="col-sm-12">
+                <?= $form->field($questionGroupModel, "q34_extra12")->textarea(['placeholder' => 'Outros ...'])->label('Outros:'); ?>
+            </div>
+            
         </div>
         <hr>
         <div class="row">
@@ -164,6 +171,9 @@
                             <?= $form->field($questionGroupModel, "q35_extra6")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <?= $form->field($questionGroupModel, "q35_extra15")->textarea(['placeholder' => 'Outros ...'])->label('Outros:'); ?>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-12">
@@ -198,6 +208,9 @@
                         <div class="col-sm-4">
                             <?= $form->field($questionGroupModel, "q35_extra13")->dropDownList($q35_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Quantidade');  ?>
                         </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <?= $form->field($questionGroupModel, "q35_extra14")->textarea(['placeholder' => 'Outros ...'])->label('Outros:'); ?>
                     </div>
                 </div>
             </div>
@@ -271,7 +284,7 @@ $("#formgroup13-q35_extra").on("change", function(){
     $('#q35_extra_livros').hide();
     }
 });
-$("#formgroup13-q35_extra6").on("change", function(){
+$("#formgroup13-q35_extra7").on("change", function(){
     if($(this).val() !== '0') 
     {
         $('#q35_extra_capitulos').show();

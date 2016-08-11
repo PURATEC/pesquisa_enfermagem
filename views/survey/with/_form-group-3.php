@@ -12,6 +12,17 @@
                 <?= $form->field($questionGroupModel, "q7")->textInput(['placeholder' => 'Ex: 120 horas']); ?>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <?php
+                    $q7_extra_options = explode(';', $questionGroupModel->attributeLabels()['q7_extra_options']);
+                    echo $form->field($questionGroupModel, "q7_extra")->dropDownList($q7_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
+                ?>
+            </div>
+            <div id="q7_extra" class="col-sm-2" style="display:none;">
+                <?= $form->field($questionGroupModel, "q7_extra1")->textInput(['id' => 'q7_extra1_field', 'placeholder' => 'Ex: 120 horas'])->label('Número de horas: '); ?>
+            </div>
+        </div>
         <hr>
         <div class="row">
             <div class="col-sm-12">
@@ -72,6 +83,18 @@ $js1 = <<<'EOD'
         {
             $('#q9_extra').hide();
             $('#q9_extra_field').val('0');
+        }
+    });
+    $('#formgroup3-q7_extra').on('change', function()
+    {
+        if($('#formgroup3-q7_extra').val() === '2')
+        {
+            $('#q7_extra').show();
+        }
+        else
+        {
+            $('#q7_extra').hide();
+            $('#q9_extra1_field').val('0');
         }
     });
 EOD;

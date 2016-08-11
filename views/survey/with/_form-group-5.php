@@ -7,56 +7,27 @@
         <div class="row">
             <div class="col-sm-12">
                 <?php
-                echo $form->field($questionGroupModel, "q13")->widget(\kartik\slider\Slider::classname(), [
-                    'sliderColor' => \kartik\slider\Slider::TYPE_GREY,
-                    'handleColor' => \kartik\slider\Slider::TYPE_DANGER,
-                    'pluginOptions' => [
-                        'handle' => 'triangle',
-                        'tooltip' => 'always'
-                    ]
-                ]); ?>
+                    $q13_options = [0,1,2,3,4,5,6,7,8,9,10];
+                    echo $form->field($questionGroupModel, "q13")->dropDownList($q13_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
+                ?>
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col-sm-12">
-                <?php
-                echo $form->field($questionGroupModel, "q14")->widget(\kartik\slider\Slider::classname(), [
-                    'sliderColor' => \kartik\slider\Slider::TYPE_GREY,
-                    'handleColor' => \kartik\slider\Slider::TYPE_DANGER,
-                    'pluginOptions' => [
-                        'handle' => 'triangle',
-                        'tooltip' => 'always'
-                    ]
-                ]); ?>
+               <?= $form->field($questionGroupModel, "q14")->dropDownList($q13_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']); ?>
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col-sm-12">
-                <?php
-                echo $form->field($questionGroupModel, "q15")->widget(\kartik\slider\Slider::classname(), [
-                    'sliderColor' => \kartik\slider\Slider::TYPE_GREY,
-                    'handleColor' => \kartik\slider\Slider::TYPE_DANGER,
-                    'pluginOptions' => [
-                        'handle' => 'triangle',
-                        'tooltip' => 'always'
-                    ]
-                ]); ?>
+                <?= $form->field($questionGroupModel, "q15")->dropDownList($q13_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']); ?>
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col-sm-12">
-                <?php
-                echo $form->field($questionGroupModel, "q16")->widget(\kartik\slider\Slider::classname(), [
-                    'sliderColor' => \kartik\slider\Slider::TYPE_GREY,
-                    'handleColor' => \kartik\slider\Slider::TYPE_DANGER,
-                    'pluginOptions' => [
-                        'handle' => 'triangle',
-                        'tooltip' => 'always'
-                    ]
-                ]); ?>
+                <?= $form->field($questionGroupModel, "q16")->dropDownList($q13_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']); ?>
             </div>
         </div>
     </div>

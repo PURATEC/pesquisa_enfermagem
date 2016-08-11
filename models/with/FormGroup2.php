@@ -47,8 +47,8 @@ class FormGroup2 extends \yii\base\Model
             'q5_extra' => '5.1. Período de oferecimento:',
             'q5_extra1' => '5.2 a) Modalidade de oferecimento da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
             'q5_extra2' => '5.2 b) Natureza / Tipo da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
-            'q5_extra_options1' => 'Presencial;A distância;Parte presencial / Parte a distância;Outro',
-            'q5_extra_options2' => 'Disciplina optativa;Disciplina obrigatória;Outro',
+            'q5_extra_options1' => 'Presencial;A distância;Parte presencial / Parte a distância',
+            'q5_extra_options2' => 'Disciplina optativa;Disciplina obrigatória',
             'q5_extra_options' => '1º Semestre;2º Semestre;Anual',
         ];
     }

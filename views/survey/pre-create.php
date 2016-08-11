@@ -9,9 +9,9 @@ $this->title = 'Selecionar tipo de pesquisa';
 <div class="survey-create">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>
-                <a><i class="fa fa-send-o"> &nbsp;Instituições sem a disciplina ou conteúdo de história da enfermagem</i></a>
-            </h4>
+            <h3>
+                <a><i class="fa fa-send-o"> &nbsp;Instituições <strong>sem</strong> a disciplina ou conteúdo de história da enfermagem</i></a>
+            </h3>
         </div>
         <div class="panel-body">
             <div class="alert alert-warning">
@@ -22,7 +22,7 @@ $this->title = 'Selecionar tipo de pesquisa';
                 <div class="col-md-12">
                     <?= \yii\helpers\Html::a('Acessar questionário para instituições sem o conteúdo de história da enfermagem', 
                         ['create?survey_type=without&person_id='.$person_id],
-                        ['class' => 'btn btn-warning btn-lg btn-block']
+                        ['class' => 'btn btn-primary btn-lg btn-block']
                     ); ?>
                 </div>
             </div>
@@ -31,9 +31,9 @@ $this->title = 'Selecionar tipo de pesquisa';
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>
-                <a><i class="fa fa-send-o"> &nbsp;Instituições com a disciplina ou conteúdo de história da enfermagem</i></a>
-            </h4>
+            <h3>
+                <a><i class="fa fa-send-o"> &nbsp;Instituições <strong>com</strong> a disciplina ou conteúdo de história da enfermagem</i></a>
+            </h3>
         </div>
         <div class="panel-body">
             <div class="alert alert-warning">
@@ -49,7 +49,7 @@ $this->title = 'Selecionar tipo de pesquisa';
                 <div class="col-sm-12">
                     <?= \yii\helpers\Html::a('Acessar questionário para instituições com o conteúdo de história da enfermagem', 
                         ['create?survey_type=with&person_id='.$person_id],
-                        ['class' => 'btn btn-warning btn-lg btn-block']
+                        ['class' => 'btn btn-danger btn-lg btn-block']
                     ); ?>
                 </div>
             </div>

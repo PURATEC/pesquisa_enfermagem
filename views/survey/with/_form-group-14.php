@@ -53,6 +53,9 @@
                             ?>
                         </div>
                     </div>
+                    <div class="col-sm-12">
+                        <?= $form->field($questionGroupModel, "q36_extra6")->textarea(['placeholder' => 'Outros ...'])->label('Outros:'); ?>
+                    </div>
                 </div>
             </div>
         </div>

@@ -36,8 +36,8 @@ class FormGroup16 extends \yii\base\Model
         return [
             'q40' => '22. O programa da disciplina de História da Enfermagem ou de seu conteúdo está de acordo com o que é ministrado em sala de aula? Ou atualizado?',
             'q41' => '23. Existe alguma atividade da disciplina de História da Enfermagem ou de seu conteúdo, que ainda não consta no programa da disciplina ou de sua bibliografia?',
-            'q42' => '24. Por favor, Anexar arquivo ou colar texto do programa da disciplina de História da Enfermagem ou disciplina que trabalha o conteúdo de História da Enfermagem, ou link para site institucional com programa.',
-            'q43' => '25. Por favor, Anexar arquivo ou colar texto com rede/grade curricular, do curso de Enfermagem com respectivas cargas horárias, ou link para site institucional com currículo.',
+            'q42' => '24. Por favor, Anexar arquivo ou colar texto do programa da disciplina de História da Enfermagem ou disciplina que trabalha o conteúdo de História da Enfermagem, ou link para site institucional com programa. (Se não for possível divulgar a informação, por favor justifique.)',
+            'q43' => '25. Por favor, Anexar arquivo ou colar texto com rede/grade curricular, do curso de Enfermagem com respectivas cargas horárias, ou link para site institucional com currículo. (Se não for possível divulgar a informação, por favor justifique.)',
         ];
     }
 }

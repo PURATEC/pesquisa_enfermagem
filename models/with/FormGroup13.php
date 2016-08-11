@@ -14,6 +14,7 @@ class FormGroup13 extends \yii\base\Model
     public $q33_extra3;
     public $q33_extra4;
     public $q33_extra5;
+    public $q33_extra6;
     public $q34;
     public $q34_extra;
     public $q34_extra1;
@@ -27,6 +28,7 @@ class FormGroup13 extends \yii\base\Model
     public $q34_extra9;
     public $q34_extra10;
     public $q34_extra11;
+    public $q34_extra12;
     public $q35;
     public $q35_extra_options;
     public $q35_extra;
@@ -43,6 +45,8 @@ class FormGroup13 extends \yii\base\Model
     public $q35_extra11;
     public $q35_extra12;
     public $q35_extra13;
+    public $q35_extra14;
+    public $q35_extra15;
     public $page = 13;
 
     /**
@@ -52,11 +56,11 @@ class FormGroup13 extends \yii\base\Model
     {
         return [
             [['q33', 'q34', 'q35'], 'required'],
-            [['q33_extra', 'q33_extra1', 'q33_extra2', 'q33_extra3', 'q33_extra4', 'q33_extra5',
+            [['q33_extra', 'q33_extra1', 'q33_extra2', 'q33_extra3', 'q33_extra4', 'q33_extra5', 'q33_extra6',
                 'q34_extra', 'q34_extra1', 'q34_extra2', 'q34_extra3', 'q34_extra4', 'q34_extra5',
-                    'q34_extra6', 'q34_extra7', 'q34_extra8', 'q34_extra9', 'q34_extra10', 'q34_extra11',
+                    'q34_extra6', 'q34_extra7', 'q34_extra8', 'q34_extra9', 'q34_extra10', 'q34_extra11', 'q34_extra12',
                 'q35_extra', 'q35_extra1', 'q35_extra2', 'q35_extra3', 'q35_extra4', 'q35_extra5',
-                   'q35_extra7', 'q35_extra8', 'q35_extra9', 'q35_extra10', 'q35_extra11', 'q35_extra12', 'q35_extra13'], 'safe'],
+                   'q35_extra7', 'q35_extra8', 'q35_extra9', 'q35_extra10', 'q35_extra11', 'q35_extra12', 'q35_extra13', 'q35_extra14', 'q35_extra15'], 'safe'],
         ];
     }
     
@@ -74,7 +78,7 @@ class FormGroup13 extends \yii\base\Model
             'q35' => '17. Produziu livros e capítulos',
             'q35_extra_options' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q35_extra' => 'a) Livros',
-            'q35_extra6' => 'b) Capítulos',
+            'q35_extra7' => 'b) Capítulos',
         ];
     }
 }

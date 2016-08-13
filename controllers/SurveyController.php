@@ -71,7 +71,8 @@ class SurveyController extends Controller
         
         if($ans) {
             $decoded = base64_decode($ans->answer);
-            $file = Yii::t('app', 'anexo-'.$question.'_'.$person_id).'.pdf';
+            $personIdentifier = str_replace('.', '-', \app\models\Person::findOne($person_id)->users[0]->email);
+            $file = Yii::t('app', 'anexo-'.$question.'_'.$personIdentifier).'.pdf';
             file_put_contents($file, $decoded);
 
             header('Content-Description: File Transfer');
@@ -474,15 +475,15 @@ class SurveyController extends Controller
         
         if(! $model) return false;
         
-            if ($model->survey_id == 1) {
+        if ($model->survey_id == 1) {
             $questions = $questions1;
             $survey_id = 1;
         } else {
             $questions = $questions2;
             $survey_id = 2;
         }
-        
-        $filename = 'person-'.$person_id.'_'.Date('YmdGis').'.xls';
+        $personIdentifier = str_replace('.', '-', \app\models\Person::findOne($person_id)->users[0]->email);
+        $filename = ''.$personIdentifier.'_'.date('d-m-Y H:i:s').'.xls';
         header("Content-type: application/vnd-ms-excel");
         header("Content-Disposition: attachment; filename=".$filename);
         

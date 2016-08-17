@@ -489,11 +489,11 @@ class SurveyController extends Controller
             $survey_id = 2;
         }
         $personIdentifier = str_replace('.', '-', \app\models\Person::findOne($person_id)->users[0]->email);
-//        header("Content-type: application/vnd.ms-excel");   
-//        header("Content-type: application/force-download");
-//        header("Content-Disposition: attachment; filename=".$personIdentifier.".xls");  
-//        header("Pragma: no-cache"); 
-//        header("Expires: 0");
+        header("Content-type: application/vnd.ms-excel");   
+        header("Content-type: application/force-download");
+        header("Content-Disposition: attachment; filename=".$personIdentifier.".xls");  
+        header("Pragma: no-cache"); 
+        header("Expires: 0");
         
         echo '<table border="1" width="100%">
                 <thead>

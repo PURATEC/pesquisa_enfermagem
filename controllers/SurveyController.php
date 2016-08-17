@@ -249,6 +249,8 @@ class SurveyController extends Controller
             'q4' => '4. Departamento ou setor responsável pelo conteúdo ou disciplina de História da Enfermagem:',
             'q5' => '5. Ano de oferecimento conteúdo ou disciplina de História da Enfermagem no curso de graduação:',
             'q5_extra1' => '5.2 a) Modalidade de oferecimento da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
+            'q5_extra_options1' => 'Presencial;A distância;Parte presencial / Parte a distância',
+            'q5_extra_options2' => 'Disciplina optativa;Disciplina obrigatória',
             'q5_extra2' => '5.2 b) Natureza / Tipo da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
             'q5_options' => '1º Ano;2º Ano;3º Ano;4º Ano;5º Ano',
             'q5_extra' => '5.1. Período de oferecimento:',
@@ -256,6 +258,7 @@ class SurveyController extends Controller
             'q6' => '6. Carga horária total da Disciplina:',
             'q7' => '7. Carga horária do conteúdo de História:',
             'q7_extra' => '7.1 Você considera a carga horária do conteúdo ou disciplina de História da Enfermagem suficiente no curso de graduação em Enfermagem que está inserido?',
+            'q7_extra_options' => 'Sim, a carga horária do conteúdo ou disciplina de História da Enfermagem é suficiente para as necessidades do curso.;Sim, a carga horária do conteúdo ou disciplina de História da Enfermagem excede as necessidades do curso.;Não, a carga horária do conteúdo ou disciplina de História da Enfermagem é menor que as necessidades do curso. A carga horária ideal seria de ______h',
             'q7_extra1' => 'Horas necessárias',
             'q8' => '8. Como você percebe a importância do conteúdo ou da disciplina de História da Enfermagem na formação do enfermeiro?',
             'q9' => '9. Encontra dificuldades para ministrar o conteúdo ou disciplina de História da Enfermagem?',
@@ -279,9 +282,11 @@ class SurveyController extends Controller
             'q20_extra2' => '3.1. Ano de conclusão:',
             'q21' => '4. Possui outro curso de graduação?',
             'q21_options' => 'Não;Sim',
+            'q21_extra' => 'Qual',
             'q21_extra2' => '4.1. Ano de conclusão:',
             'q22' => '5. Possui curso de especialização?',
             'q22_options' => 'Não;Sim',
+            'q22_extra' => 'Qual',
             'q22_extra2' => '5.1. Ano de conclusão:',
             'q23' => '6. Possui Pós-graduação Stricto Sensu?',
             'q23_options' => 'Mestrado;Doutorado;Pós-Doutorado',
@@ -299,6 +304,7 @@ class SurveyController extends Controller
             'q25' => '8. Qual a sua carga horária semanal média nessa instituição de ensino?',
             'q25_extra' => 'Qual o cargo atual que você desempenha na instituição de ensino em que ministra o conteúdo de História da Enfermagem?',
             'q25_extra1' => 'Outro cargo',
+            'q25_extra_options' => 'Enfermeiro;Enfermeiro Especialista;Professor Mestre;Professor Doutor;Professor Associado ou Livre-Docente;Professor Assistente;Professor Titular;Outro',
             'q26' => '9. Possui outro vinculo empregatício?',
             'q26_options' => 'Não;Sim',
             'q27' => '10. Idiomas',
@@ -319,10 +325,10 @@ class SurveyController extends Controller
             'q28_extra7' => 'Carga horária',
             'q28_extra8' => 'Área',
             'q28_extra9' => 'Outras? Quais?',
-            'q28_extra_options' => 'Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q28_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q29' => '12. Participa de algum grupo de pesquisa?',
             'q29_options' => 'Não;Sim',
-            'q29_options_1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
+            'q29_options_1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q29_options_2' => 'Paritipante;Líder;Vice-Líder',
             'q29_extra' => 'Área',
             'q29_extra1' => 'Função',
@@ -369,6 +375,7 @@ class SurveyController extends Controller
             'q32_extra9' => 'Área',
             'q32_extra10' => 'Quantidade de projetos em andamento',
             'q32_extra11' => 'Quantidade de projetos concluídos',
+            'q32_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q32' => '15. Atua em algum projeto de extensão?',
             'q32_options' => 'Não;Sim',
             'q33' => '16. Produziu artigos completos publicados em periódicos na área de História da Enfermagem?',
@@ -395,7 +402,7 @@ class SurveyController extends Controller
             'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
             'q33_options' => 'Não;Sim',
             'q33_extra_options' => 'Nenhuma;Revista Latino Americana de Enfermagem;Revista de Escola de Enfermagem da USP;Acta Paulista de Enfermagem;Revista Brasileira de Enfermagem;Revista Texto e Contexto;Revista Escola de Enfermagem Anna Nery;Revista Gaúcha de Enfermagem;Revista Reuol;Revista Mineira de Enfermagem REME;Revista Escola de Enfermagem da UERJ;História da Enfermagem - Revista Eletrônica (HERE)',
-            'q34_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública',
+            'q34_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q35' => '17. Produziu livros e capítulos',
             'q35_extra_options' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q35_extra' => 'a) Livros',
@@ -463,7 +470,6 @@ class SurveyController extends Controller
             'q39_extra8' => 'Quantidade concluídos',
             'q39_extra9' => 'Área',
             'q37_options' => 'Não;Sim',
-            'q37_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q37_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q40' => '22. O programa da disciplina de História da Enfermagem ou de seu conteúdo está de acordo com o que é ministrado em sala de aula? Ou atualizado?',
             'q41' => '23. Existe alguma atividade da disciplina de História da Enfermagem ou de seu conteúdo, que ainda não consta no programa da disciplina ou de sua bibliografia?',
@@ -483,9 +489,11 @@ class SurveyController extends Controller
             $survey_id = 2;
         }
         $personIdentifier = str_replace('.', '-', \app\models\Person::findOne($person_id)->users[0]->email);
-        $filename = ''.$personIdentifier.'_'.date('d-m-Y H:i:s').'.xls';
-        header("Content-type: application/vnd-ms-excel");
-        header("Content-Disposition: attachment; filename=".$filename);
+//        header("Content-type: application/vnd.ms-excel");   
+//        header("Content-type: application/force-download");
+//        header("Content-Disposition: attachment; filename=".$personIdentifier.".xls");  
+//        header("Pragma: no-cache"); 
+//        header("Expires: 0");
         
         echo '<table border="1" width="100%">
                 <thead>
@@ -506,7 +514,208 @@ class SurveyController extends Controller
                         ) { 
                             echo '<td>';
                             $ans = \app\models\PersonHasSurveyAnswer::findOne(['person_id' => $person_id, 'question' => $index]);
-                            if ($ans) echo $ans->answer;
+                            if ($ans) {
+                                
+                                if ($survey_id == 1 && $index == 'q1') {
+                                    echo explode(';', $questions['q1_options'])[$ans->answer];
+                                } else {
+                                    if ($survey_id == 2 && $index == 'q3') {
+                                        echo explode(';', $questions['q3_options'])[$ans->answer];
+                                    } else if ($index == 'q5') {
+                                        echo explode(';', $questions['q5_options'])[$ans->answer];
+                                    } else if ($index == 'q5_extra1') {
+                                        echo explode(';', $questions['q5_extra_options1'])[$ans->answer];
+                                    } else if ($index == 'q5_extra2') {
+                                        echo explode(';', $questions['q5_extra_options2'])[$ans->answer];
+                                    } else if ($index == 'q7_extra') {
+                                        echo explode(';', $questions['q7_extra_options'])[$ans->answer];
+                                    } else if ($index == 'q9') {
+                                        echo explode(';', $questions['q9_options'])[$ans->answer];
+                                    } else if ($index == 'q10') {
+                                        $res = '';
+                                        $aux = explode(';', $ans->answer);
+                                        unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q10_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q11') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q11_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q17') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q17_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q18') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q18_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q20') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q20_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q21') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q21_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q22') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q22_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q23') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q23_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q23_extra_sit') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q23_extra_sit_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q23_extra2_sit') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q23_extra2_sit_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q23_extra3_sit') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q23_extra3_sit_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q24') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q24_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q25_extra') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q25_extra_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q26') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q26_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q27_extra1' || $index == 'q27_extra2') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q27_extra_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q28') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q28_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q28_extra2' || $index == 'q28_extra5' || $index == 'q28_extra8') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q28_extra_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q28_extra2' || $index == 'q28_extra5' || $index == 'q28_extra8') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q28_extra_options'])[$a]).';';
+                                        }
+                                        echo $res;
+                                    } else if ($index == 'q29') {
+                                        echo explode(';', $questions['q29_options'])[$ans->answer];
+                                    } else if ($index == 'q29_extra' || $index == 'q29_extra2' || $index == 'q29_extra4' || $index == 'q29_extra6' || $index == 'q29_extra8') {
+                                        echo explode(';', $questions['q29_options_1'])[(int)$ans->answer];
+                                    } else if ($index == 'q29_extra1' || $index == 'q29_extra3' || $index == 'q29_extra5' || $index == 'q29_extra7' || $index == 'q29_extra9') {
+                                        echo explode(';', $questions['q29_options_2'])[(int)$ans->answer];
+                                    } else if ($index == 'q30') {
+                                        echo explode(';', $questions['q30_options'])[$ans->answer];
+                                    } else if ($index == 'q31') {
+                                        echo explode(';', $questions['q31_options'])[$ans->answer];
+                                    } else if ($index == 'q31_extra' || $index == 'q31_extra3' || $index == 'q31_extra6' || $index == 'q31_extra9' || $index == 'q32_extra' || $index == 'q32_extra3' || $index == 'q32_extra6' || $index == 'q32_extra9') {
+                                        echo explode(';', $questions['q32_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q32') {
+                                        echo explode(';', $questions['q32_options'])[$ans->answer];
+                                    } else if ($index == 'q33') {
+                                        echo explode(';', $questions['q32_options'])[$ans->answer];
+                                    } else if ($index == 'q33_extra' || $index == 'q33_extra2' || $index == 'q33_extra4') {
+                                        echo explode(';', $questions['q33_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q34') {
+                                        echo explode(';', $questions['q33_options'])[$ans->answer];
+                                    } else if ($index == 'q35') {
+                                        echo explode(';', $questions['q33_options'])[$ans->answer];
+                                    } else if ($index == 'q34_extra' || $index == 'q34_extra2' || $index == 'q34_extra4') {
+                                        echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q34_extra6' || $index == 'q34_extra8' || $index == 'q34_extra10') {
+                                        echo explode(';', $questions['q33_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q35_extra1' || $index == 'q35_extra3' || $index == 'q35_extra5' || $index == 'q35_extra8' || $index == 'q35_extra10' || $index == 'q35_extra12') {
+                                        echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q36') {
+                                        echo explode(';', $questions['q36_options'])[$ans->answer];
+                                    } else if ($index == 'q36_extra' || $index == 'q36_extra2' || $index == 'q36_extra4' || $index == 'q36_extra6' || $index == 'q36_extra8') {
+                                        echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q37') {
+                                        echo explode(';', $questions['q36_options'])[$ans->answer];
+                                    } else if ($index == 'q37_extra' || $index == 'q37_extra3' || $index == 'q37_extra6' || $index == 'q37_extra9') {
+                                        echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q38') {
+                                        echo explode(';', $questions['q36_options'])[$ans->answer];
+                                    } else if ($index == 'q38_extra' || $index == 'q38_extra3' || $index == 'q38_extra6' || $index == 'q38_extra9') {
+                                        echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
+
+                                    } else if ($index == 'q39_extra1' || $index == 'q39_extra2' || $index == 'q39_extra4' || $index == 'q39_extra5' || $index == 'q39_extra7' || $index == 'q39_extra8') {
+                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q38_extra1' || $index == 'q38_extra2' || $index == 'q38_extra4' || $index == 'q38_extra5' || $index == 'q38_extra7' || $index == 'q38_extra8') {
+                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q37_extra1' || $index == 'q37_extra2' || $index == 'q37_extra4' || $index == 'q37_extra5' || $index == 'q37_extra7' || $index == 'q37_extra8') {
+                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q36_extra1' || $index == 'q36_extra3' || $index == 'q36_extra5' || $index == 'q36_extra7' || $index == 'q36_extra9') {
+                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q35_extra2' || $index == 'q35_extra4' || $index == 'q35_extra6' || $index == 'q35_extra8' || $index == 'q35_extra10' || $index == 'q35_extra12') {
+                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q31_extra1' || $index == 'q31_extra2' || $index == 'q31_extra4' || $index == 'q31_extra5' || $index == 'q31_extra10' || $index == 'q31_extra11' || $index == 'q32_extra1' || $index == 'q32_extra2' || $index == 'q32_extra4' || $index == 'q32_extra5' || $index == 'q32_extra7' || $index == 'q32_extra8' || $index == 'q32_extra10' || $index == 'q32_extra11') {
+                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                    } else {
+                                        echo $ans->answer;
+                                    }
+                                }
+                            }
                             else echo 'SEM REPSOSTA';
                             echo '</td>';
                         }

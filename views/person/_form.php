@@ -36,9 +36,12 @@ use yii\widgets\ActiveForm;
     </legend>
     
     <div class="row">
-        <div class="col-sm-3">
-            <?= $form->field($model, 'postalcode')->textInput(['placeholder' => 
-                $model->getAttributeLabel('postalcode'), 'maxlength' => true])->label(false) ?>
+        <div class="col-sm-3"  id="postalCode">
+            <?= $form->field($model, 'postalcode')->textInput([
+                'placeholder' => $model->getAttributeLabel('postalcode'), 
+                'maxlength' => true,
+                'onChange'=>"autoFillAddress('" . \yii\helpers\Url::to(['get-address']). "')"
+            ])->label(false) ?>
         </div>
 
         <div class="col-sm-3">

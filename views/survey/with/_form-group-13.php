@@ -97,7 +97,7 @@
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-4">
-                    <?= $form->field($questionGroupModel, "q34_extra6")->dropDownList($q33_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                    <?= $form->field($questionGroupModel, "q34_extra6")->dropDownList($q33_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Revista');  ?>
                 </div>
                 <div class="col-sm-4">
                     <?= $form->field($questionGroupModel, "q34_extra7")->textInput(['placeholder' => 'Ex: 4'])->label('Total de artigos'); ?>
@@ -106,7 +106,7 @@
             <div class="col-sm-12">
                 <div class="col-sm-4">
                     <?php
-                        echo $form->field($questionGroupModel, "q34_extra8")->dropDownList($q33_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');
+                        echo $form->field($questionGroupModel, "q34_extra8")->dropDownList($q33_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Revista');
                     ?>
                 </div>
                 <div class="col-sm-4">
@@ -116,7 +116,7 @@
             <div class="col-sm-12">
                <div class="col-sm-4">
                     <?php
-                        echo $form->field($questionGroupModel, "q34_extra10")->dropDownList($q33_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');
+                        echo $form->field($questionGroupModel, "q34_extra10")->dropDownList($q33_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Revista');
                     ?>
                 </div>
                 <div class="col-sm-4">

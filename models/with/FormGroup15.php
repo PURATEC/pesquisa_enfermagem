@@ -54,6 +54,22 @@ class FormGroup15 extends \yii\base\Model
             [['q37_extra', 'q37_extra1', 'q37_extra2', 'q37_extra3', 'q37_extra4', 'q37_extra5', 'q37_extra6', 'q37_extra7', 'q37_extra8', 'q37_extra9',
                 'q38_extra', 'q38_extra1', 'q38_extra2', 'q38_extra3', 'q38_extra4', 'q38_extra5', 'q38_extra6', 'q38_extra7', 'q38_extra8', 'q38_extra9',
                 'q39_extra', 'q39_extra1', 'q39_extra2', 'q39_extra3', 'q39_extra4', 'q39_extra5', 'q39_extra6', 'q39_extra7', 'q39_extra8', 'q39_extra9'], 'safe'],
+            
+            [['q37_extra', 'q37_extra1', 'q37_extra2'], 'required', 'when' => function($model) {
+                return $model->q37 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup15-q37').val() == '1';
+            }"],
+            [['q38_extra', 'q38_extra1', 'q38_extra2'], 'required', 'when' => function($model) {
+                return $model->q38 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup15-q38').val() == '1';
+            }"],
+            [['q39_extra', 'q39_extra1', 'q39_extra2'], 'required', 'when' => function($model) {
+                return $model->q39 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup15-q39').val() == '1';
+            }"],
         ];
     }
     
@@ -68,7 +84,16 @@ class FormGroup15 extends \yii\base\Model
             'q39' => '21. Possui orientação em Trabalho de Conclusão de Curso ou Iniciação científica?',
             'q37_options' => 'Não;Sim',
             'q37_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
-            'q37_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10'
+            'q37_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
+            'q37_extra' => 'Área: ', 
+            'q37_extra1' => 'Em andamento: ', 
+            'q37_extra2' => 'Concluídos',
+            'q38_extra' => 'Área: ', 
+            'q38_extra1' => 'Em andamento: ', 
+            'q38_extra2' => 'Concluídos',
+            'q39_extra' => 'Área: ', 
+            'q39_extra1' => 'Em andamento: ', 
+            'q39_extra2' => 'Concluídos'
         ];
     }
 }

@@ -81,6 +81,15 @@ class PersonController extends Controller
             ]);
         }
     }
+    
+    /**
+     * Autocomplete Adddress by CEP
+     * @param integer $postalcodeId
+     * @return array
+     */
+    public function actionGetAddress($postalcodeId) {
+        return (new Person)->getImportAddress($postalcodeId);
+    }
 
     /**
      * Finds the Person model based on its primary key value.

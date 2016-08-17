@@ -30,6 +30,11 @@ class FormGroup11 extends \yii\base\Model
         return [
             [['q28'], 'required'],
             [['q28_qt', 'q28_extra', 'q28_extra1', 'q28_extra2', 'q28_extra3', 'q28_extra4', 'q28_extra5', 'q28_extra6', 'q28_extra7', 'q28_extra8', 'q28_extra9'], 'safe'],
+            [['q28_qt', 'q28_extra', 'q28_extra1', 'q28_extra2'], 'required', 'when' => function($model) {
+                return $model->q28 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup11-q28').val() == '1';
+            }"],
         ];
     }
     
@@ -52,7 +57,7 @@ class FormGroup11 extends \yii\base\Model
             'q28_extra7' => 'Carga horária',
             'q28_extra8' => 'Área',
             'q28_extra9' => 'Outras? Quais?',
-            'q28_extra_options' => 'Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q28_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
         ];
     }
 }

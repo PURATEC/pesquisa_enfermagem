@@ -131,4 +131,19 @@ class Person extends \yii\db\ActiveRecord
                 ->setSubject('Termo de consentimento')
                 ->send();
     }
+    
+    /**
+     * Autocomplete Adddress by CEP
+     * @param type $postalcodeId
+     * @return type
+     */
+    public function getImportAddress($postalcodeId) {
+        $query = new \yii\db\Query;
+        $query->select('*')
+                ->from('import_address')
+                ->where(['import_address_postalcode' => $postalcodeId]);
+        $model = $query->createCommand();
+        $location = $model->queryOne();
+        return \yii\helpers\Json::encode($location);
+    }
 }

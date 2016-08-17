@@ -32,6 +32,16 @@ class FormGroup9 extends \yii\base\Model
         return [
             [['q24', 'q25', 'q26'], 'required'],
             [['q25_extra', 'q25_extra1', 'q26_extra', 'q26_extra1', 'q26_extra2', 'q26_extra3', 'q26_extra4', 'q26_extra5', 'q26_extra6', 'q26_extra7', 'q26_extra8'], 'safe'],
+            [['q25_extra1'], 'required', 'when' => function($model) {
+                return $model->q25_extra == '7';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup9-q25_extra').val() == '7';
+            }"],
+            [['q26_extra', 'q26_extra1', 'q26_extra2'], 'required', 'when' => function($model) {
+                return $model->q26 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup9-q26').val() == '1';
+            }"],
         ];
     }
     
@@ -47,7 +57,11 @@ class FormGroup9 extends \yii\base\Model
             'q25_extra' => ' 8.1 Qual o cargo atual que você desempenha na instituição de ensino em que ministra o conteúdo de História da Enfermagem?',
             'q25_extra_options' => 'Enfermeiro;Enfermeiro Especialista;Professor Mestre;Professor Doutor;Professor Associado ou Livre-Docente;Professor Assistente;Professor Titular;Outro',
             'q26' => '9. Possui outro vinculo empregatício?',
-            'q26_options' => 'Não;Sim'
+            'q26_options' => 'Não;Sim',
+            'q25_extra1' => 'Outro: ',
+            'q26_extra' => 'Instituição: ',
+            'q26_extra1' => 'Função: ',
+            'q26_extra2' => 'Carga horária: '
         ];
     }
 }

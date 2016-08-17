@@ -19,7 +19,7 @@
                     echo $form->field($questionGroupModel, "q7_extra")->dropDownList($q7_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']);
                 ?>
             </div>
-            <div id="q7_extra" class="col-sm-2" style="display:none;">
+            <div id="q7_extra" class="col-sm-3" style="display:none;">
                 <?= $form->field($questionGroupModel, "q7_extra1")->textInput(['id' => 'q7_extra1_field', 'placeholder' => 'Ex: 120 horas'])->label('Número de horas: '); ?>
             </div>
         </div>
@@ -41,7 +41,7 @@
         
         <div id="q9_extra" class="row" style="display:none;">
             <div class="col-sm-10">
-                <?= $form->field($questionGroupModel, "q9")->textarea(['id' => 'q9_extra_field', 'placeholder' => 'Cite aqui as dificuldades ...', 'rows' => 5])->label(false); ?>
+                <?= $form->field($questionGroupModel, "q9_extra")->textarea(['id' => 'q9_extra_field', 'placeholder' => 'Cite aqui as dificuldades ...', 'rows' => 5])->label(false); ?>
             </div>
         </div>
     </div>

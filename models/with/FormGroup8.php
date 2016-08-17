@@ -44,6 +44,21 @@ class FormGroup8 extends \yii\base\Model
                 'q20_extra2', 'q21_extra2', 'q22_extra2', 'q23_extra2', 
                 'q20_extra3', 'q21_extra3', 'q23_extra3',
                 'q23_extra_sit', 'q23_extra2_sit', 'q23_extra3_sit'], 'safe'],
+            [['q20_extra'], 'required', 'when' => function($model) {
+                return $model->q20_extra == '3';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup8-q20').val() == '3';
+            }"],
+            [['q21_extra'], 'required', 'when' => function($model) {
+                return $model->q21_extra == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup8-q21').val() == '1';
+            }"],
+            [['q22_extra', 'q22_extra2'], 'required', 'when' => function($model) {
+                return $model->q22 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup8-q22').val() == '1';
+            }"],
         ];
     }
     
@@ -56,6 +71,9 @@ class FormGroup8 extends \yii\base\Model
             'q20' => '3. Qual sua formação inicial?',
             'q20_options' => 'Bacharel em Enfermagem;Bacharel e Licenciado em Enfermagem; Bacharel ou Licencitura em História;Outro',
             'q20_extra2' => '3.1. Ano de conclusão:',
+            'q20_extra' => 'Outro: ',
+            'q21_extra' => 'Outro: ',
+            'q22_extra' => 'Especialização: ',
             'q21' => '4. Possui outro curso de graduação?',
             'q21_options' => 'Não;Sim',
             'q21_extra2' => '4.1. Ano de conclusão:',

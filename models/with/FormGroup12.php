@@ -70,6 +70,30 @@ class FormGroup12 extends \yii\base\Model
                 'q32_extra', 'q32_extra1', 'q32_extra2', 'q32_extra3', 'q32_extra4', 
                     'q32_extra5', 'q32_extra6', 'q32_extra7', 'q32_extra8',
                     'q32_extra9', 'q32_extra10', 'q32_extra11'], 'safe'],
+            
+            [['q29_extra', 'q29_extra1'], 'required', 'when' => function($model) {
+                return $model->q29 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup12-q29').val() == '1';
+            }"],
+                    
+            [['q30_extra'], 'required', 'when' => function($model) {
+                return $model->q30 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup12-q30').val() == '1';
+            }"],
+                    
+            [['q31_extra', 'q31_extra1', 'q31_extra2'], 'required', 'when' => function($model) {
+                return $model->q31 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup12-q31').val() == '1';
+            }"],
+                    
+            [['q32_extra', 'q32_extra1', 'q32_extra2'], 'required', 'when' => function($model) {
+                return $model->q31 == '1';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup12-q32').val() == '1';
+            }"],
         ];
     }
     
@@ -91,6 +115,16 @@ class FormGroup12 extends \yii\base\Model
             'q31_options_1' => '1;2;3;4;5;6;7;8;9;10; Mais de 10',
             'q32' => '15. Atua em algum projeto de extensão?',
             'q32_options' => 'Não;Sim',
+            'q29_extra' => 'Área: ', 
+            'q29_extra1' => 'Função:',
+            'q30_extra' => 'Linha de pesquisa: ',
+            'q31_extra' => 'Área: ', 
+            'q31_extra1' => 'Em andamento: ', 
+            'q31_extra2' => 'Concluídos: ',
+            'q32_extra' => 'Área: ', 
+            'q32_extra1' => 'Em andamento: ', 
+            'q32_extra2' => 'Concluídos: '
+            
         ];
     }
 }

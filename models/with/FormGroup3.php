@@ -14,6 +14,7 @@ class FormGroup3 extends \yii\base\Model
     public $q7_extra_options;
     public $q8;
     public $q9;
+    public $q9_extra;
     public $q9_options;
     public $page = 3;
 
@@ -24,7 +25,17 @@ class FormGroup3 extends \yii\base\Model
     {
         return [
             [['q6', 'q7', 'q7_extra', 'q8', 'q9'], 'required'],
-            [['q7_extra1'], 'safe']
+            [['q7_extra1'], 'required', 'when' => function($model) {
+                return $model->q7_extra == '2';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup3-q7_extra').val() == '2';
+            }"],
+            [['q9_extra'], 'required', 'when' => function($model) {
+                return $model->q7_extra == '2';
+            }, 'whenClient' => "function (attribute, value) {
+                return $('#formgroup3-q9').val() == '1';
+            }"],
+            [['q7_extra1', 'q9_extra'], 'safe']
         ];
     }
     
@@ -40,7 +51,9 @@ class FormGroup3 extends \yii\base\Model
             'q7_extra_options' => 'Sim, a carga horária do conteúdo ou disciplina de História da Enfermagem é suficiente para as necessidades do curso.;Sim, a carga horária do conteúdo ou disciplina de História da Enfermagem excede as necessidades do curso.;Não, a carga horária do conteúdo ou disciplina de História da Enfermagem é menor que as necessidades do curso. A carga horária ideal seria de ______h',
             'q8' => '8. Como você percebe a importância do conteúdo ou da disciplina de História da Enfermagem na formação do enfermeiro?',
             'q9' => '9. Encontra dificuldades para ministrar o conteúdo ou disciplina de História da Enfermagem?',
-            'q9_options' => 'Não;Sim, quais?'
+            'q9_options' => 'Não;Sim, quais?',
+            'q7_extra1' => 'Número de horas',
+            'q9_extra' => 'Dificuldades:'
           
         ];
     }

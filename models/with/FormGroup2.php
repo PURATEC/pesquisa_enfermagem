@@ -27,7 +27,7 @@ class FormGroup2 extends \yii\base\Model
     public function rules()
     {
         return [
-            [['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q5_extra1', 'q5_extra2'], 'required'],
+            [['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q5_extra', 'q5_extra1', 'q5_extra2'], 'required'],
             [['q5_extra', 'q5_extra1', 'q5_extra2'], 'safe']
         ];
     }

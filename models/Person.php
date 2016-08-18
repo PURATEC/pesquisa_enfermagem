@@ -44,7 +44,7 @@ class Person extends \yii\db\ActiveRecord
                 'createdAtAttribute' => 'created_at',
                 'updatedAtAttribute' => false,
                 'value' => function() {
-                    return date('Y-m-d');
+                    return date('Y-m-d H:i:s');
                 },
             ],
         ];

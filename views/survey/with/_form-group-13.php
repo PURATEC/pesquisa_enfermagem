@@ -67,27 +67,27 @@
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-4">
-                    <?php $q34_extra_options = explode(';', $questionGroupModel->attributeLabels()['q34_extra_options']); ?>
-                    <?= $form->field($questionGroupModel, "q34_extra")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                    <?php $q34_extra_options1 = explode(';', $questionGroupModel->attributeLabels()['q34_extra_options1']); ?>
+                    <?= $form->field($questionGroupModel, "q34_extra")->dropDownList($q34_extra_options1, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
                 </div>
                 <div class="col-sm-4">
-                    <?= $form->field($questionGroupModel, "q34_extra1")->textInput(['placeholder' => 'Ex: 4'])->label('<br>'); ?>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <div class="col-sm-4">
-                    <?= $form->field($questionGroupModel, "q34_extra2")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
-                </div>
-                <div class="col-sm-4">
-                    <?= $form->field($questionGroupModel, "q34_extra3")->textInput(['placeholder' => 'Ex: 4'])->label('<br>'); ?>
+                    <?= $form->field($questionGroupModel, "q34_extra1")->textInput(['placeholder' => 'Ex: 4'])->label('Quantidade de artigos'); ?>
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="col-sm-4">
-                    <?= $form->field($questionGroupModel, "q34_extra4")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                    <?= $form->field($questionGroupModel, "q34_extra2")->dropDownList($q34_extra_options1, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
                 </div>
                 <div class="col-sm-4">
-                    <?= $form->field($questionGroupModel, "q34_extra5")->textInput(['placeholder' => 'Ex: 4'])->label('<br>'); ?>
+                    <?= $form->field($questionGroupModel, "q34_extra3")->textInput(['placeholder' => 'Ex: 4'])->label('Quantidade de artigos'); ?>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-sm-4">
+                    <?= $form->field($questionGroupModel, "q34_extra4")->dropDownList($q34_extra_options1, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
+                </div>
+                <div class="col-sm-4">
+                    <?= $form->field($questionGroupModel, "q34_extra5")->textInput(['placeholder' => 'Ex: 4'])->label('Quantidade de artigos'); ?>
                 </div>
             </div>
             

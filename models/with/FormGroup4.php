@@ -34,7 +34,7 @@ class FormGroup4 extends \yii\base\Model
     {
         return [
             'q10' => '10. Quais estratégias metodológicas são utilizadas na disciplina?',
-            'q10_options' => 'aulas expositivas;aulas expositivas dialogadas;discussão de textos;seminários;encenação teatral;viagem didática;análise de documentos;outras',
+            'q10_options' => 'aulas expositivas;aulas expositivas dialogadas;discussão de textos;seminários;encenação teatral;viagem didática;análise de documentos;filmes;outras',
             'q11' => '11. Quais os métodos de avaliação do aluno?',
             'q11_options' => 'participação em sala de aula;frequência;trabalhos individuais escritos;trabalhos em grupo escritos;apresentação de seminários;prova escrita;estudo dirigido;exercícios em sala de aula;outros',
             'q12' => '12. Qual a bibliografia utilizada na disciplina? Favor colar as referências utilizadas nesse espaço.',

@@ -167,7 +167,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         ->setSubject('Acesso do usuário')
         ->setHtmlBody(
                 '<h3><center>CONVITE<center></h3>
-                Ribeirão Preto, julho de 2016</p>
+                Ribeirão Preto, agosto de 2016</p>
                 <h4>Remetentes:</h4>
                 <p style="text-align:justify"><strong>Profª Drª Luciana Barizon Luchesi</strong>> (Professora Doutora do Departamento de Enfermagem
                 Psiquiátrica e Ciências Humanas da Escola de Enfermagem de Ribeirão Preto, USP, Centro
@@ -257,11 +257,11 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 <p style="text-align:justify">Desde já agradecemos sua atenção, colocando-nos novamente à disposição para
                 qualquer esclarecimento, ou mesmo solicitação de informações ou dúvidas sobre o tema.</p>' . 
                 
-                '<p>' . Yii::t('app', 'Acesso a pesquisa:') . '</p>' .
+                '<p>' . Yii::t('app', 'Acesso à pesquisa:') . '</p>' .
+                '<p>Site: ' . \yii\helpers\Html::a('http://www.rehe.com.br', 
+                        \yii\helpers\Url::to(['login'], 'http')) .'</p>' . 
                 '<p>E-mail: ' . $email . '</p>' . 
                 '<p>Senha: ' . $password . '</p>' . 
-                '<p>' . \yii\helpers\Html::a('http://www.rehe.com.br', 
-                        \yii\helpers\Url::to(['login'], 'http')) .'</p>' . 
 
                 '<strong><center>Comitê de Ética em Pesquisa da Escola de Enfermagem de Ribeirão Preto – USP</center></strong>
                 <strong><center>Horário de funcionamento: de segunda a sexta-feira, das 8 às 17h</center></strong>

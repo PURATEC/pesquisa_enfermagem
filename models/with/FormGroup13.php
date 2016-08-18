@@ -17,6 +17,8 @@ class FormGroup13 extends \yii\base\Model
     public $q33_extra6;
     public $q34;
     public $q34_extra;
+    public $q34_extra_options;
+    public $q34_extra_options1;
     public $q34_extra1;
     public $q34_extra2;
     public $q34_extra3;
@@ -98,6 +100,7 @@ class FormGroup13 extends \yii\base\Model
             'q33_options' => 'Não;Sim',
             'q33_extra_options' => 'Nenhuma;Revista Latino Americana de Enfermagem;Revista de Escola de Enfermagem da USP;Acta Paulista de Enfermagem;Revista Brasileira de Enfermagem;Revista Texto e Contexto;Revista Escola de Enfermagem Anna Nery;Revista Gaúcha de Enfermagem;Revista Reuol;Revista Mineira de Enfermagem REME;Revista Escola de Enfermagem da UERJ;História da Enfermagem - Revista Eletrônica (HERE)',
             'q34_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q34_extra_options1' => 'Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q35' => '17. Produziu livros e capítulos',
             'q35_extra_options' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q35_extra' => 'a) Livros',

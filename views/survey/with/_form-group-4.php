@@ -67,7 +67,7 @@ $this->registerJs("$('#current_page_form_group').find('small').text('".$question
 
 $js1 = <<<'EOD'
     $("input[name='FormGroup4[q10][]']").change(function() {
-        if(this.value === '7') $('#q10_extra').toggle();
+        if(this.value === '8') $('#q10_extra').toggle();
     });
     $("input[name='FormGroup4[q11][]']").change(function() {
         if(this.value === '8') $('#q11_extra').toggle();

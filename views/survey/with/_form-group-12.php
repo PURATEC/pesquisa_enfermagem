@@ -57,7 +57,7 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <?= $form->field($questionGroupModel, "q29_extra8")->textarea(['placeholder' => 'Escreva aqui outras disciplinas ...', 'rows' => 5]); ?>
+                            <?= $form->field($questionGroupModel, "q29_extra8")->textarea(['placeholder' => 'Escreva aqui outros grupos ...', 'rows' => 5]); ?>
                         </div>
                     </div>
                 </div>

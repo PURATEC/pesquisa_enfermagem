@@ -148,6 +148,7 @@
                 <div id="q35_extra_livros" style="display:none;">
                     <div class="col-sm-12">
                         <div class="col-sm-4">
+                            <?php $q34_extra_options = explode(';', $questionGroupModel->attributeLabels()['q34_extra_options']); ?>
                             <?= $form->field($questionGroupModel, "q35_extra1")->dropDownList($q34_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO'])->label('Área');  ?>
                         </div>
                         <div class="col-sm-4">

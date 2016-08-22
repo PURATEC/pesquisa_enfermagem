@@ -274,10 +274,12 @@ class SurveyController extends Controller
             'q16' => '16. De 0 a 10, sendo 0, nenhum e 10 excelente, como você classifica seu domínio dos conhecimentos para ministrar o conteúdo ou disciplina de História da Enfermagem?',
             'q17' => '17. Como geralmente se dá a escolha do docente desse conteúdo ou disciplina de História da Enfermagem na sua instituição? Quais os critérios?',
             'q17_options' => 'Currículo específico;Concurso específico para a disciplina;Processo Seletivo específico para a disciplina;Afinidade com o tema;Professor contratado com menor carga horária;Disponibilidade;Outros',
+            'q17_extra' => 'Outros critérios',
             'q18' => '1. Gênero:',
             'q18_options' => 'Masculino;Feminino',
             'q19' => '2. Idade:',
             'q20' => '3. Qual sua formação inicial?',
+            'q20_extra' => 'Qual',
             'q20_options' => 'Bacharel em Enfermagem;Bacharel e Licenciado em Enfermagem; Bacharel ou Licencitura em História;Outro',
             'q20_extra2' => '3.1. Ano de conclusão:',
             'q21' => '4. Possui outro curso de graduação?',
@@ -290,14 +292,14 @@ class SurveyController extends Controller
             'q22_extra2' => '5.1. Ano de conclusão:',
             'q23' => '6. Possui Pós-graduação Stricto Sensu?',
             'q23_options' => 'Mestrado;Doutorado;Pós-Doutorado',
-            'q23_extra' => '6.2. Ano de conclusão:',
-            'q23_extra_sit' => '6.1. Andamento:',
+            'q23_extra' => '6.2. Ano de conclusão (mestrado):',
+            'q23_extra_sit' => '6.1. Andamento (mestrado):',
             'q23_extra_sit_options' => 'Em andamento;Concluído',
-            'q23_extra2' => '6.2. Ano de conclusão:',
-            'q23_extra2_sit' => '6.1. Andamento:',
+            'q23_extra2' => '6.2. Ano de conclusão (doutorado):',
+            'q23_extra2_sit' => '6.1. Andamento (doutorado):',
             'q23_extra2_sit_options' => 'Em andamento;Concluído',
-            'q23_extra3' => '6.2. Ano de conclusão:',
-            'q23_extra3_sit' => '6.1. Andamento:',
+            'q23_extra3' => '6.2. Ano de conclusão (pos-doc):',
+            'q23_extra3_sit' => '6.1. Andamento (pos-doc):',
             'q23_extra3_sit_options' => 'Em andamento;Concluído',
             'q24' => '7. Há quanto tempo é responsável pela disciplina ou conteúdo de História da Enfermagem?',
             'q24_options' => 'Menos de 1 ano;De 1 à 3 anos;De 4 à 6 anos;De 7 à 9 anos;Mais de 10 anos',
@@ -307,7 +309,6 @@ class SurveyController extends Controller
             'q25_extra_options' => 'Enfermeiro;Enfermeiro Especialista;Professor Mestre;Professor Doutor;Professor Associado ou Livre-Docente;Professor Assistente;Professor Titular;Outro',
             'q26' => '9. Possui outro vinculo empregatício?',
             'q26_options' => 'Não;Sim',
-            'q27' => '10. Idiomas',
             'q27_extra1' => 'Ingles: ',
             'q27_extra2' => 'Espanhol: ',
             'q27_extra3' => 'Outros',
@@ -524,6 +525,8 @@ class SurveyController extends Controller
                                         echo explode(';', $questions['q3_options'])[$ans->answer];
                                     } else if ($index == 'q5') {
                                         echo explode(';', $questions['q5_options'])[$ans->answer];
+                                    } else if($index == 'q5_extra') {
+                                        echo explode(';', $questions['q5_extra_options'])[$ans->answer];
                                     } else if ($index == 'q5_extra1') {
                                         echo explode(';', $questions['q5_extra_options1'])[$ans->answer];
                                     } else if ($index == 'q5_extra2') {
@@ -677,6 +680,8 @@ class SurveyController extends Controller
                                         echo explode(';', $questions['q32_options'])[$ans->answer];
                                     } else if ($index == 'q33_extra' || $index == 'q33_extra2' || $index == 'q33_extra4') {
                                         echo explode(';', $questions['q33_extra_options'])[(int)$ans->answer];
+                                    } else if ($index == 'q35_extra6' || $index == 'q35_extra2' || $index == 'q3_extra4' || $index == 'q35_extra8' || $index == 'q35_extra10' || $index == 'q3_extra12') {
+                                        echo explode(';', $questions['q36_extra_options2'])[(int)$ans->answer];
                                     } else if ($index == 'q34') {
                                         echo explode(';', $questions['q33_options'])[$ans->answer];
                                     } else if ($index == 'q35') {
@@ -684,7 +689,7 @@ class SurveyController extends Controller
                                     } else if ($index == 'q34_extra' || $index == 'q34_extra2' || $index == 'q34_extra4') {
                                         echo explode(';', $questions['q34_extra_options1'])[(int)$ans->answer];
                                     } else if ($index == 'q34_extra6' || $index == 'q34_extra8' || $index == 'q34_extra10') {
-                                        echo explode(';', $questions['q33_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q36_extra_options2'])[(int)$ans->answer];
                                     } else if ($index == 'q35_extra1' || $index == 'q35_extra3' || $index == 'q35_extra5' || $index == 'q35_extra8' || $index == 'q35_extra10' || $index == 'q35_extra12') {
                                         echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
                                     } else if ($index == 'q36') {
@@ -699,7 +704,6 @@ class SurveyController extends Controller
                                         echo explode(';', $questions['q36_options'])[$ans->answer];
                                     } else if ($index == 'q38_extra' || $index == 'q38_extra3' || $index == 'q38_extra6' || $index == 'q38_extra9') {
                                         echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
-
                                     } else if ($index == 'q39_extra1' || $index == 'q39_extra2' || $index == 'q39_extra4' || $index == 'q39_extra5' || $index == 'q39_extra7' || $index == 'q39_extra8') {
                                         echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
                                     } else if ($index == 'q38_extra1' || $index == 'q38_extra2' || $index == 'q38_extra4' || $index == 'q38_extra5' || $index == 'q38_extra7' || $index == 'q38_extra8') {

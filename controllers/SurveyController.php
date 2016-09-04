@@ -267,7 +267,8 @@ class SurveyController extends Controller
             'q10_options' => 'aulas expositivas;aulas expositivas dialogadas;discussão de textos;seminários;encenação teatral;viagem didática;análise de documentos;filmes;outras',
             'q11' => '11. Quais os métodos de avaliação do aluno?',
             'q11_options' => 'participação em sala de aula;frequência;trabalhos individuais escritos;trabalhos em grupo escritos;apresentação de seminários;prova escrita;estudo dirigido;exercícios em sala de aula;outros',
-            'q12' => '12. Qual a bibliografia utilizada na disciplina? Favor colar as referências utilizadas nesse espaço.',
+            'q11_extra' => 'Outros métodos',
+			'q12' => '12. Qual a bibliografia utilizada na disciplina? Favor colar as referências utilizadas nesse espaço.',
             'q13' => '13. De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a importância do conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
             'q14' => '14. De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a valorização dos estudantes para o conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
             'q15' => '15. De 0 a 10, sendo 0, nenhuma importância e 10 muita importância, como você classifica a valorização que a sua instituição atribui ao conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
@@ -279,18 +280,18 @@ class SurveyController extends Controller
             'q18_options' => 'Masculino;Feminino',
             'q19' => '2. Idade:',
             'q20' => '3. Qual sua formação inicial?',
-            'q20_extra' => 'Qual',
+            'q20_extra' => 'Qual (outra formação inicial)',
             'q20_options' => 'Bacharel em Enfermagem;Bacharel e Licenciado em Enfermagem; Bacharel ou Licencitura em História;Outro',
             'q20_extra2' => '3.1. Ano de conclusão:',
             'q21' => '4. Possui outro curso de graduação?',
             'q21_options' => 'Não;Sim',
-            'q21_extra' => 'Qual',
+            'q21_extra' => 'Qual (outra graduação)',
             'q21_extra2' => '4.1. Ano de conclusão:',
             'q22' => '5. Possui curso de especialização?',
             'q22_options' => 'Não;Sim',
-            'q22_extra' => 'Qual',
+            'q22_extra' => 'Qual (especialização)',
             'q22_extra2' => '5.1. Ano de conclusão:',
-            'q23' => '6. Possui Pós-graduação Stricto Sensu?',
+            'q23' => '6. Possui Pós-graduação Stricto Sensu? (opções selecionadas)',
             'q23_options' => 'Mestrado;Doutorado;Pós-Doutorado',
             'q23_extra' => '6.2. Ano de conclusão (mestrado):',
             'q23_extra_sit' => '6.1. Andamento (mestrado):',
@@ -316,15 +317,15 @@ class SurveyController extends Controller
             'q28' => '11. Você é responsável por outras disciplinas?',
             'q28_options' => 'Não;Sim',
             'q28_qt' => 'Quantas?',
-            'q28_extra' => 'Nome da disciplina',
-            'q28_extra1' => 'Carga horária',
-            'q28_extra2' => 'Área',
-            'q28_extra3' => 'Nome da disciplina',
-            'q28_extra4' => 'Carga horária',
-            'q28_extra5' => 'Área',
-            'q28_extra6' => 'Nome da disciplina',
-            'q28_extra7' => 'Carga horária',
-            'q28_extra8' => 'Área',
+            'q28_extra' => 'Nome da disciplina (item 1)',
+            'q28_extra1' => 'Carga horária (item 1)',
+            'q28_extra2' => 'Área (item 1)',
+            'q28_extra3' => 'Nome da disciplina (item 2)',
+            'q28_extra4' => 'Carga horária (item 2)',
+            'q28_extra5' => 'Área (item 2)',
+            'q28_extra6' => 'Nome da disciplina (item 3)',
+            'q28_extra7' => 'Carga horária (item 3)',
+            'q28_extra8' => 'Área (item 3)',
             'q28_extra9' => 'Outras? Quais?',
             'q28_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q29' => '12. Participa de algum grupo de pesquisa?',
@@ -340,7 +341,6 @@ class SurveyController extends Controller
             'q29_extra6' => 'Área',
             'q29_extra7' => 'Função',
             'q29_extra8' => 'Área',
-            'q29_extra9' => 'Função',
             'q29_extra8' => 'Outros? Quais?',
             'q30' => '13. Atua em alguma linha ou linhas de pesquisa?',
             'q30_options' => 'Não;Sim',
@@ -364,6 +364,7 @@ class SurveyController extends Controller
             'q31_extra9' => 'Área',
             'q31_extra10' => 'Quantidade de projetos em andamento',
             'q31_extra11' => 'Quantidade de projetos concluídos',
+			'q32' => '15. Atua em algum projeto de extensão?',
             'q32_extra' => 'Área',
             'q32_extra1' => 'Quantidade de projetos em andamento',
             'q32_extra2' => 'Quantidade de projetos concluídos',
@@ -377,30 +378,30 @@ class SurveyController extends Controller
             'q32_extra10' => 'Quantidade de projetos em andamento',
             'q32_extra11' => 'Quantidade de projetos concluídos',
             'q32_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
-            'q32' => '15. Atua em algum projeto de extensão?',
             'q32_options' => 'Não;Sim',
             'q33' => '16. Produziu artigos completos publicados em periódicos na área de História da Enfermagem?',
-            'q33_extra' => 'Revista',
-            'q33_extra1' => 'Quantidade',
-            'q33_extra2' => 'Revista',
-            'q33_extra3' => 'Quantidade',
-            'q33_extra4' => 'Revista',
-            'q33_extra5' => 'Quantidade',
-            'q33_extra6' => 'Outros',
-            'q34_extra' => 'Área',
-            'q34_extra1' => 'Quantidade',
-            'q34_extra2' => 'Área',
-            'q34_extra3' => 'Quantidade',
-            'q34_extra4' => 'Área',
-            'q34_extra5' => 'Quantidade',
-            'q34_extra6' => 'Área',
-            'q34_extra7' => 'Total de artigos',
-            'q34_extra8' => 'Área',
-            'q34_extra9' => 'Total de artigos',
-            'q34_extra10' => 'Área',
-            'q34_extra11' => 'Total de artigos',
-            'q34_extra12' => 'Outros',
-            'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
+            'q33_extra' => 'Revista (revistas 1)',
+            'q33_extra1' => 'Quantidade (revistas 1)',
+            'q33_extra2' => 'Revista (revistas 2)',
+            'q33_extra3' => 'Quantidade (revistas 2)',
+            'q33_extra4' => 'Revista (revistas 3)',
+            'q33_extra5' => 'Quantidade (revistas 3)',
+            'q33_extra6' => 'Outros (revistas)',
+			'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
+            'q34_extra' => 'Área (areas 1)',
+            'q34_extra1' => 'Quantidade (areas 1)',
+            'q34_extra2' => 'Área (areas 2)',
+            'q34_extra3' => 'Quantidade (areas 2)',
+            'q34_extra4' => 'Área (areas 3)',
+            'q34_extra5' => 'Quantidade (areas 3)',
+			'q34_ghost' => 'SEPARADOR (artigos por area/total em revista)',
+            'q34_extra6' => 'Revista (item 1)',
+            'q34_extra7' => 'Total de artigos (item 1)',
+            'q34_extra8' => 'Revista (item 2)',
+            'q34_extra9' => 'Total de artigos (item 2)',
+            'q34_extra10' => 'Revista (item 3)',
+            'q34_extra11' => 'Total de artigos (item 3)',
+            'q34_extra12' => 'Outros (total em revista)',
             'q33_options' => 'Não;Sim',
             'q33_extra_options' => 'Nenhuma;Revista Latino Americana de Enfermagem;Revista de Escola de Enfermagem da USP;Acta Paulista de Enfermagem;Revista Brasileira de Enfermagem;Revista Texto e Contexto;Revista Escola de Enfermagem Anna Nery;Revista Gaúcha de Enfermagem;Revista Reuol;Revista Mineira de Enfermagem REME;Revista Escola de Enfermagem da UERJ;História da Enfermagem - Revista Eletrônica (HERE)',
             'q34_extra_options' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
@@ -408,69 +409,65 @@ class SurveyController extends Controller
             'q35' => '17. Produziu livros e capítulos',
             'q35_extra_options' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q35_extra' => 'a) Livros',
-            'q35_extra1' => 'Área',
-            'q35_extra2' => 'Quantidade',
-            'q35_extra3' => 'Área',
-            'q35_extra4' => 'Quantidade',
-            'q35_extra5' => 'Área',
-            'q35_extra6' => 'Quantidade',
+            'q35_extra1' => 'Área (livro 1)',
+            'q35_extra2' => 'Quantidade (livro 1)',
+            'q35_extra3' => 'Área (livro 2)',
+            'q35_extra4' => 'Quantidade (livro 2)',
+            'q35_extra5' => 'Área (livro 3)',
+            'q35_extra6' => 'Quantidade (livro 3)',
             'q35_extra7' => 'b) Capítulos',
-            'q35_extra8' => 'Área',
-            'q35_extra9' => 'Quantidade',
-            'q35_extra10' => 'Área',
-            'q35_extra11' => 'Quantidade',
-            'q35_extra12' => 'Área',
-            'q35_extra13' => 'Quantidade',
-            'q35_extra14' => 'Outros',
-            'q35_extra15' => 'Outros',
+            'q35_extra8' => 'Área (capitulo 1)',
+            'q35_extra9' => 'Quantidade (capitulo 1)',
+            'q35_extra10' => 'Área (capitulo 2)',
+            'q35_extra11' => 'Quantidade (capitulo 2)',
+            'q35_extra12' => 'Área (capitulo 3)',
+            'q35_extra13' => 'Quantidade (capitulo 3)',
+            'q35_extra14' => 'Outros (capitulos)',
+            'q35_extra15' => 'Outros (livros)',
             'q36' => '18. Participação em congressos ou eventos de porte nacional/regional?',
             'q36_options' => 'Não;Sim',
             'q36_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q36_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
-            'q36_extra' => 'Área',
-            'q36_extra1' => 'Quantidade',
-            'q36_extra2' => 'Área',
-            'q36_extra3' => 'Quantidade',
-            'q36_extra4' => 'Área',
-            'q36_extra5' => 'Quantidade',
-            'q36_extra6' => 'Área',
-            'q36_extra7' => 'Quantidade',
-            'q36_extra8' => 'Área',
-            'q36_extra9' => 'Quantidade',
-            'q36_extra10' => 'Outros',
+            'q36_extra' => 'Área (item 1)',
+            'q36_extra1' => 'Quantidade (item 1)',
+            'q36_extra2' => 'Área (item 2)',
+            'q36_extra3' => 'Quantidade (item 2)',
+            'q36_extra4' => 'Área (item 3)',
+            'q36_extra5' => 'Quantidade (item 3)',
+            'q36_extra6' => 'Outros (congressos de porte nacional/regional)',
             'q37' => '19. Possui orientação de alunos de mestrado?',
-            'q37_extra' => 'Área',
-            'q37_extra1' => 'Quantidade em andamento',
-            'q37_extra2' => 'Quantidade concluídos',
-            'q37_extra3' => 'Área',
-            'q37_extra4' => 'Quantidade em andamento',
-            'q37_extra5' => 'Quantidade concluídos',
-            'q37_extra6' => 'Área',
-            'q37_extra7' => 'Quantidade em andamento',
-            'q37_extra8' => 'Quantidade concluídos',
-            'q37_extra9' => 'Área',
+            'q37_extra' => 'Área (item 1)',
+            'q37_extra1' => 'Quantidade em andamento (item 1)',
+            'q37_extra2' => 'Quantidade concluídos (item 1)',
+            'q37_extra3' => 'Área (item 2)',
+            'q37_extra4' => 'Quantidade em andamento (item 2)',
+            'q37_extra5' => 'Quantidade concluídos (item 2)',
+            'q37_extra6' => 'Área (item 3)',
+            'q37_extra7' => 'Quantidade em andamento (item 3)',
+            'q37_extra8' => 'Quantidade concluídos (item 3)',
+//            'q37_extra9' => 'Outros (orientacao mestrado)',
             'q38' => '20. Possui orientação em Tese de doutorado?',
-            'q38_extra' => 'Área',
-            'q38_extra1' => 'Quantidade em andamento',
-            'q38_extra2' => 'Quantidade concluídos',
-            'q38_extra3' => 'Área',
-            'q38_extra4' => 'Quantidade em andamento',
-            'q38_extra5' => 'Quantidade concluídos',
-            'q38_extra6' => 'Área',
-            'q38_extra7' => 'Quantidade em andamento',
-            'q38_extra8' => 'Quantidade concluídos',
-            'q38_extra9' => 'Área',
+            'q38_extra' => 'Área (item 1)',
+            'q38_extra1' => 'Quantidade em andamento (item 1)',
+            'q38_extra2' => 'Quantidade concluídos (item 1)',
+            'q38_extra3' => 'Área (item 2)',
+            'q38_extra4' => 'Quantidade em andamento (item 2)',
+            'q38_extra5' => 'Quantidade concluídos (item 2)',
+            'q38_extra6' => 'Área (item 3)',
+            'q38_extra7' => 'Quantidade em andamento (item 3)',
+            'q38_extra8' => 'Quantidade concluídos (item 3)',
+//            'q38_extra9' => 'Outros (orientacao doutorado)',
             'q39' => '21. Possui orientação em Trabalho de Conclusão de Curso ou Iniciação científica?',
-            'q37_extra' => 'Área',
-            'q39_extra1' => 'Quantidade em andamento',
-            'q39_extra2' => 'Quantidade concluídos',
-            'q39_extra3' => 'Área',
-            'q39_extra4' => 'Quantidade em andamento',
-            'q39_extra5' => 'Quantidade concluídos',
-            'q39_extra6' => 'Área',
-            'q39_extra7' => 'Quantidade em andamento',
-            'q39_extra8' => 'Quantidade concluídos',
-            'q39_extra9' => 'Área',
+            'q39_extra' => 'Área (item 1)',
+            'q39_extra1' => 'Quantidade em andamento (item 1)',
+            'q39_extra2' => 'Quantidade concluídos (item 1)',
+            'q39_extra3' => 'Área (item 2)',
+            'q39_extra4' => 'Quantidade em andamento (item 2)',
+            'q39_extra5' => 'Quantidade concluídos (item 2)',
+            'q39_extra6' => 'Área (item 3)',
+            'q39_extra7' => 'Quantidade em andamento (item 3)',
+            'q39_extra8' => 'Quantidade concluídos (item 3)',
+//            'q39_extra9' => 'Outros (iniciacao cientifica)',
             'q37_options' => 'Não;Sim',
             'q37_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q40' => '22. O programa da disciplina de História da Enfermagem ou de seu conteúdo está de acordo com o que é ministrado em sala de aula? Ou atualizado?',
@@ -491,11 +488,11 @@ class SurveyController extends Controller
             $survey_id = 2;
         }
         $personIdentifier = str_replace('.', '-', \app\models\Person::findOne($person_id)->users[0]->email);
-        header("Content-type: application/vnd.ms-excel");   
-        header("Content-type: application/force-download");
-        header("Content-Disposition: attachment; filename=".$personIdentifier.".xls");  
-        header("Pragma: no-cache"); 
-        header("Expires: 0");
+//        header("Content-type: application/vnd.ms-excel");   
+//        header("Content-type: application/force-download");
+//        header("Content-Disposition: attachment; filename=".$personIdentifier.".xls");  
+//        header("Pragma: no-cache"); 
+//        header("Expires: 0");
         
         echo '<table border="1" width="100%">
                 <thead>
@@ -525,6 +522,8 @@ class SurveyController extends Controller
                                         echo explode(';', $questions['q3_options'])[$ans->answer];
                                     } else if ($index == 'q5') {
                                         echo explode(';', $questions['q5_options'])[$ans->answer];
+                                    } else if ($index == 'q35_extra7' || $index == 'q35_extra') {
+                                        echo explode(';', $questions['q36_options'])[$ans->answer];
                                     } else if($index == 'q5_extra') {
                                         echo explode(';', $questions['q5_extra_options'])[$ans->answer];
                                     } else if ($index == 'q5_extra1') {
@@ -664,8 +663,8 @@ class SurveyController extends Controller
                                         echo $res;
                                     } else if ($index == 'q29') {
                                         echo explode(';', $questions['q29_options'])[$ans->answer];
-                                    } else if ($index == 'q29_extra' || $index == 'q29_extra2' || $index == 'q29_extra4' || $index == 'q29_extra6' || $index == 'q29_extra8') {
-                                        echo explode(';', $questions['q29_options_1'])[(int)$ans->answer];
+                                    } else if ($index == 'q29_extra' || $index == 'q29_extra2' || $index == 'q29_extra4' || $index == 'q29_extra6') {
+                                        echo explode(';', $questions['q29_options_1'])[$ans->answer];
                                     } else if ($index == 'q29_extra1' || $index == 'q29_extra3' || $index == 'q29_extra5' || $index == 'q29_extra7' || $index == 'q29_extra9') {
                                         echo explode(';', $questions['q29_options_2'])[(int)$ans->answer];
                                     } else if ($index == 'q30') {
@@ -680,7 +679,7 @@ class SurveyController extends Controller
                                         echo explode(';', $questions['q32_options'])[$ans->answer];
                                     } else if ($index == 'q33_extra' || $index == 'q33_extra2' || $index == 'q33_extra4') {
                                         echo explode(';', $questions['q33_extra_options'])[(int)$ans->answer];
-                                    } else if ($index == 'q35_extra6' || $index == 'q35_extra2' || $index == 'q3_extra4' || $index == 'q35_extra8' || $index == 'q35_extra10' || $index == 'q3_extra12') {
+                                    } else if ($index == 'q35_extra6' || $index == 'q35_extra2' || $index == 'q3_extra4' || $index == 'q3_extra12') {
                                         echo explode(';', $questions['q36_extra_options2'])[(int)$ans->answer];
                                     } else if ($index == 'q34') {
                                         echo explode(';', $questions['q33_options'])[$ans->answer];
@@ -689,9 +688,11 @@ class SurveyController extends Controller
                                     } else if ($index == 'q34_extra' || $index == 'q34_extra2' || $index == 'q34_extra4') {
                                         echo explode(';', $questions['q34_extra_options1'])[(int)$ans->answer];
                                     } else if ($index == 'q34_extra6' || $index == 'q34_extra8' || $index == 'q34_extra10') {
-                                        echo explode(';', $questions['q36_extra_options2'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q33_extra_options'])[$ans->answer];
                                     } else if ($index == 'q35_extra1' || $index == 'q35_extra3' || $index == 'q35_extra5' || $index == 'q35_extra8' || $index == 'q35_extra10' || $index == 'q35_extra12') {
-                                        echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q34_extra_options'])[$ans->answer];
+                                    } else if ($index == 'q35_extra9' || $index == 'q35_extra11' || $index == 'q35_extra13') {
+                                        echo explode(';', $questions['q35_extra_options'])[$ans->answer];
                                     } else if ($index == 'q36') {
                                         echo explode(';', $questions['q36_options'])[$ans->answer];
                                     } else if ($index == 'q36_extra' || $index == 'q36_extra2' || $index == 'q36_extra4' || $index == 'q36_extra6' || $index == 'q36_extra8') {
@@ -703,19 +704,19 @@ class SurveyController extends Controller
                                     } else if ($index == 'q38') {
                                         echo explode(';', $questions['q36_options'])[$ans->answer];
                                     } else if ($index == 'q38_extra' || $index == 'q38_extra3' || $index == 'q38_extra6' || $index == 'q38_extra9') {
-                                        echo explode(';', $questions['q34_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q34_extra_options'])[$ans->answer];
                                     } else if ($index == 'q39_extra1' || $index == 'q39_extra2' || $index == 'q39_extra4' || $index == 'q39_extra5' || $index == 'q39_extra7' || $index == 'q39_extra8') {
-                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q35_extra_options'])[$ans->answer];
+                                    } else if ($index == 'q39_extra' || $index == 'q39_extra3' || $index == 'q39_extra6') {
+                                        echo explode(';', $questions['q34_extra_options'])[$ans->answer];
                                     } else if ($index == 'q38_extra1' || $index == 'q38_extra2' || $index == 'q38_extra4' || $index == 'q38_extra5' || $index == 'q38_extra7' || $index == 'q38_extra8') {
-                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q35_extra_options'])[$ans->answer];
                                     } else if ($index == 'q37_extra1' || $index == 'q37_extra2' || $index == 'q37_extra4' || $index == 'q37_extra5' || $index == 'q37_extra7' || $index == 'q37_extra8') {
-                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q35_extra_options'])[$ans->answer];
                                     } else if ($index == 'q36_extra1' || $index == 'q36_extra3' || $index == 'q36_extra5' || $index == 'q36_extra7' || $index == 'q36_extra9') {
-                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
-                                    } else if ($index == 'q35_extra2' || $index == 'q35_extra4' || $index == 'q35_extra6' || $index == 'q35_extra8' || $index == 'q35_extra10' || $index == 'q35_extra12') {
-                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q35_extra_options'])[$ans->answer];
                                     } else if ($index == 'q31_extra1' || $index == 'q31_extra2' || $index == 'q31_extra4' || $index == 'q31_extra5' || $index == 'q31_extra10' || $index == 'q31_extra11' || $index == 'q32_extra1' || $index == 'q32_extra2' || $index == 'q32_extra4' || $index == 'q32_extra5' || $index == 'q32_extra7' || $index == 'q32_extra8' || $index == 'q32_extra10' || $index == 'q32_extra11') {
-                                        echo explode(';', $questions['q35_extra_options'])[(int)$ans->answer];
+                                        echo explode(';', $questions['q35_extra_options'])[$ans->answer];
                                     } else {
                                         echo $ans->answer;
                                     }

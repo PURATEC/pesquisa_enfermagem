@@ -26,7 +26,7 @@ class FormGroup14 extends \yii\base\Model
     {
         return [
             [['q36'], 'required'],
-            [['q36_extra', 'q36_extra1', 'q36_extra2', 'q36_extra3', 'q36_extra4', 'q36_extra5'], 'safe'],
+            [['q36_extra', 'q36_extra1', 'q36_extra2', 'q36_extra3', 'q36_extra4', 'q36_extra5', 'q36_extra6'], 'safe'],
             
             [['q36_extra', 'q36_extra1'], 'required', 'when' => function($model) {
                 return $model->q36 == '1';

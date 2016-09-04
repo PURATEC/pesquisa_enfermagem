@@ -61,7 +61,7 @@ class FormGroup13 extends \yii\base\Model
             [['q33_extra', 'q33_extra1', 'q33_extra2', 'q33_extra3', 'q33_extra4', 'q33_extra5', 'q33_extra6',
                 'q34_extra', 'q34_extra1', 'q34_extra2', 'q34_extra3', 'q34_extra4', 'q34_extra5',
                     'q34_extra6', 'q34_extra7', 'q34_extra8', 'q34_extra9', 'q34_extra10', 'q34_extra11', 'q34_extra12',
-                'q35_extra', 'q35_extra1', 'q35_extra2', 'q35_extra3', 'q35_extra4', 'q35_extra5',
+                'q35_extra', 'q35_extra1', 'q35_extra2', 'q35_extra3', 'q35_extra4', 'q35_extra5', 'q35_extra6',
                    'q35_extra7', 'q35_extra8', 'q35_extra9', 'q35_extra10', 'q35_extra11', 'q35_extra12', 'q35_extra13', 'q35_extra14', 'q35_extra15'], 'safe'],
             
             [['q33_extra', 'q33_extra1'], 'required', 'when' => function($model) {

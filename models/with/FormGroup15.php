@@ -83,7 +83,7 @@ class FormGroup15 extends \yii\base\Model
             'q38' => '20. Possui orientação em Tese de doutorado?',
             'q39' => '21. Possui orientação em Trabalho de Conclusão de Curso ou Iniciação científica?',
             'q37_options' => 'Não;Sim',
-            'q37_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q37_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica;Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q37_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q37_extra' => 'Área: ', 
             'q37_extra1' => 'Em andamento: ', 

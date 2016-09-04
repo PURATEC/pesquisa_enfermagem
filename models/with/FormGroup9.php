@@ -30,8 +30,8 @@ class FormGroup9 extends \yii\base\Model
     public function rules()
     {
         return [
-            [['q24', 'q25', 'q26'], 'required'],
-            [['q25_extra', 'q25_extra1', 'q26_extra', 'q26_extra1', 'q26_extra2', 'q26_extra3', 'q26_extra4', 'q26_extra5', 'q26_extra6', 'q26_extra7', 'q26_extra8'], 'safe'],
+            [['q24', 'q25', 'q26', 'q25_extra'], 'required'],
+            [['q25_extra1', 'q26_extra', 'q26_extra1', 'q26_extra2', 'q26_extra3', 'q26_extra4', 'q26_extra5', 'q26_extra6', 'q26_extra7', 'q26_extra8'], 'safe'],
             [['q25_extra1'], 'required', 'when' => function($model) {
                 return $model->q25_extra == '7';
             }, 'whenClient' => "function (attribute, value) {

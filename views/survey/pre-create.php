@@ -41,7 +41,7 @@ $this->title = 'Selecionar tipo de pesquisa';
                 <br /><br />Este questionário é composto de duas partes:
                 <ul>
                     <li>Etapa 1 - Dados da disciplina 17 questões - tempo médio de resposta 10min</li>
-                    <li>Etapa 2 - Dados do docente  24 questões - tempo médio de resposta 20min</li>
+                    <li>Etapa 2 - Dados do docente  25 questões - tempo médio de resposta 15min</li>
                 </ul>
             </div>
 

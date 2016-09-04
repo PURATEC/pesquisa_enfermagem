@@ -40,7 +40,7 @@
                                 <?= $form->field($questionGroupModel, "q28_extra3")->textInput(['placeholder' => 'Escreva aqui o nome da disciplina'])->label('Nome da disciplina'); ?>
                             </div>
                             <div class="col-sm-4">
-                                <?= $form->field($questionGroupModel, "q28_extra4")->textInput(['placeholder' => 'Escreva aqui a função exercida'])->label('Carga horária'); ?>
+                                <?= $form->field($questionGroupModel, "q28_extra4")->textInput(['placeholder' => 'Carga horária'])->label('Carga horária'); ?>
                             </div>
                             <div class="col-sm-4">
                                 <?= $form->field($questionGroupModel, "q28_extra5")->dropDownList($q28_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']); ?>
@@ -51,7 +51,7 @@
                                 <?= $form->field($questionGroupModel, "q28_extra6")->textInput(['placeholder' => 'Escreva aqui o nome da disciplina'])->label('Nome da disciplina'); ?>
                             </div>
                             <div class="col-sm-4">
-                                <?= $form->field($questionGroupModel, "q28_extra7")->textInput(['placeholder' => 'Escreva aqui a função exercida'])->label('Carga horária'); ?>
+                                <?= $form->field($questionGroupModel, "q28_extra7")->textInput(['placeholder' => 'Carga horária'])->label('Carga horária'); ?>
                             </div>
                             <div class="col-sm-4">
                                 <?= $form->field($questionGroupModel, "q28_extra8")->dropDownList($q28_extra_options, ['prompt' => 'SELECIONAR UMA OPÇÃO']); ?>

@@ -1,15 +1,15 @@
 <div class="row">
-    <div id="current_page_form_group" class="col-sm-6 pull-left"><h4>Página atual: <small>1</small></h4> </div>
-    <div class="col-sm-2 pull-right"><h4>Total de Páginas: <small><?= $survey_type == 'with' ? '17' : '1'; ?></small></h4></div>
+    <div id="current_page_form_group" class="col-sm-6 pull-left"><h2>Página atual: <small>1</small></h2> </div>
+    <div class="col-sm-3 pull-right"><h2>Total de Páginas: <small><?= $survey_type == 'with' ? '17' : '1'; ?></small></h2></div>
 </div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>
+        <h3>
             <a>
                 <i class="fa fa-send-o"> &nbsp;Instituições <?= $survey_type === 'with' ? 'com' : 'sem'?> a disciplina ou conteúdo de história da enfermagem</i>
             </a>
-        </h4>
+        </h3>
         
         <div id="survey_form_container_buttons">
             <?php echo \yii\helpers\Html::a(

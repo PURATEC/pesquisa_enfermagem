@@ -31,7 +31,7 @@ class FormGroup3 extends \yii\base\Model
                 return $('#formgroup3-q7_extra').val() == '2';
             }"],
             [['q9_extra'], 'required', 'when' => function($model) {
-                return $model->q7_extra == '2';
+                return $model->q9 == '1';
             }, 'whenClient' => "function (attribute, value) {
                 return $('#formgroup3-q9').val() == '1';
             }"],

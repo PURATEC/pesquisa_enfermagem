@@ -53,12 +53,7 @@ class FormGroup8 extends \yii\base\Model
                 return $model->q21_extra == '1';
             }, 'whenClient' => "function (attribute, value) {
                 return $('#formgroup8-q21').val() == '1';
-            }"],
-            [['q22_extra', 'q22_extra2'], 'required', 'when' => function($model) {
-                return $model->q22 == '1';
-            }, 'whenClient' => "function (attribute, value) {
-                return $('#formgroup8-q22').val() == '1';
-            }"],
+            }"]
         ];
     }
     

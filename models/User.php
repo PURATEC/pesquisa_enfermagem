@@ -211,7 +211,7 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
                 estrutura da disciplina de História de Enfermagem nos currículo da instituição, na qual
                 trabalha, e sua experiência como docente dessa disciplina ou conteúdo.</p>
 
-                <p>Nos testes, o tempo necessário para responder ao questionário foi de 15 a 25 min, em
+                <p>Nos testes, o tempo médio para responder ao questionário foi de 20 a 30 min, em
                 plataforma on-line. Neste e-mail, Vossa Senhoria está recebendo uma senha de acesso. Para o
                 acesso ao questionário, no campo “usuário”, deverá preencher seu e-mail, e no campo “senha”
                 copiar a senha enviada no presente e-mail. No sistema deste questionário há a possibilidade de

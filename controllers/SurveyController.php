@@ -248,13 +248,13 @@ class SurveyController extends Controller
             'q3_options' => 'É oferecido em disciplina própria;É oferecido em disciplina integrada com outros conteúdos',
             'q4' => '4. Departamento ou setor responsável pelo conteúdo ou disciplina de História da Enfermagem:',
             'q5' => '5. Ano de oferecimento conteúdo ou disciplina de História da Enfermagem no curso de graduação:',
+            'q5_extra' => '5.1. Período de oferecimento:',
+            'q5_extra_options' => '1º Semestre;2º Semestre;Anual',
             'q5_extra1' => '5.2 a) Modalidade de oferecimento da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
             'q5_extra_options1' => 'Presencial;A distância;Parte presencial / Parte a distância',
             'q5_extra_options2' => 'Disciplina optativa;Disciplina obrigatória',
             'q5_extra2' => '5.2 b) Natureza / Tipo da disciplina onde está inserido o conteúdo de História da Enfermagem no curso de graduação:',
             'q5_options' => '1º Ano;2º Ano;3º Ano;4º Ano;5º Ano',
-            'q5_extra' => '5.1. Período de oferecimento:',
-            'q5_extra_options' => '1º Semestre;2º Semestre;Anual',
             'q6' => '6. Carga horária total da Disciplina:',
             'q7' => '7. Carga horária do conteúdo de História:',
             'q7_extra' => '7.1 Você considera a carga horária do conteúdo ou disciplina de História da Enfermagem suficiente no curso de graduação em Enfermagem que está inserido?',
@@ -263,12 +263,14 @@ class SurveyController extends Controller
             'q8' => '8. Como você percebe a importância do conteúdo ou da disciplina de História da Enfermagem na formação do enfermeiro?',
             'q9' => '9. Encontra dificuldades para ministrar o conteúdo ou disciplina de História da Enfermagem?',
             'q9_options' => 'Não;Sim, quais?',
+            'q9_extra' => 'Dificuldades:',
             'q10' => '10. Quais estratégias metodológicas são utilizadas na disciplina?',
             'q10_options' => 'aulas expositivas;aulas expositivas dialogadas;discussão de textos;seminários;encenação teatral;viagem didática;análise de documentos;filmes;outras',
+            'q10_extra' => 'Outras estratégias',
             'q11' => '11. Quais os métodos de avaliação do aluno?',
             'q11_options' => 'participação em sala de aula;frequência;trabalhos individuais escritos;trabalhos em grupo escritos;apresentação de seminários;prova escrita;estudo dirigido;exercícios em sala de aula;outros',
             'q11_extra' => 'Outros métodos',
-			'q12' => '12. Qual a bibliografia utilizada na disciplina? Favor colar as referências utilizadas nesse espaço.',
+            'q12' => '12. Qual a bibliografia utilizada na disciplina? Favor colar as referências utilizadas nesse espaço.',
             'q13' => '13. De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a importância do conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
             'q14' => '14. De 0 a 10, sendo zero, nenhuma importância e 10 muita importância, como você classifica a valorização dos estudantes para o conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
             'q15' => '15. De 0 a 10, sendo 0, nenhuma importância e 10 muita importância, como você classifica a valorização que a sua instituição atribui ao conteúdo ou disciplina de História da Enfermagem no currículo de Enfermagem?',
@@ -292,9 +294,9 @@ class SurveyController extends Controller
             'q22_extra' => 'Qual (especialização)',
             'q22_extra2' => '5.1. Ano de conclusão:',
             'q23' => '6. Possui Pós-graduação Stricto Sensu? (opções selecionadas)',
+            'q23_extra_sit' => '6.1. Andamento (mestrado):',
             'q23_options' => 'Mestrado;Doutorado;Pós-Doutorado',
             'q23_extra' => '6.2. Ano de conclusão (mestrado):',
-            'q23_extra_sit' => '6.1. Andamento (mestrado):',
             'q23_extra_sit_options' => 'Em andamento;Concluído',
             'q23_extra2' => '6.2. Ano de conclusão (doutorado):',
             'q23_extra2_sit' => '6.1. Andamento (doutorado):',
@@ -310,6 +312,15 @@ class SurveyController extends Controller
             'q25_extra_options' => 'Enfermeiro;Enfermeiro Especialista;Professor Mestre;Professor Doutor;Professor Associado ou Livre-Docente;Professor Assistente;Professor Titular;Outro',
             'q26' => '9. Possui outro vinculo empregatício?',
             'q26_options' => 'Não;Sim',
+            'q26_extra' => 'Instituição: (item 1)',
+            'q26_extra1' => 'Função: (item 1)',
+            'q26_extra2' => 'Carga horária: (item 1)',
+            'q26_extra3' => 'Instituição: (item 2)',
+            'q26_extra4' => 'Função: (item 2)',
+            'q26_extra5' => 'Carga horária: (item 2)',
+            'q26_extra6' => 'Instituição: (item 3)',
+            'q26_extra7' => 'Função: (item 3)',
+            'q26_extra8' => 'Carga horária: (item 3)',
             'q27_extra1' => 'Ingles: ',
             'q27_extra2' => 'Espanhol: ',
             'q27_extra3' => 'Outros',
@@ -351,7 +362,7 @@ class SurveyController extends Controller
             'q30_extra4' => 'Linha de pesquisa',
             'q31' => '14. Participa de projetos de pesquisa?',
             'q31_options' => 'Não;Sim',
-            'q31_options_1' => '1;2;3;4;5;6;7;8;9;10; Mais de 10',
+            'q31_options_1' => '0;1;2;3;4;5;6;7;8;9;10; Mais de 10',
             'q31_extra' => 'Área',
             'q31_extra1' => 'Quantidade de projetos em andamento',
             'q31_extra2' => 'Quantidade de projetos concluídos',
@@ -364,7 +375,7 @@ class SurveyController extends Controller
             'q31_extra9' => 'Área',
             'q31_extra10' => 'Quantidade de projetos em andamento',
             'q31_extra11' => 'Quantidade de projetos concluídos',
-			'q32' => '15. Atua em algum projeto de extensão?',
+            'q32' => '15. Atua em algum projeto de extensão?',
             'q32_extra' => 'Área',
             'q32_extra1' => 'Quantidade de projetos em andamento',
             'q32_extra2' => 'Quantidade de projetos concluídos',
@@ -387,14 +398,14 @@ class SurveyController extends Controller
             'q33_extra4' => 'Revista (revistas 3)',
             'q33_extra5' => 'Quantidade (revistas 3)',
             'q33_extra6' => 'Outros (revistas)',
-			'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
+            'q34' => '16.2 - Produziu artigos completos publicados em periódicos em outras áreas da Enfermagem?',
             'q34_extra' => 'Área (areas 1)',
             'q34_extra1' => 'Quantidade (areas 1)',
             'q34_extra2' => 'Área (areas 2)',
             'q34_extra3' => 'Quantidade (areas 2)',
             'q34_extra4' => 'Área (areas 3)',
             'q34_extra5' => 'Quantidade (areas 3)',
-			'q34_ghost' => 'SEPARADOR (artigos por area/total em revista)',
+            'q34_ghost' => 'SEPARADOR (artigos por area/total em revista)',
             'q34_extra6' => 'Revista (item 1)',
             'q34_extra7' => 'Total de artigos (item 1)',
             'q34_extra8' => 'Revista (item 2)',
@@ -415,6 +426,7 @@ class SurveyController extends Controller
             'q35_extra4' => 'Quantidade (livro 2)',
             'q35_extra5' => 'Área (livro 3)',
             'q35_extra6' => 'Quantidade (livro 3)',
+            'q35_extra15' => 'Outros (livros)',
             'q35_extra7' => 'b) Capítulos',
             'q35_extra8' => 'Área (capitulo 1)',
             'q35_extra9' => 'Quantidade (capitulo 1)',
@@ -423,10 +435,9 @@ class SurveyController extends Controller
             'q35_extra12' => 'Área (capitulo 3)',
             'q35_extra13' => 'Quantidade (capitulo 3)',
             'q35_extra14' => 'Outros (capitulos)',
-            'q35_extra15' => 'Outros (livros)',
             'q36' => '18. Participação em congressos ou eventos de porte nacional/regional?',
             'q36_options' => 'Não;Sim',
-            'q36_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
+            'q36_extra_options1' => 'História da Enfermagem;Enfermagem Médico-Cirúrgica; Enfermagem Obstétrica;Enfermagem Pediátrica;Enfermagem Psiquiátrica;Enfermagem de Doenças Contagiosas;Enfermagem de Saúde Pública;Outra',
             'q36_extra_options2' => '0;1;2;3;4;5;6;7;8;9;10;Mais de 10',
             'q36_extra' => 'Área (item 1)',
             'q36_extra1' => 'Quantidade (item 1)',
@@ -661,6 +672,13 @@ class SurveyController extends Controller
                                             $res .= (explode(';', $questions['q28_extra_options'])[$a]).';';
                                         }
                                         echo $res;
+                                    } else if ($index == 'q39') {
+                                        $res = ''; $aux = explode(';', $ans->answer);
+                                        if (count($aux) > 1) unset($aux[count($aux)-1]);
+                                        foreach($aux as $a) {
+                                            $res .= (explode(';', $questions['q37_options'])[$a]).';';
+                                        }
+                                        echo $res;
                                     } else if ($index == 'q29') {
                                         echo explode(';', $questions['q29_options'])[$ans->answer];
                                     } else if ($index == 'q29_extra' || $index == 'q29_extra2' || $index == 'q29_extra4' || $index == 'q29_extra6') {
@@ -726,6 +744,12 @@ class SurveyController extends Controller
                             echo '</td>';
                         }
                     }
+                    echo '</tr>';
+                    echo '<tr>';
+                        echo '<td>';echo \app\models\Person::findOne($person_id)->full_name; echo '</td>';
+                        echo '<td>';echo \app\models\Person::findOne($person_id)->rg; echo '</td>';
+                        echo '<td>';echo \app\models\Person::findOne($person_id)->city; echo '</td>';
+                        echo '<td>';echo \app\models\Person::findOne($person_id)->users[0]->email; echo '</td>';
                     echo '</tr>
             </table>';
     }

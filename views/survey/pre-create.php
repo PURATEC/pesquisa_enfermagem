@@ -40,8 +40,8 @@ $this->title = 'Selecionar tipo de pesquisa';
                 <strong>Alerta!</strong> Apenas acesse este bloco se a sua instituição <u>oferece</u> disciplina ou conteúdo de história da enfermagem!
                 <br /><br />Este questionário é composto de duas partes:
                 <ul>
-                    <li>Etapa 1 - Dados da disciplina 17 questões - tempo médio de resposta 10min</li>
-                    <li>Etapa 2 - Dados do docente  25 questões - tempo médio de resposta 15min</li>
+                    <li>Etapa 1 - Dados da disciplina ou conteúdo de História da Enfermagem</li>
+                    <li>Etapa 2 - Dados do docente</li>
                 </ul>
             </div>
 

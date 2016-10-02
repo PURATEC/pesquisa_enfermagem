@@ -112,7 +112,7 @@ class FormGroup12 extends \yii\base\Model
             'q30_options' => 'Não;Sim',
             'q31' => '14. Participa de projetos de pesquisa?',
             'q31_options' => 'Não;Sim',
-            'q31_options_1' => '1;2;3;4;5;6;7;8;9;10; Mais de 10',
+            'q31_options_1' => '0;1;2;3;4;5;6;7;8;9;10; Mais de 10',
             'q32' => '15. Atua em algum projeto de extensão?',
             'q32_options' => 'Não;Sim',
             'q29_extra' => 'Área: ', 
